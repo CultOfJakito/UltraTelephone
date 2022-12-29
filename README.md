@@ -10,3 +10,6 @@ Each participant has one day max to add something to the project before passing 
 
 There aren't many rules, you are free do do what you want but you have to use common sense so no destroying the other participants computers.
 Also remember this: no comments in your code whatsoever
+
+# Paticipants
+
