@@ -14,7 +14,11 @@ Also remember this: no comments in your code whatsoever
 # Paticipants
 
 [ZedDevStuff](https://github.com/ZedDevStuff) (original idea)
+
 [wafflethings](https://github.com/wafflethings)
+
 [Temperz87](https://github.com/Temperz87)
+
 [ClearwaterTM](https://github.com/ClearwaterTM)
+
 []()
