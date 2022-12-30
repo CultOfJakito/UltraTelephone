@@ -25,6 +25,8 @@ Also remember this: no comments in your code whatsoever
 
 [zelzmiy](https://github.com/zelzmiy)
 
+[PetersonE1](https://github.com/PetersonE1)
+
 []()
 
 []()
