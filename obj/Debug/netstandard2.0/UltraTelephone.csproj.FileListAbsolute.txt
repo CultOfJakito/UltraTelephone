@@ -1,0 +1,11 @@
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\bin\Debug\netstandard2.0\UltraTelephone.deps.json
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\bin\Debug\netstandard2.0\UltraTelephone.dll
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\bin\Debug\netstandard2.0\UltraTelephone.pdb
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.AssemblyReference.cache
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\PluginInfo.cs
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.AssemblyInfoInputs.cache
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.AssemblyInfo.cs
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.CoreCompileInputs.cache
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.dll
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.pdb
