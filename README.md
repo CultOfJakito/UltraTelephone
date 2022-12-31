@@ -19,18 +19,13 @@ Also remember this: no comments in your code whatsoever
 
 [Temperz87](https://github.com/Temperz87)
 
-[ClearwaterTM](https://github.com/ClearwaterTM)
+[ClearwaterUK](https://github.com/ClearwaterUK)
 
 [Protract-123](https://github.com/Protract-123)
 
 [zelzmiy](https://github.com/zelzmiy)
 
 [PetersonE1](https://github.com/PetersonE1)
-<<<<<<< Updated upstream
-
-[]()
-=======
->>>>>>> Stashed changes
 
 []()
 
