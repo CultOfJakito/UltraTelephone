@@ -1,9 +1,11 @@
-﻿using BepInEx;
+﻿using System;
+using BepInEx;
 using ULTRAKILL;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections;
+using HarmonyLib;
 
 namespace UltraTelephone
 {
@@ -15,6 +17,8 @@ namespace UltraTelephone
         private static Mod thisMod = new Mod("ukdiscord_ultratelephone", Useless);
         private void Awake()
         {
+            Harmony harmony = new Harmony("testId");
+            harmony.PatchAll();
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             KeyBindings.Init();
             SceneManager.sceneLoaded += Scene;
