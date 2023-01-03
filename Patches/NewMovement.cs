@@ -30,7 +30,8 @@ namespace UltraTelephone.Patches
                 "https://preview.redd.it/8c6qq2x55gk91.jpg?width=640&crop=smart&auto=webp&s=bfed4215cbd4b38e9ddd095e567496590b3461ea",
                 "https://youtu.be/kESW8-26PXk",
                 "https://www.youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw",
-                "https://www.youtube.com/watch?v=JFNOmoVCIiU"
+                "https://www.youtube.com/watch?v=JFNOmoVCIiU",
+                "https://www.youtube.com/watch?v=kMFYSUFlryo"
             }; 
             Application.OpenURL(funnys[new System.Random().Next(0, funnys.Length - 1)]);
         }
