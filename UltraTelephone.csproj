@@ -22,11 +22,6 @@
   
   
   <ItemGroup>
-    <Folder Include="Patches\" />
-  </ItemGroup>
-  
-  
-  <ItemGroup>
     <Reference Include="Assembly-CSharp">
       <HintPath>lib\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
@@ -34,6 +29,9 @@
     <Reference Include="Unity.InputSystem">
       <HintPath>lib\Unity.InputSystem.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>lib\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
 

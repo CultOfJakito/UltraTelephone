@@ -14,7 +14,7 @@ namespace UltraTelephone
     {
         private static InputAction idkKey;
         private static bool keysReady = false;
-        private static Mod thisMod = new Mod("ukdiscord_ultratelephone", Useless);
+        private static Mod thisMod = new Mod("ukdiscord_ultratelephone", RefreshKeys);
         private void Awake()
         {
             Harmony harmony = new Harmony("testId");
@@ -22,6 +22,7 @@ namespace UltraTelephone
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             KeyBindings.Init();
             SceneManager.sceneLoaded += Scene;
+            KeyBindings.RegisterMod(thisMod);
             KeyBindings.RegisterKey(thisMod,"IDK",Keyboard.current.f3Key.path);
         }
         public static void RefreshKeys()
@@ -42,15 +43,14 @@ namespace UltraTelephone
         {
             if(keysReady)
             {
-                /*if(idkKey.WasPressedThisFrame())
+                if(idkKey.WasPressedThisFrame())
                 {
-                    Logger.LogInfo("I have no idea what i'm doing");
-                }*/
+                    Logger.LogInfo("I have some idea what i'm doing");
+                    GameObject laughingSkull = new GameObject();
+                    laughingSkull.AddComponent<LaughingSkull>();
+                }
             }
         }
-        private static void Useless()
-        {
 
-        }
     }
 }

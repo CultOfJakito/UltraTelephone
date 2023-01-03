@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.UIElements;
 
 public class KeyBindings
 {
@@ -51,6 +52,10 @@ public class KeyBindings
         initialized = true;
         InputSystem.onAnyButtonPress.Call(key => GetKey(key));
     }
+    public static void RegisterMod(Mod mod)
+    {
+        mods.Add(mod.name, mod);
+    }
     public static void RegisterKey(Mod mod,string name, string path)
     {
         InputAction input = new InputAction();
@@ -70,6 +75,7 @@ public class KeyBindings
     }
     static void GetKey(InputControl key)
     {
+        
         if(isBinding)
         {
             if(key.path.Contains("Mouse") || key.path.Contains("Keyboard"))
