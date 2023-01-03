@@ -1,22 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "Y:\\Speedruns\\Modding\\UltraTelephone-master\\UltraTelephone.csproj": {}
+    "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\UltraTelephone.csproj": {}
   },
   "projects": {
-    "Y:\\Speedruns\\Modding\\UltraTelephone-master\\UltraTelephone.csproj": {
+    "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\UltraTelephone.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "Y:\\Speedruns\\Modding\\UltraTelephone-master\\UltraTelephone.csproj",
+        "projectUniqueName": "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\UltraTelephone.csproj",
         "projectName": "UltraTelephone",
-        "projectPath": "Y:\\Speedruns\\Modding\\UltraTelephone-master\\UltraTelephone.csproj",
-        "packagesPath": "C:\\Users\\yuvrajverma\\.nuget\\packages\\",
-        "outputPath": "Y:\\Speedruns\\Modding\\UltraTelephone-master\\obj\\",
+        "projectPath": "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\UltraTelephone.csproj",
+        "packagesPath": "C:\\Users\\tempe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "Y:\\Speedruns\\Modding\\UltraTelephone-master\\NuGet.Config",
-          "C:\\Users\\yuvrajverma\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\NuGet.Config",
+          "C:\\Users\\tempe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -73,12 +77,11 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100-rc.2.22477.23\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

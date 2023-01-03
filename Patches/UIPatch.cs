@@ -6,11 +6,12 @@ using UnityEngine.UI;
 
 namespace UltraTelephone.Patches
 {
-    [HarmonyPatch(typeof(OptionsMenuToManager),"Start")]
-    public static class UIPatch
+    [HarmonyPatch(typeof(OptionsMenuToManager), "Start")]
+    public static class UIPatch // IF WE USED UMM THIS ENTIRE FUCKING SECTION WOULDN'T BE NECCESARY AS I (TEMPERZ87) ALREADY IMPLEMENTED THIS FUNCTIONALITY
     {
         public static void Postfix(OptionsMenuToManager __instance)
         {
+            //Application.OpenURL("https://github.com/Temperz87/ultra-mod-manager/blob/7ef4a1626a6f6a97c53648cd970c26d204d8f174/UK%20Mod%20Manager/Harmony%20Patches/Mod%20UI%20Patches.cs#L222"); // I got annoyed so my not so passive aggressive nature isn't on display here
             Vector2 basePos = new Vector2(0, -1080);
 
             GameObject optionMenu = __instance.optionsMenu;
@@ -32,12 +33,12 @@ namespace UltraTelephone.Patches
 
             Vector2 addedPos = Vector2.zero;
 
-            
+
             foreach (var m in KeyBindings.mods)
             {
                 int i = 0;
                 addedPos += new Vector2(0, -200);
-                
+
                 //both are negative values therefore the higher value would be less
                 if (addedPos.y + basePos.y < controlsUI.GetComponent<RectTransform>().sizeDelta.y)
                 {
@@ -56,10 +57,10 @@ namespace UltraTelephone.Patches
                     if (key.Key.Contains(m.Value.name))
                     {
                         GameObject keyChangerContainer = GameObject.Instantiate(keyChangeTemplate, modSetContainer.transform, false);
-                        
+
                         GameObject keyChangerText = keyChangerContainer.transform.GetChild(0).gameObject;
                         keyChangerText.GetComponent<Text>().text = key.Key.Split('.')[1];
-                        
+
                         GameObject keyChangerBtn = keyChangerContainer.transform.GetChild(1).gameObject;
                         string[] path = key.Value.bindings[0].path.Split('/');
                         keyChangerBtn.GetComponentInChildren<Text>().text = path.Last();

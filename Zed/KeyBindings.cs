@@ -25,31 +25,36 @@ public class KeyBindings
             binding = value;
         }
     }
-    private static bool initialized = false;
-    public static bool ready
-    {
-        get
-        {
-            return initialized;
-        }
-    }
+    public static bool ready { get; private set; }
+    // I am leaving this here to yell at whoever did this instead of doing {get; private set;}
+    //public static bool ready
+    //{
+    //    get
+    //    {
+    //        return initialized;
+    //    }
+    //}
     private static string currentControl;
     public static Dictionary<string,InputAction> keys = new Dictionary<string, InputAction>();
     public static Dictionary<string, Mod> mods = new Dictionary<string, Mod>();
     public static void Init()
     {
-        workDir = Path.GetDirectoryName(System.Reflection.Assembly.GetAssembly(typeof(Plugin)).Location);
-        if(File.Exists(workDir + "\\keybinds.txt"))
+        //workDir = Path.GetDirectoryName(System.Reflection.Assembly.GetAssembly(typeof(Plugin)).Location);
+        workDir = Directory.GetCurrentDirectory() + "/BepInEx/config/ultratelephone/";
+        Application.OpenURL("https://github.com/Temperz87/ultra-mod-manager/blob/7ef4a1626a6f6a97c53648cd970c26d204d8f174/UK%20Mod%20Manager/API/UKAPI.cs#L341");
+        if (File.Exists(workDir + "\\keybinds.txt"))
         {
-            foreach(string keybind in File.ReadAllLines(workDir + "\\keybinds.txt"))
+            string[] allLines = File.ReadAllLines(workDir + "\\keybinds.txt");
+            for (int i = 0; i < allLines.Length - 2; i++)
             {
+                string keybind = allLines[i];
                 InputAction input = new InputAction();
                 input.AddBinding(keybind.Split(' ')[1]);
                 input.Enable();
                 keys.Add(keybind.Split(' ')[0], input);
             }
         }
-        initialized = true;
+        ready = true;
         InputSystem.onAnyButtonPress.Call(key => GetKey(key));
     }
     public static void RegisterMod(Mod mod)
@@ -75,8 +80,7 @@ public class KeyBindings
     }
     static void GetKey(InputControl key)
     {
-        
-        if(isBinding)
+        if (isBinding)
         {
             if(key.path.Contains("Mouse") || key.path.Contains("Keyboard"))
             {
@@ -103,6 +107,7 @@ public class KeyBindings
         {
             keybinds.Add(key + " " + keys[key].bindings[0].path);
         }
+        keybinds.Add("TEMPERZ87 SAYS THAT UMM DID THIS BETTER YOU CUNTS");
         File.WriteAllLines(workDir + "\\keybinds.txt", keybinds);
     }
 }

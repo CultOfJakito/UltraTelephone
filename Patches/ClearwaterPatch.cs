@@ -4,30 +4,28 @@ using UnityEngine;
 
 namespace UltraTelephone.Patches
 {
-    [HarmonyPatch(typeof(LaughingSkull), "Start")]
-    public class ClearwaterPatch
-    {
-        [HarmonyPostfix]
-        public static void doOneThing(ref LaughingSkull __instance, ref AudioSource ___aud)
-        {
-            ___aud = AudioSwapper.SwapClipWithFile(___aud);
-            ___aud.Play();
-            
-        }
-    }
-    
+    // REDDSIT TEMPERZ HEAREAR TO TEXPALIN, TBASICALLY THIS ISN'T FUNNY ESO FUCK YOU I SET THE CLIP ELSE WHERE
+    //[HarmonyPatch(typeof(LaughingSkull), "Start")]
+    //public class ClearwaterPatch
+    //{
+    //    [HarmonyPostfix]
+    //    public static void doOneThing(ref LaughingSkull __instance, ref AudioSource ___aud)
+    //    {
+    //        Debug.Log("Postfixing!");
+    //        AudioSwapper.SwapClipWithFile(___aud);
+    //        ___aud.Play();
+    //    }
+    //}
+
     [HarmonyPatch(typeof(LaughingSkull), "PlayAudio")]
     public class ClearwaterPatchAudio
     {
         [HarmonyPrefix]
-        public static bool doOtherThing(ref AudioSource ___aud)
+        public static bool SwapAudioOnHah(ref AudioSource ___aud)
         {
-            if(!___aud.isPlaying)
-            {
-                ___aud.Play();
-            }
-            return false;
-
+            if (!___aud.isPlaying)
+                AudioSwapper.SwapDeathSource(___aud);
+            return !___aud.isPlaying;
         }
     }
 }

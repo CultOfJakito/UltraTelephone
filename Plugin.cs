@@ -17,13 +17,18 @@ namespace UltraTelephone
         private static Mod thisMod = new Mod("ukdiscord_ultratelephone", RefreshKeys);
         private void Awake()
         {
-            Harmony harmony = new Harmony("testId");
+            Harmony harmony = new Harmony("ukdiscord_ultratelephone");
             harmony.PatchAll();
+            StartCoroutine(AudioSwapper.Initialize(this));
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
-            KeyBindings.Init();
-            SceneManager.sceneLoaded += Scene;
-            KeyBindings.RegisterMod(thisMod);
-            KeyBindings.RegisterKey(thisMod,"IDK",Keyboard.current.f3Key.path);
+            
+            // IF SOMEONE DECIDES TO USE THE KEYBIDNS THEY CAN FIX THE CLASS
+            // OH ALSO YOU'LL NEED TO FIX UIPatch.cs
+
+            //KeyBindings.Init();
+            //SceneManager.sceneLoaded += Scene;
+            //KeyBindings.RegisterMod(thisMod);
+            //KeyBindings.RegisterKey(thisMod, "IDK", Keyboard.current.f3Key.path);
         }
         public static void RefreshKeys()
         {
@@ -34,23 +39,22 @@ namespace UltraTelephone
         }
         private void Scene(Scene scene, LoadSceneMode mode)
         {
-            if(scene.name.Contains(""))
+            if (scene.name.Contains(""))
             {
 
             }
         }
         private void Update()
         {
-            if(keysReady)
+            if (keysReady)
             {
-                if(idkKey.WasPressedThisFrame())
+                if (idkKey.WasPressedThisFrame())
                 {
-                    Logger.LogInfo("I have some idea what i'm doing");
+                    Logger.LogInfo("I have some idea what i'm doing"); // NO YOU FUCKING DON'T, YOU CALLED NEW INSTEAD OF INSTANTIATE SO YOU CLEARLY DON'T
                     GameObject laughingSkull = new GameObject();
                     laughingSkull.AddComponent<LaughingSkull>();
                 }
             }
         }
-
     }
 }

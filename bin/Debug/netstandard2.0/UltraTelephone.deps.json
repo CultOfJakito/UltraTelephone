@@ -13,7 +13,8 @@
           "BepInEx.Core": "5.4.21",
           "BepInEx.PluginInfoProps": "1.1.0",
           "NETStandard.Library": "2.0.3",
-          "UnityEngine.Modules": "2019.4.16"
+          "UnityEngine.Modules": "2019.4.16",
+          "UnityEngine.UI": "1.0.0.0"
         },
         "runtime": {
           "UltraTelephone.dll": {}
@@ -384,7 +385,15 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "UnityEngine.Modules/2019.4.16": {}
+      "UnityEngine.Modules/2019.4.16": {},
+      "UnityEngine.UI/1.0.0.0": {
+        "runtime": {
+          "UnityEngine.UI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
     }
   },
   "libraries": {
@@ -665,6 +674,11 @@
       "sha512": "sha512-Sh8A3qAa0p6X0r3wxbMcnTWElR01WkPdx4IdkjvBbjmwfI4MFOV/nxSqCO153a3do9m5tnRu/0YszCvozM86fg==",
       "path": "unityengine.modules/2019.4.16",
       "hashPath": "unityengine.modules.2019.4.16.nupkg.sha512"
+    },
+    "UnityEngine.UI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
