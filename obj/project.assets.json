@@ -2733,32 +2733,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tempe\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\mkols\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\UltraTelephone.csproj",
+      "projectUniqueName": "C:\\Users\\mkols\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
       "projectName": "UltraTelephone",
-      "projectPath": "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\UltraTelephone.csproj",
-      "packagesPath": "C:\\Users\\tempe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\obj\\",
+      "projectPath": "C:\\Users\\mkols\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
+      "packagesPath": "C:\\Users\\mkols\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mkols\\source\\repos\\UltraTelephone\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\tempe\\Documents\\GitHub\\UltraTelephone\\NuGet.Config",
-        "C:\\Users\\tempe\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\mkols\\source\\repos\\UltraTelephone\\NuGet.Config",
+        "C:\\Users\\mkols\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\mkols\\Documents": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://nuget.bepinex.dev/v3/index.json": {}
       },
@@ -2816,5 +2817,61 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Music' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Pictures' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Videos' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Music' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Pictures' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Videos' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Music' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Pictures' is denied."
+    },
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Access to the path 'C:\\Users\\mkols\\Documents\\My Videos' is denied."
+    }
+  ]
 }

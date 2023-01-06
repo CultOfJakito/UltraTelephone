@@ -22,3 +22,16 @@ C:\Users\tempe\Documents\GitHub\UltraTelephone\obj\Debug\netstandard2.0\UltraTel
 C:\Users\tempe\Documents\GitHub\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.CopyComplete
 C:\Users\tempe\Documents\GitHub\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.dll
 C:\Users\tempe\Documents\GitHub\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.pdb
+C:\Users\mkols\source\repos\UltraTelephone\bin\Debug\netstandard2.0\UltraTelephone.deps.json
+C:\Users\mkols\source\repos\UltraTelephone\bin\Debug\netstandard2.0\UltraTelephone.dll
+C:\Users\mkols\source\repos\UltraTelephone\bin\Debug\netstandard2.0\UltraTelephone.pdb
+C:\Users\mkols\source\repos\UltraTelephone\bin\Debug\netstandard2.0\UnityEngine.UI.dll
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.AssemblyReference.cache
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\PluginInfo.cs
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.AssemblyInfoInputs.cache
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.AssemblyInfo.cs
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.CoreCompileInputs.cache
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.CopyComplete
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.dll
+C:\Users\mkols\source\repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.pdb

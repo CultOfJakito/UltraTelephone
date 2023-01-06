@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections;
 using HarmonyLib;
+using UltraTelephone.Patches;
 
 namespace UltraTelephone
 {
@@ -19,6 +20,8 @@ namespace UltraTelephone
         {
             Harmony harmony = new Harmony("ukdiscord_ultratelephone");
             harmony.PatchAll();
+            StartCoroutine(WafflePatches.Randomise());
+            harmony.PatchAll(typeof(WafflePatches));
             StartCoroutine(AudioSwapper.Initialize(this));
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             

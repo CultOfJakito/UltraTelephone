@@ -26,12 +26,13 @@ namespace UltraTelephone.Patches
                 "https://www.youtube.com/watch?v=5Q_2nrp9OTg",
                 "https://www.youtube.com/watch?v=3HXmFDMgVqI",
                 "https://en.wiktionary.org/wiki/epic_fail",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fview%2Famong-us-twerk-yellow-ass-thang-gif-18983570&psig=AOvVaw180CaYxHczgmhx1l4QUOsv&ust=1672849130687000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCJCoxOLmq_wCFQAAAAAdAAAAABAE", // If someone deems this as too distateful feel free to remove it
+                "https://tenor.com/en-GB/view/among-us-twerk-yellow-ass-thang-gif-18983570", // If someone deems this as too distateful feel free to remove it
                 "https://preview.redd.it/8c6qq2x55gk91.jpg?width=640&crop=smart&auto=webp&s=bfed4215cbd4b38e9ddd095e567496590b3461ea",
                 "https://youtu.be/kESW8-26PXk",
                 "https://www.youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw",
                 "https://www.youtube.com/watch?v=JFNOmoVCIiU",
-                "https://www.youtube.com/watch?v=kMFYSUFlryo"
+                "https://www.youtube.com/watch?v=kMFYSUFlryo",
+                "https://youtu.be/vVT2MUHRe_k?t=13"
             }; 
             Application.OpenURL(funnys[new System.Random().Next(0, funnys.Length - 1)]);
         }
