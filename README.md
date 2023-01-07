@@ -13,20 +13,18 @@ Also remember this: no comments in your code whatsoever
 
 # Paticipants
 
-[ZedDevStuff](https://github.com/ZedDevStuff) (original idea)
+[ZedDevStuff](https://github.com/ZedDevStuff) (original idea) ✅
 
-[wafflethings](https://github.com/wafflethings)
-
-[Temperz87](https://github.com/Temperz87)
+[wafflethings](https://github.com/wafflethings) ✅
 
 [ClearwaterUK](https://github.com/ClearwaterUK)
 
-[Protract-123](https://github.com/Protract-123)
+[Protract-123](https://github.com/Protract-123) ✅
 
 [zelzmiy](https://github.com/zelzmiy)
 
 [PetersonE1](https://github.com/PetersonE1)
 
-[Temperz87](https://github.com/Temperz87)
+[Temperz87](https://github.com/Temperz87) ✅
 
 []()
