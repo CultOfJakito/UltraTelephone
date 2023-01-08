@@ -17,7 +17,7 @@ Also remember this: no comments in your code whatsoever
 
 [wafflethings](https://github.com/wafflethings) ✅
 
-[ClearwaterUK](https://github.com/ClearwaterUK)
+[ClearwaterUK](https://github.com/ClearwaterUK) ✅
 
 [Protract-123](https://github.com/Protract-123) ✅
 
