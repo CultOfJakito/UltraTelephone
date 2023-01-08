@@ -18,6 +18,7 @@ namespace UltraTelephone
         private static Mod thisMod = new Mod("ukdiscord_ultratelephone", RefreshKeys);
         private void Awake()
         {
+            BestUtilityEverCreated.Initialize();
             Harmony harmony = new Harmony("ukdiscord_ultratelephone");
             harmony.PatchAll();
             StartCoroutine(WafflePatches.Randomise());
@@ -26,7 +27,7 @@ namespace UltraTelephone
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             
             // IF SOMEONE DECIDES TO USE THE KEYBIDNS THEY CAN FIX THE CLASS
-            // OH ALSO YOU'LL NEED TO FIX UIPatch.cs
+            // OH ALSO YOU'LL NEED TO FIX UIPatch.cs what
 
             //KeyBindings.Init();
             //SceneManager.sceneLoaded += Scene;
@@ -44,7 +45,7 @@ namespace UltraTelephone
         {
             if (scene.name.Contains(""))
             {
-
+                
             }
         }
         private void Update()

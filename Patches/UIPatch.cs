@@ -11,6 +11,8 @@ namespace UltraTelephone.Patches
     {
         public static void Postfix(OptionsMenuToManager __instance)
         {
+            SimpleLogger.Log("Skipping UIPatch.cs");
+            return;
             //Application.OpenURL("https://github.com/Temperz87/ultra-mod-manager/blob/7ef4a1626a6f6a97c53648cd970c26d204d8f174/UK%20Mod%20Manager/Harmony%20Patches/Mod%20UI%20Patches.cs#L222"); // I got annoyed so my not so passive aggressive nature isn't on display here
             Vector2 basePos = new Vector2(0, -1080);
 

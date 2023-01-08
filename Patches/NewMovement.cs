@@ -32,7 +32,21 @@ namespace UltraTelephone.Patches
                 "https://www.youtube.com/playlist?list=PLtr1CuIZfdMAwqqRa29SrZhuwzPyKOGqw",
                 "https://www.youtube.com/watch?v=JFNOmoVCIiU",
                 "https://www.youtube.com/watch?v=kMFYSUFlryo",
-                "https://youtu.be/vVT2MUHRe_k?t=13"
+                "https://youtu.be/vVT2MUHRe_k?t=13",
+                "https://www.youtube.com/watch?v=J83lw0eFIJA",
+                "https://www.youtube.com/watch?v=Ta2CK4ByGsw",
+                "https://www.youtube.com/watch?v=gDjMZvYWUdo",
+                "https://www.youtube.com/watch?v=rkOib-MmTds",
+                "https://youtu.be/SBMXj0tw0WU",
+                "https://en.wikipedia.org/wiki/List_of_individual_trees",
+                "https://store.steampowered.com/app/714010/Aim_Lab/",
+                "https://cdn.discordapp.com/attachments/432329547023908884/1061639113310216314/9k.png",
+                "https://www.youtube.com/watch?v=THWoFDrXsTU",
+                "https://www.youtube.com/watch?v=QTldkmca6bE",
+                "https://www.youtube.com/watch?v=Ml7iVgcRZzo",
+                "https://youtu.be/Ak0EGTB4APM",
+                "https://pbs.twimg.com/media/FJb8kqQUYAEUy2a?format=jpg&name=small"
+
             }; 
             Application.OpenURL(funnys[new System.Random().Next(0, funnys.Length - 1)]);
         }
