@@ -23,7 +23,7 @@ namespace UltraTelephone.Patches
                         ShotRng = UnityEngine.Random.Range(0, 16);
                         MoveRng = UnityEngine.Random.Range(0, 11);
                         NewMovement.Instance.walkSpeed = UnityEngine.Random.Range(720, 780);
-                        //Debug.Log($"Generated RNG | Shot: {ShotRng}, Move: {MoveRng}, Speed: {NewMovement.Instance.walkSpeed}");
+                        //SimpleLogger.Log($"Generated RNG | Shot: {ShotRng}, Move: {MoveRng}, Speed: {NewMovement.Instance.walkSpeed}");
                     }
                     catch (Exception ex)
                     {
@@ -42,7 +42,8 @@ namespace UltraTelephone.Patches
         {
             if(ShotRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -54,7 +55,8 @@ namespace UltraTelephone.Patches
         {
             if (ShotRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -66,7 +68,8 @@ namespace UltraTelephone.Patches
         {
             if (ShotRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -78,7 +81,8 @@ namespace UltraTelephone.Patches
         {
             if (ShotRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -90,7 +94,8 @@ namespace UltraTelephone.Patches
         {
             if (ShotRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -102,7 +107,8 @@ namespace UltraTelephone.Patches
         {
             if (MoveRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                HudMessageReceiver.Instance.SendHudMessage("Your jet jammed.", "", "", 0, true);
                 return false;
             }
             return true;
@@ -114,7 +120,8 @@ namespace UltraTelephone.Patches
         {
             if (MoveRng == 0)
             {
-                Debug.Log("fuck you");
+                SimpleLogger.Log("fuck you");
+                HudMessageReceiver.Instance.SendHudMessage("Your legs broke.", "", "", 0, true);
                 return false;
             }
             return true;
