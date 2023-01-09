@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MadMass : MonoBehaviour
 {
-    private GameObject dieFX;
     private AudioSource madeningLoop;
 
     public Vector2 pitchRange = new Vector2(0.75f,1.1f);

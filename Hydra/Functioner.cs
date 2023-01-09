@@ -1,4 +1,0 @@
-﻿public static class Functioner
-{
-    public static void LayerOne(){LayerTwo();LayerTwo();void LayerTwo(){LayerThree();LayerThree();LayerThree();void LayerThree(){LayerFour();LayerFour();LayerFour();LayerFour();void LayerFour(){LayerFive();LayerFive();LayerFive();LayerFive();LayerFive();void LayerFive(){LayerSix();LayerSix();LayerSix();LayerSix();LayerSix();LayerSix();void LayerSix(){LayerSeven();LayerSeven();LayerSeven();LayerSeven();LayerSeven();LayerSeven();LayerSeven();void LayerSeven(){LayerEight();LayerEight();LayerEight();LayerEight();LayerEight();LayerEight();LayerEight();LayerEight();void LayerEight(){LayerNine();LayerNine();LayerNine();LayerNine();LayerNine();LayerNine();LayerNine();LayerNine();LayerNine();void LayerNine(){LayerTen();LayerTen();LayerTen();LayerTen();LayerTen();LayerTen();LayerTen();LayerTen();LayerTen();LayerTen();void LayerTen(){DontDoAnything();void DontDoAnything() {}}}}}}}}}}}
-}

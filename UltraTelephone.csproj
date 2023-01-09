@@ -59,11 +59,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  
-  
-  <ItemGroup>
-    <Folder Include="Hydra\HydraEvents\" />
-  </ItemGroup>
 
   <!-- Create config+plugins folder for BepInEx -->
   <Target Name="MakeMyDir" AfterTargets="BeforeBuild">
@@ -71,6 +66,7 @@
     <MakeDir Directories="$(TargetDir)BepInEx/" Condition="!Exists('$(TargetDir)BepInEx')" />
     <MakeDir Directories="$(TargetDir)BepInEx/plugins" Condition="!Exists('$(TargetDir)BepInEx/plugins')" />
     <MakeDir Directories="$(TargetDir)BepInEx/config/ultratelephone/audio" Condition="!Exists('$(TargetDir)BepInEx/config/ultraphone/audio')" />
+	<MakeDir Directories="$(TargetDir)BepInEx/config/ultratelephone/tex" Condition="!Exists('$(TargetDir)BepInEx/config/ultraphone/tex')" />
     <Message Text="Folders created." Importance="High" />
   </Target>
   <!-- Copy the compiled .dll to plugins folder. -->
@@ -88,6 +84,15 @@
     <Message Text="Moving audio files to BepInEx/config/ultratelephone..." Importance="High" />
     <Copy SourceFiles="@(_CopyAudio)" DestinationFolder="$(TargetDir)BepInEx/config/ultratelephone/audio/" />
     <Message Text="Audio files moved." Importance="High" />
+  </Target>
+  
+  <Target Name="MoveTextureFiles" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <_CopyTex Include="$(TargetDir)/../../../tex/**/*.*" />
+    </ItemGroup>
+    <Message Text="Moving texture files to BepInEx/config/ultratelephone..." Importance="High" />
+    <Copy SourceFiles="@(_CopyTex)" DestinationFolder="$(TargetDir)BepInEx/config/ultratelephone/tex/" />
+    <Message Text="Texture files moved." Importance="High" />
   </Target>
   
 </Project>

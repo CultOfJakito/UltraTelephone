@@ -42,8 +42,8 @@ namespace UltraTelephone.Patches
         {
             if(ShotRng == 0)
             {
-                Debug.Log("fuck you");
-                HudMessageReceiver.Instance.SendHudMessage("You have run out of ammo", "", "", 0, true);
+                SimpleLogger.Log("fuck you");
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -56,7 +56,7 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                HudMessageReceiver.Instance.SendHudMessage("You have run out of ammo", "", "", 0, true);
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -69,7 +69,7 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                HudMessageReceiver.Instance.SendHudMessage("You have run out of ammo", "", "", 0, true);
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -82,7 +82,7 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                HudMessageReceiver.Instance.SendHudMessage("You have run out of ammo", "", "", 0, true);
+                Jumpscare.Scare();
                 return false;
             }
             return true;
@@ -95,7 +95,7 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                HudMessageReceiver.Instance.SendHudMessage("You have run out of ammo", "", "", 0, true);
+                Jumpscare.Scare();
                 return false;
             }
             return true;

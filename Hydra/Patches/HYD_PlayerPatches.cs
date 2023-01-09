@@ -57,8 +57,21 @@ public class HYD_PlayerPatches
             {
                 if (HydraLoader.prefabRegistry.TryGetValue("CoinFart", out GameObject coinFart))
                 {
-                    GameObject.Instantiate(coinFart, __instance.transform.position, Quaternion.identity);
+                    Vector3 pos = __instance.transform.position;
                     GameObject.Destroy(__instance.gameObject);
+                    if (rand > 50.0f)
+                    {
+                        GameObject.Instantiate(coinFart, pos, Quaternion.identity);
+                    }
+                    else if(rand > 25.0f)
+                    {
+                        Jumpscare.Scare(true);
+                    }
+                    else if(rand > 5.0f)
+                    {
+
+                    }
+
                     return false;
                 }
             }
@@ -66,4 +79,34 @@ public class HYD_PlayerPatches
             return true;
         }
     }
+
+    [HarmonyPatch(typeof(TimeController),"Start")]
+    public static class ParryFunnyTimePatch
+    {
+        public static void Postfix(ref GameObject ___parryLight)
+        {
+            AudioClip newClip = null;
+            if (HydraLoader.dataRegistry.TryGetValue("FunnyParryNoise", out UnityEngine.Object fpnObj))
+            {
+                newClip = (AudioClip)fpnObj;
+                if (newClip != null)
+                {
+                    if (!___parryLight.TryGetComponent<AudioSource>(out AudioSource src))
+                    {
+                        AudioSource childSrc = ___parryLight.GetComponentInChildren<AudioSource>(true);
+                        if (childSrc != null)
+                        {
+                            src = childSrc;
+                        }
+
+                    }
+
+                    if (src != null)
+                    {
+                        src.clip = newClip;
+                    }
+                }            
+            }
+        }
+    }      
 }
