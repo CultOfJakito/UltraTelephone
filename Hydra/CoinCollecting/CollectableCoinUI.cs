@@ -20,7 +20,7 @@ public class CollectableCoinUI : MonoBehaviour
         }
     }
 
-    //yeah its cringe, do something then
+    //yeah its cringe, do something about it then.
     private string CoinString(int coins)
     {
         if (coins > 99)

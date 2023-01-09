@@ -123,31 +123,9 @@ public static class BruhMoments
 
 public interface IBruhMoment
 {
-    /// <summary>
-    /// Called to start the bruh moment
-    /// </summary>
     void Execute();
-
-    /// <summary>
-    /// Called every frame the bruh moment is running you must return if your bruh moment is complete or not
-    /// </summary>
-    /// <returns></returns>
     bool IsComplete();
-    
-    /// <summary>
-    /// Called if bruh moment is running, similar to complete
-    /// </summary>
-    /// <returns></returns>
     bool IsRunning();
-
-    /// <summary>
-    /// Force stop of bruh moment, use this to cancel any coroutines or stop execution of logic
-    /// </summary>
     void End();
-
-    /// <summary>
-    /// String name of your bruh moment
-    /// </summary>
-    /// <returns></returns>
     string GetName();
 }

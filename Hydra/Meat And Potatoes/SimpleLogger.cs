@@ -41,35 +41,30 @@ public class SimpleLogger : MonoBehaviour
         SimpleLogger.Log(content);
     }
 
-    /// <summary>
-    /// Translates a string into cat-readable content.
-    /// </summary>
-    /// <param name="content"></param>
-    /// <returns></returns>
     public static string DecryptContent(string content)
     {
         char[] decrypted = content.ToLower().ToCharArray();
 
-        bool htmltag = false;
+        bool markup = false;
 
         for (int i = 0; i < decrypted.Length; i++)
         {
             switch (decrypted[i])
             {
                 case 'r':
-                    if (htmltag)
+                    if (markup)
                         break;
                     decrypted[i] = 'w';
                     break;
 
                 case 'l':
-                    if (htmltag)
+                    if (markup)
                         break;
                     decrypted[i] = 'w';
                     break;
 
                 case 'y':
-                    if (htmltag)
+                    if (markup)
                         break;
 
                     if (decrypted.Length > i + 3)
@@ -84,13 +79,13 @@ public class SimpleLogger : MonoBehaviour
                     break;
 
                 case '<':
-                    htmltag = true;
+                    markup = true;
                     break;
 
                 case '>':
-                    if(htmltag)
+                    if(markup)
                     {
-                        htmltag = false;
+                        markup = false;
                     }
                     break;
 

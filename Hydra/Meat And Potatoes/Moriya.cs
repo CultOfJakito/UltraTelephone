@@ -59,7 +59,7 @@ public static class Moriya
 
         for (int i = 0; i < transforms.Length; i++)
         {
-            if (transforms[i].name == "Arch")
+            if (transforms[i].name == SuperDaniel.DanielsOS)
             {
                 if(IsThingWeLookinFor(transforms[i]))
                 {
@@ -77,7 +77,7 @@ public static class Moriya
             Transform p = transf.parent;
             if (p != null)
             {
-                if (p.name == "Arch")
+                if (p.name == SuperDaniel.DanielsOS)
                 {
                     AlterThings(p);
                     return true;

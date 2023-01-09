@@ -69,7 +69,6 @@ public class Weirdener : MonoBehaviour, IBruhMoment
             currentPos += posScalar;
             currentScale = Vector3.Scale(currentScale, scalar);
             render.transform.localScale = currentScale;
-            //render.transform.localPosition = currentPos;
 
             Texture cache = render.material.mainTexture;
 

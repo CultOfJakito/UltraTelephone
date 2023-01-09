@@ -12,4 +12,11 @@
     {
 
     }
+
+}
+
+public static class SuperDaniel
+{
+    public static string DanielsOS = "Arch";
+
 }

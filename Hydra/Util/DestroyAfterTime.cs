@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class DestroyAfterTime : MonoBehaviour
 {
-    public bool startOnEnable = true;
     public float timeLeft = 15.0f;
 
     private bool dying;

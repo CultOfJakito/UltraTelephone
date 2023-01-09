@@ -117,30 +117,6 @@ public class CoinCollectorManager : MonoBehaviour
         SimpleLogger.Log($"{coins.Count} coins placed.");
     }
 
-    /*
-    private bool TryGetCoinPlacementPosition(out Vector3 pos)
-    {
-        Vector3 randPoint = UnityEngine.Random.insideUnitSphere * initalRange;
-        pos = Vector3.zero;
-        if (NavMesh.SamplePosition(randPoint, out NavMeshHit navHit, initalRange, 1))
-        {
-            Vector2 randVal2 = UnityEngine.Random.insideUnitCircle;
-            float randRange = UnityEngine.Random.Range(0.5f, 5.0f);
-            Vector3 randPoint2 = new Vector3(randVal2.x, 0.0f, randVal2.y) * randRange;
-            randPoint2 += navHit.position;
-            if (NavMesh.SamplePosition(randPoint2, out NavMeshHit navHit2, 6.0f, 1))
-            {
-                pos = navHit2.position;
-            }else
-            {
-                pos = navHit.position;
-            }
-            return true;
-        }
-        return false;
-    }
-    */
-
     private bool TryGetCoinPlacementPosition(out Vector3 pos)
     {
         Vector3 randPoint = UnityEngine.Random.insideUnitSphere * initalRange;

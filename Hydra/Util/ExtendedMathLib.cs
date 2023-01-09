@@ -7,7 +7,7 @@ using System.IO;
 
 public static class BestUtilityEverCreated
 {
-    //no comments but they are helpful! :)
+    //no comments but they are helpful! :^^^)
     public static bool OppositeDay = true;
 
     private static bool Initiailzed;
