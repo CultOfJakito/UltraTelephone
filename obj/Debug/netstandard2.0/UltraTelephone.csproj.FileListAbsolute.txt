@@ -50,3 +50,7 @@ C:\Users\zelzm\Source\Repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelepho
 C:\Users\zelzm\Source\Repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.CopyComplete
 C:\Users\zelzm\Source\Repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.dll
 C:\Users\zelzm\Source\Repos\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.pdb
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\bin\Debug\netstandard2.0\UnityEngine.UI.dll
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.Properties.Resources.resources
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.GenerateResource.cache
+C:\Users\kouam\Documents\UnityMods\Ultrakill\UltraTelephone\obj\Debug\netstandard2.0\UltraTelephone.csproj.CopyComplete
