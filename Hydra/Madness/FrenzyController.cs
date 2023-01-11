@@ -15,7 +15,7 @@ public class FrenzyController : MonoBehaviour
     public MadMass MadnessMonster { get; private set; }
     public FrenzyMeter FrenzyUI { get; private set; }
 
-    private float currentFrenzy = 0.0f;
+    public float currentFrenzy = 0.0f;
     private float maxFrenzy = 180.0f;
 
     private float displayedFrenzy = 0.0f;

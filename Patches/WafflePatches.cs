@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 namespace UltraTelephone.Patches
 {
@@ -10,6 +11,7 @@ namespace UltraTelephone.Patches
     {
         private static int ShotRng = 1;
         private static int MoveRng = 2;
+        private static float Recoil = 0.1f;
 
         public static System.Collections.IEnumerator Randomise()
         {
@@ -35,18 +37,22 @@ namespace UltraTelephone.Patches
                 }
             }
         }
-
+        //hippity hoppety your patches are my property (; 
         [HarmonyPatch(typeof(Revolver), "Shoot")]
         [HarmonyPrefix]
         public static bool PatchShootRev()
         {
-            if(ShotRng == 0)
+            if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
                 Jumpscare.Scare();
                 return false;
             }
-            return true;
+            else {
+                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng);
+                CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                return true;
+            }
         }
 
         [HarmonyPatch(typeof(Shotgun), "Shoot")]
@@ -59,9 +65,13 @@ namespace UltraTelephone.Patches
                 Jumpscare.Scare();
                 return false;
             }
-            return true;
+            else
+            {
+                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng);
+                CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                return true;
+            }
         }
-
         [HarmonyPatch(typeof(Nailgun), "Shoot")]
         [HarmonyPrefix]
         public static bool PatchShootNail()
@@ -72,7 +82,12 @@ namespace UltraTelephone.Patches
                 Jumpscare.Scare();
                 return false;
             }
-            return true;
+            else
+            {
+                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng)/3;
+                CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                return true;
+            }
         }
 
         [HarmonyPatch(typeof(Railcannon), "Shoot")]
@@ -85,9 +100,14 @@ namespace UltraTelephone.Patches
                 Jumpscare.Scare();
                 return false;
             }
-            return true;
+            else
+            {
+                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng)*10;
+                CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                return true;
+            }
         }
-
+        
         [HarmonyPatch(typeof(RocketLauncher), "Shoot")]
         [HarmonyPrefix]
         public static bool PatchShootRockit()
@@ -98,7 +118,12 @@ namespace UltraTelephone.Patches
                 Jumpscare.Scare();
                 return false;
             }
-            return true;
+            else
+            {
+                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng);
+                CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                return true;
+            }
         }
 
         [HarmonyPatch(typeof(NewMovement), "Dodge")]
