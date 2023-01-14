@@ -9,6 +9,7 @@ using BepInEx.Configuration;
 using System.Collections;
 using HarmonyLib;
 using UltraTelephone.Patches;
+using UltraTelephone.Agent;
 
 namespace UltraTelephone
 {
@@ -36,6 +37,8 @@ namespace UltraTelephone
             StartCoroutine(WafflePatches.Randomise());
             harmony.PatchAll(typeof(WafflePatches));
             StartCoroutine(AudioSwapper.Initialize(this));
+            StartCoroutine(AgentRegistry.GetAudio());
+            FoodStandInitializer.Init();
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             plugin = this;
             canSwitch = true;
@@ -104,6 +107,7 @@ namespace UltraTelephone
                 availableWeapons.Add(5);
             }
             // Reserved for when a 6th weapon drops, else why is there a slot 6 variable in the code?
+            // because of the spawner arm
 
             /*foreach(GameObject g in gc.slot6)
             {
