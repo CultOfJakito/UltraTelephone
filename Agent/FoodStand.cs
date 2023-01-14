@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -55,6 +57,35 @@ namespace UltraTelephone.Agent
                 c.material.shader = Shader.Find(c.material.shader.name);
             }
         }
+
+        public static GameObject PrefabFind(this AssetBundle bundle, string bundlename, string name)
+        {
+            if (bundle == null)
+            {
+                if (File.Exists($@"{Application.productName}_Data\StreamingAssets\{bundlename}"))
+                {
+                    var data = File.ReadAllBytes($@"{Application.productName}_Data\StreamingAssets\{bundlename}");
+                    bundle = LoadFromLoaded(bundle, bundlename) ?? AssetBundle.LoadFromMemory(data);
+                }
+                else
+                {
+                    Debug.LogWarning($"Could not find bundle {bundlename} or StreamingAssets file");
+                    return new GameObject();
+                }
+            }
+            return bundle.LoadAsset<GameObject>(name) ?? new GameObject();
+        }
+        public static AssetBundle LoadFromLoaded(this AssetBundle bundle, string name)
+        {
+            foreach (var bndl in AssetBundle.GetAllLoadedAssetBundles())
+            {
+                if (bndl.name == name)
+                {
+                    bundle = bndl;
+                }
+            }
+            return bundle ?? null;
+        }
     }
 
     public class FoodStand : MonoBehaviour
@@ -62,6 +93,7 @@ namespace UltraTelephone.Agent
         public GameObject Trigger;
         public SpriteRenderer Icon;
         public GameObject Poster;
+        public GameObject Bible;
         public int Cost;
         public string PrePurchaseSub;
         public string PostPurchaseSub;
@@ -89,6 +121,7 @@ namespace UltraTelephone.Agent
             FoodStandInitializer.RenderObject(Poster, LayerMask.NameToLayer("Outdoors"));
             Poster.SetActive(false);
             CheckPoster();
+            Bible = FoodStandInitializer.PrefabFind(null, "common", "Book");
         }
 
         public void ButtonPressed()
@@ -119,7 +152,9 @@ namespace UltraTelephone.Agent
             {
                 if (!bibleBool)
                     SubtitleController.Instance.DisplaySubtitle("Machine, I want to give you something. It's very important to me.");
-                // TODO: CREATE BIBLE
+                GameObject bible = Instantiate(Bible, Icon.transform.position, Quaternion.identity, null);
+                Readable read = bible.GetComponent<Readable>();
+                read.SetPrivate("content", "<b>Text Scanned - Unique Passage:</b>\n\n<i>The angel Gabriel was sent from God\r\nto a town of Galilee called Nazareth,\r\nto a virgin betrothed to a man named Joseph,\r\nof the house of David,\r\nand the virgin’s name was Mary.\r\nAnd coming to her, he said,\r\n“Hail, full of grace! The Lord is with you.”\r\nBut she was greatly troubled at what was said\r\nand pondered what sort of greeting this might be.\r\nThen the angel said to her,\r\n“Do not be afraid, Mary,\r\nfor you have found favor with God...</i>\n\n<b>Remaining text: Irrelevant.</b>");
             }
             if (!posterBool && CheckPoster())
             {
@@ -201,6 +236,19 @@ namespace UltraTelephone.Agent
         private void OnDisable()
         {
             message.timerTime = 0;
+        }
+    }
+
+    public static class ReflectionExtensions
+    {
+        public static void SetPrivate(this object obj, string name, object value)
+        {
+            obj.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).SetValue(obj, value);
+        }
+
+        public static T GetPrivate<T>(this object obj, string name)
+        {
+            return (T)obj.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(obj);
         }
     }
 }
