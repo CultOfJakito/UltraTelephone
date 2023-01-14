@@ -4,7 +4,8 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class CoinCollectorManager : MonoBehaviour
+[ConfigureSingleton(SingletonFlags.NoAutoInstance)]
+public class CoinCollectorManager : MonoSingleton<CoinCollectorManager>
 {
     private GameObject coinPrefab;
     private GameObject coinCollectFX;
@@ -25,8 +26,9 @@ public class CoinCollectorManager : MonoBehaviour
 
     public float initalRange = 1000.0f, resolveRange = 45.0f;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         HydraLoader.prefabRegistry.TryGetValue("CollectableCoin", out coinPrefab);
         HydraLoader.prefabRegistry.TryGetValue("CollectableCoinUI", out coinUIPrefab);
         HydraLoader.prefabRegistry.TryGetValue("CollectableCoinFX", out coinCollectFX);
@@ -165,6 +167,18 @@ public class CoinCollectorManager : MonoBehaviour
                 }
             }
         }        
+    }
+
+    public bool SpendCoins(int amountToSpend)
+    {
+        if (amountToSpend > CollectedCoins)
+            return false;
+        CollectedCoins -= amountToSpend;
+        if (coinUI != null)
+        {
+            coinUI.Refresh();
+        }
+        return true;
     }
 
     private void OnEnable()
