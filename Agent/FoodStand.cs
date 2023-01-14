@@ -154,7 +154,7 @@ namespace UltraTelephone.Agent
                     SubtitleController.Instance.DisplaySubtitle("Machine, I want to give you something. It's very important to me.");
                 GameObject bible = Instantiate(Bible, Icon.transform.position, Quaternion.identity, null);
                 Readable read = bible.GetComponent<Readable>();
-                read.SetPrivate("content", "<b>Text Scanned - Unique Passage:</b>\n\n<i>The angel Gabriel was sent from God\r\nto a town of Galilee called Nazareth,\r\nto a virgin betrothed to a man named Joseph,\r\nof the house of David,\r\nand the virgin’s name was Mary.\r\nAnd coming to her, he said,\r\n“Hail, full of grace! The Lord is with you.”\r\nBut she was greatly troubled at what was said\r\nand pondered what sort of greeting this might be.\r\nThen the angel said to her,\r\n“Do not be afraid, Mary,\r\nfor you have found favor with God...</i>\n\n<b>Remaining text: Irrelevant.</b>");
+                read.SetPrivate("content", "<b>Text Scanned - Unique Passage:</b>\n\n<i>\"The angel Gabriel was sent from God\r\nto a town of Galilee called Nazareth,\r\nto a virgin betrothed to a man named Joseph,\r\nof the house of David,\r\nand the virgin’s name was Mary.\r\nAnd coming to her, he said,\r\n'Hail, full of grace! The Lord is with you.'\r\nBut she was greatly troubled at what was said\r\nand pondered what sort of greeting this might be.\r\nThen the angel said to her,\r\n'Do not be afraid, Mary,\r\nfor you have found favor with God...\"</i>\n\n<b>Remaining text: Irrelevant.</b>");
             }
             if (!posterBool && CheckPoster())
             {

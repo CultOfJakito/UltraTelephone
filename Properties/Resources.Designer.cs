@@ -63,6 +63,16 @@ namespace UltraTelephone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] brownie {
+            get {
+                object obj = ResourceManager.GetObject("brownie", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] chicken {
             get {
                 object obj = ResourceManager.GetObject("chicken", resourceCulture);
@@ -73,9 +83,29 @@ namespace UltraTelephone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] coconut {
+            get {
+                object obj = ResourceManager.GetObject("coconut", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] cookies {
             get {
                 object obj = ResourceManager.GetObject("cookies", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] donut {
+            get {
+                object obj = ResourceManager.GetObject("donut", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -92,9 +122,29 @@ namespace UltraTelephone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] egg {
+            get {
+                object obj = ResourceManager.GetObject("egg", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] error {
             get {
                 object obj = ResourceManager.GetObject("error", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] fish {
+            get {
+                object obj = ResourceManager.GetObject("fish", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -162,9 +212,49 @@ namespace UltraTelephone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] karj {
+            get {
+                object obj = ResourceManager.GetObject("karj", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] leip {
+            get {
+                object obj = ResourceManager.GetObject("leip", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] lemonade {
             get {
                 object obj = ResourceManager.GetObject("lemonade", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] pancake {
+            get {
+                object obj = ResourceManager.GetObject("pancake", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] pickle {
+            get {
+                object obj = ResourceManager.GetObject("pickle", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -182,9 +272,69 @@ namespace UltraTelephone.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
+        public static byte[] pudding {
+            get {
+                object obj = ResourceManager.GetObject("pudding", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] rakm {
+            get {
+                object obj = ResourceManager.GetObject("rakm", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] salmon {
+            get {
+                object obj = ResourceManager.GetObject("salmon", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
         public static byte[] soda {
             get {
                 object obj = ResourceManager.GetObject("soda", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] sweetroll {
+            get {
+                object obj = ResourceManager.GetObject("sweetroll", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] trifle {
+            get {
+                object obj = ResourceManager.GetObject("trifle", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        public static byte[] water {
+            get {
+                object obj = ResourceManager.GetObject("water", resourceCulture);
                 return ((byte[])(obj));
             }
         }
