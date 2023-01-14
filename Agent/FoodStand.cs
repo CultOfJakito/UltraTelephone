@@ -61,10 +61,13 @@ namespace UltraTelephone.Agent
     {
         public GameObject Trigger;
         public SpriteRenderer Icon;
+        public GameObject Poster;
         public int Cost;
         public string PrePurchaseSub;
         public string PostPurchaseSub;
         AudioSource source;
+        private bool posterBool = false;
+        private bool bibleBool = false;
 
         private void Awake()
         {
@@ -80,6 +83,12 @@ namespace UltraTelephone.Agent
             source = gameObject.AddComponent<AudioSource>();
             source.volume = 3;
             source.clip = AgentRegistry.eat_clip;
+
+            Poster = Instantiate(FoodStandInitializer._bundle.LoadAsset<GameObject>("poster.prefab"), new Vector3(-14.84f, 2.86f, 258.1f), Quaternion.Euler(0, 90, 0), null);
+            Poster.transform.localScale *= 3;
+            FoodStandInitializer.RenderObject(Poster, LayerMask.NameToLayer("Outdoors"));
+            Poster.SetActive(false);
+            CheckPoster();
         }
 
         public void ButtonPressed()
@@ -98,6 +107,44 @@ namespace UltraTelephone.Agent
             Icon.gameObject.SetActive(false);
             SubtitleController.Instance.DisplaySubtitle(PostPurchaseSub);
             source.Play();
+            AgentRegistry.CompleteLevel(SceneManager.GetActiveScene().name);
+            CheckComplete();
+        }
+
+        public void CheckComplete()
+        {
+            string[] act1 = AgentRegistry.incompleteLevels.Where(s => s.Contains("0-") || s.Contains("1-") || s.Contains("2-") || s.Contains("3-")).ToArray();
+
+            if (act1.Length == 0)
+            {
+                if (!bibleBool)
+                    SubtitleController.Instance.DisplaySubtitle("Machine, I want to give you something. It's very important to me.");
+                // TODO: CREATE BIBLE
+            }
+            if (!posterBool && CheckPoster())
+            {
+                SubtitleController.Instance.DisplaySubtitle("Machine, I can never thank you enough.");
+                SubtitleController.Instance.DisplaySubtitle("Please, take this as a token of my gratitude.");
+                HudMessageReceiver.Instance.SendHudMessage("Acquired Poster!");
+            }
+        }
+
+        public bool CheckPoster()
+        {
+            string[] act1 = AgentRegistry.incompleteLevels.Where(s => s.Contains("0-") || s.Contains("1-") || s.Contains("2-") || s.Contains("3-")).ToArray();
+            string[] act2 = AgentRegistry.incompleteLevels.Where(s => s.Contains("4-") || s.Contains("5-") || s.Contains("6-")).ToArray();
+
+            if (act1.Length == 0)
+            {
+                bibleBool = true;
+            }
+            if (act2.Length == 0)
+            {
+                Poster.SetActive(true);
+                posterBool = true;
+                return true;
+            }
+            return false;
         }
     }   
 

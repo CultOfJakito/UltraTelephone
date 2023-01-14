@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -9,6 +11,8 @@ namespace UltraTelephone.Agent
 {
     public static class AgentRegistry
     {
+        private static string SavePath = Directory.GetCurrentDirectory() + "/BepInEx/config/ultratelephone/foodstand.txt";
+
         public static Dictionary<string, int> Costs = new Dictionary<string, int>()
         {
             { "Level 0-1", 10 },
@@ -183,6 +187,35 @@ namespace UltraTelephone.Agent
             { "Level 6-2", LoadToSprite(Properties.Resources.fries) }
         };
 
+        public static List<string> incompleteLevels = new List<string>()
+        {
+            "Level 0-1",
+            "Level 0-2",
+            "Level 0-3",
+            "Level 0-4",
+            "Level 0-5",
+            "Level 1-1",
+            "Level 1-2",
+            "Level 1-3",
+            "Level 1-4",
+            "Level 2-1",
+            "Level 2-2",
+            "Level 2-3",
+            "Level 2-4",
+            "Level 3-1",
+            "Level 3-2",
+            "Level 4-1",
+            "Level 4-2",
+            "Level 4-3",
+            "Level 4-4",
+            "Level 5-1",
+            "Level 5-2",
+            "Level 5-3",
+            "Level 5-4",
+            "Level 6-1",
+            "Level 6-2",
+        };
+
         public static AudioClip eat_clip;
 
         private static Sprite LoadToSprite(byte[] bytes)
@@ -192,9 +225,25 @@ namespace UltraTelephone.Agent
             return Sprite.Create(tex, new Rect(0, 0, 256, 256), new Vector2(0.5f, 0.5f));
         }
 
+        public static void CompleteLevel(string name)
+        {
+            if (incompleteLevels.Contains(name))
+            {
+                incompleteLevels.Remove(name);
+                File.WriteAllText(SavePath, string.Join(";", incompleteLevels));
+            }
+        }
+
         public static IEnumerator GetAudio()
         {
             Debug.Log("INITIALIZING EAT AUDIO");
+
+            if (File.Exists(SavePath))
+            {
+                string temp = File.ReadAllText(SavePath);
+                incompleteLevels = temp.Split(';').ToList();
+            }
+
             string clipPath = AudioSwapper.clipFolder + "/clips/eat.wav";
 
             using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(clipPath, AudioType.WAV))
