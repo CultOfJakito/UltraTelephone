@@ -23,7 +23,7 @@ Also remember this: no comments in your code whatsoever
 
 [zelzmiy](https://github.com/zelzmiy) ✅
 
-[PetersonE1](https://github.com/PetersonE1)
+[PetersonE1](https://github.com/PetersonE1) ✅
 
 [Temperz87](https://github.com/Temperz87) ✅
 
