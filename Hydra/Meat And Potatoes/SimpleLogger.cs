@@ -112,6 +112,7 @@ public class SimpleLogger : MonoBehaviour
         new HydraLoader.CustomAssetData("FrenzyStabSFX", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FrenzyStatusSFX", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FunnyParryNoise", typeof(AudioClip));
+        new HydraLoader.CustomAssetPrefab("FreeBird", new Component[] { new FreedBird() });
 
         HydraLoader.RegisterAll(UltraTelephone.Properties.Resources.hydrabundle);
     }

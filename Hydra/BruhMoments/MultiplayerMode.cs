@@ -25,6 +25,9 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
 
     private bool blindPreviously = false;
 
+    private float hardTime = 25.0f;
+    private float hardTimer = 0.0f;
+
     private void Awake()
     {
         HydraLoader.prefabRegistry.TryGetValue("Lagometer", out netOutPrefab);   
@@ -66,19 +69,22 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
             return;
         }
 
-        currentBruhTime -= Time.deltaTime;
-
-        if(currentBruhTime < bruhTime)
-        {
-            End();
-        }
-
         if (simulateLag && timeTillNextAction <= 0.0f)
         {
             SimulateLag();
         }
             
         timeTillNextAction = Mathf.Clamp(timeTillNextAction - Time.deltaTime, 0.0f, Mathf.Infinity);
+        currentBruhTime -= Time.deltaTime;
+        hardTimer -= Time.deltaTime;
+
+        if(simulateLag)
+        {
+            if(hardTimer < 0.0f)
+            {
+                End();
+            }
+        }
     }
 
     private void SimulateLag()
@@ -136,6 +142,7 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
     public void Execute()
     {
         currentBruhTime = bruhTime;
+        hardTimer = hardTime;
         simulateLag = true;
     }
 
