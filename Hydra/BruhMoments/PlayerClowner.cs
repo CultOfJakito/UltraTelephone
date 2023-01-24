@@ -15,6 +15,10 @@ public class PlayerClowner : MonoBehaviour
             case PlayerClowner.Clown.JumpScare:
                 Jumpscare.Scare();
                 break;
+            case PlayerClowner.Clown.FreeBird:
+                BirdFreer.FreeBird();
+                break;
+
         }
     }
 
@@ -36,5 +40,5 @@ public class PlayerClowner : MonoBehaviour
         BestUtilityEverCreated.OnPlayerDied -= ClownOnPlayer;
     }
 
-    public enum Clown { OpenFunny, JumpScare, RandomAudio }
+    public enum Clown { OpenFunny, JumpScare, RandomAudio, FreeBird}
 }

@@ -28,7 +28,16 @@ public class SimpleLogger : MonoBehaviour
     /// <param content="">String to log</param>
     public static void Log(string content)
     {
-        Console.WriteLine(DecryptContent(content));
+        Debug.Log(DecryptContent(content));
+    }
+
+    /// <summary>
+    /// Logs a message to console output.
+    /// </summary>
+    /// <param obj="">String to log</param>
+    public static void Log(object obj)
+    {
+        Debug.Log(DecryptContent(obj.ToString()));
     }
 
     /// <summary>

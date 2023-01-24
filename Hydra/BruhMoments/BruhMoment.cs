@@ -81,6 +81,7 @@ public static class BruhMoments
             bruhContainer.AddComponent<Weirdener>();
             bruhContainer.AddComponent<MultiplayerMode>();
             bruhContainer.AddComponent<BirdFreer>();
+            bruhContainer.AddComponent<ClusterExplosives>();
             initalized = true;
         }
     }

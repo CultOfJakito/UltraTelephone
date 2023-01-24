@@ -32,4 +32,6 @@ public class HYD_EnemiesPatch
             ___originalHp *= 2.0f;
         }
     }
+
+    
 }

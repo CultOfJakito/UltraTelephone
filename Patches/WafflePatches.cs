@@ -15,6 +15,8 @@ namespace UltraTelephone.Patches
 
         public static System.Collections.IEnumerator Randomise()
         {
+            Debug.Log("Waffle randomizer started.");
+
             while (true)
             {
                 if (NewMovement.Instance != null)

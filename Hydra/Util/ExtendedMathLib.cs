@@ -405,7 +405,7 @@ public static class BestUtilityEverCreated
     {
         public static string GetTextureFolder()
         {
-            return Path.Combine(Directory.GetCurrentDirectory(), "BepInEx", "config", "ultratelephone", "tex");
+            return TelephoneData.GetDataPath("tex");
         }
 
         private static Texture2D[] cachedTextures = new Texture2D[0];

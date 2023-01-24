@@ -218,8 +218,12 @@ public class FreedBird : MonoBehaviour
         Vector3 currentPos = transform.position;
         Vector3 forceDirection = (newPosition - currentPos).normalized;
 
+
         forceDirection *= speed * Time.deltaTime;
         newVelocity += forceDirection;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(newVelocity, transform.up),7.0f*Time.fixedDeltaTime);
+
 
         rb.velocity = newVelocity;
     }

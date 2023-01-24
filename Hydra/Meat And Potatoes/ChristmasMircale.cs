@@ -47,6 +47,11 @@ public class ChristmasMiracle : MonoBehaviour
             BestUtilityEverCreated.TextureLoader.AddTextureToCache(heheha);
         }
 
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            RandomSounds.PlayRandomSound();
+        }
+
         dateCheckTimer -= Time.deltaTime;
     }
 

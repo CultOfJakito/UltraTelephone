@@ -122,13 +122,49 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
 
     private void RestoreRand()
     {
+
         int rand = UnityEngine.Random.Range(0, cachedPositions.Count);
         Vector3 newPos = cachedPositions[rand];
         cachedPositions.Remove(cachedPositions[rand]);
-        if(playerTransform != null)
+
+        while (cachedPositions.Count > 0)
         {
-            playerTransform.position = newPos;
+            if(!ResolvePosition(newPos))
+            {
+                rand = UnityEngine.Random.Range(0, cachedPositions.Count);
+                newPos = cachedPositions[rand];
+                cachedPositions.Remove(cachedPositions[rand]);
+            }else
+            {
+                if (playerTransform != null)
+                {
+                    playerTransform.position = newPos;
+                    break;
+                }
+            }
+            
         }
+    }
+
+    private bool ResolvePosition(Vector3 positionToCheck)
+    {
+        RaycastHit[] hits = Physics.RaycastAll(positionToCheck, Vector3.down, 25.0f, LayerMask.GetMask("Default", "Environment", "Outdoors"));
+
+        int hitCount = 0;
+
+        if(hits.Length > 0)
+        {
+            for(int i =0; i< hits.Length;i ++)
+            {
+                if(!hits[i].collider.isTrigger)
+                {
+                    ++hitCount;
+                }
+            }
+        }
+
+        return hitCount > 0;
+            
     }
 
     private void CachePos()

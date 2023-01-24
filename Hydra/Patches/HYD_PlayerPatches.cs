@@ -51,40 +51,54 @@ public class HYD_PlayerPatches
     {
         public static bool Prefix(Coin __instance)
         {
-            float rand = UnityEngine.Random.Range(0.0f,100.0f);
-
-            if(rand > 5.0f)
+            if (HydraLoader.prefabRegistry.TryGetValue("CoinFart", out GameObject coinFart))
             {
-                if (HydraLoader.prefabRegistry.TryGetValue("CoinFart", out GameObject coinFart))
+                float rand = UnityEngine.Random.Range(0.0f, 100.0f);
+                Vector3 pos = __instance.transform.position;
+                if (rand > 30.0f)
                 {
-                    Vector3 pos = __instance.transform.position;
-                    GameObject.Destroy(__instance.gameObject);
-                    if (rand > 50.0f)
-                    {
-                        GameObject.Instantiate(coinFart, pos, Quaternion.identity);
-                    }
-                    else if(rand > 25.0f)
-                    {
-                        Jumpscare.Scare(true);
-                    }
-                    else if(rand > 5.0f)
-                    {
-
-                    }
-
-                    return false;
+                    return true;
                 }
-            }
+                else if (rand > 20.0f)
+                {
+                    Jumpscare.Scare(true);
+                    GameObject.Instantiate(coinFart, pos, Quaternion.identity);
+                }
+                else if (rand > 0.0f)
+                {
+                    GameObject.Instantiate(coinFart, pos, Quaternion.identity);
+                }
 
+                GameObject.Destroy(__instance.gameObject);
+                return false;
+            }
+            
             return true;
         }
     }
 
-    [HarmonyPatch(typeof(TimeController),"Start")]
+    [HarmonyPatch(typeof(TimeController),"ParryFlash")]
     public static class ParryFunnyTimePatch
     {
-        public static void Postfix(ref GameObject ___parryLight)
+        public static bool Prefix(ref GameObject ___parryLight)
         {
+
+            if (!___parryLight.TryGetComponent<AudioSource>(out AudioSource src))
+            {
+                AudioSource childSrc = ___parryLight.GetComponentInChildren<AudioSource>(true);
+                if (childSrc != null)
+                {
+                    src = childSrc;
+                }  
+            }
+
+            if (src != null)
+            {
+                UltraTelephone.AudioSwapper.SwapAudioClipSource(src, "parry");
+            }
+
+            /*
+             * old
             AudioClip newClip = null;
             if (HydraLoader.dataRegistry.TryGetValue("FunnyParryNoise", out UnityEngine.Object fpnObj))
             {
@@ -107,6 +121,116 @@ public class HYD_PlayerPatches
                     }
                 }            
             }
+            */
+            return true;
         }
-    }      
+    }
+
+    [HarmonyPatch(typeof(NewMovement), "Launch")]
+    public static class LaunchTweak
+    {
+
+        public static bool Prefix(NewMovement __instance, ref Vector3 direction)
+        {
+            float health = (float)__instance.hp;
+            direction *= UnityEngine.Random.Range(0.2f, (health / 20));
+            return true;
+        }
+    }
+
+    public static float BombMultiplier = 1.0f;
+
+    public static int CurrentClusterPool = 0;
+
+    private static int maxCluster = 1600;
+
+    [HarmonyPatch(typeof(Explosion), "Start")]
+    public static class BombTweak
+    {
+        public static bool Prefix(Explosion __instance)
+        {
+            __instance.maxSize *= Mathf.Max(1.0f, BombMultiplier);
+            __instance.maxSize = Mathf.Clamp(__instance.maxSize, 0.0f, 500.0f);
+
+            if (ClusterExplosives.ClusterExplosivesEnabled)
+            {
+                int rand = UnityEngine.Random.Range(0, 3);
+                if(TryCluster())
+                {
+                    ++CurrentClusterPool;
+
+                    Vector3 randomOffset = UnityEngine.Random.insideUnitSphere;
+                    randomOffset *= __instance.maxSize*1.45f;
+
+                    Vector3 dupePosition = __instance.transform.position + randomOffset;
+
+                    GameObject dupedExplosion = GameObject.Instantiate<GameObject>(__instance.gameObject, dupePosition, __instance.transform.rotation);
+                    dupedExplosion.transform.parent = __instance.transform.parent;
+                }
+            }
+            return true;
+        }
+
+        private static bool TryCluster()
+        {
+            float rand = UnityEngine.Random.value;
+            if(rand > Mathf.InverseLerp(0,maxCluster,CurrentClusterPool))
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(Revolver), "Update")]
+    public static class CoinAmmoPatch_Update
+    {
+        public static bool Prefix(Revolver __instance, ref float ___coinCharge)
+        {
+            if (__instance.gunVariation == 1)
+            {
+                if (CoinCollectorManager.CollectedCoins > 0)
+                {
+                    ___coinCharge = 100.0f;
+                }
+                else
+                {
+                    ___coinCharge = 0.0f;
+                }
+            }
+
+            return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Revolver), "ThrowCoin")]
+    public static class CoinAmmoPatch_ThrowCoin
+    {
+        public static bool Prefix(Revolver __instance, ref float ___coinCharge)
+        {
+            if (__instance.gunVariation == 1)
+            {
+                if(CoinCollectorManager.Instance.SpendCoins(1))
+                {
+                    return true;
+                }
+                return false;
+            }
+            return true;
+        }
+    }
+
+    //For Zed <3
+    //This prevents weapon switching with scroll wheel.
+    [HarmonyPatch(typeof(GunControl), "Update")]
+    public static class ScrollStopPatch
+    {
+        public static bool Prefix(ref float ___scrollCooldown)
+        {
+            ___scrollCooldown = 5.0f;
+            return true;
+        }
+    }
+
 }

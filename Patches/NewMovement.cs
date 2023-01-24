@@ -11,7 +11,7 @@ namespace UltraTelephone.Patches
         [HarmonyPrefix]
         public static bool Prefix(NewMovement __instance)
         {
-            AudioSwapper.SwapHurtSource(Traverse.Create(__instance).Field("hurtAud").GetValue<AudioSource>());
+            AudioSwapper.SwapAudioClipSource(Traverse.Create(__instance).Field("hurtAud").GetValue<AudioSource>(), "hurt");
             return true;
         }
 
