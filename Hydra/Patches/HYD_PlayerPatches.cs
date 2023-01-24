@@ -142,7 +142,7 @@ public class HYD_PlayerPatches
 
     public static int CurrentClusterPool = 0;
 
-    private static int maxCluster = 1600;
+    public static int MaxCluster { get; private set; } = 1600;
 
     [HarmonyPatch(typeof(Explosion), "Start")]
     public static class BombTweak
@@ -174,7 +174,7 @@ public class HYD_PlayerPatches
         private static bool TryCluster()
         {
             float rand = UnityEngine.Random.value;
-            if(rand > Mathf.InverseLerp(0,maxCluster,CurrentClusterPool))
+            if(rand > Mathf.InverseLerp(0,MaxCluster,CurrentClusterPool))
             {
                 return true;
             }

@@ -62,7 +62,7 @@ public class ClusterExplosives : MonoBehaviour, IBruhMoment
         if(clusterClearTimer < 0.0f)
         {
             clusterClearTimer = clusterClearTime;
-            HYD_PlayerPatches.CurrentClusterPool = Mathf.Max(0,HYD_PlayerPatches.CurrentClusterPool-1);
+            HYD_PlayerPatches.CurrentClusterPool = Mathf.Clamp(HYD_PlayerPatches.CurrentClusterPool - 1,0, HYD_PlayerPatches.MaxCluster);
         }
 
         clusterClearTimer -= Time.deltaTime;
