@@ -14,7 +14,7 @@ public class HYD_PlayerPatches
         {
             if (target.TryGetComponent<MadMass>(out MadMass madMass))
             {
-                if(madMass.Alive)
+                if (madMass.Alive)
                 {
                     __instance.anim.Play("Hook", 0, 0.065f);
                     MonoSingleton<TimeController>.Instance.ParryFlash();
@@ -72,12 +72,12 @@ public class HYD_PlayerPatches
                 GameObject.Destroy(__instance.gameObject);
                 return false;
             }
-            
+
             return true;
         }
     }
 
-    [HarmonyPatch(typeof(TimeController),"ParryFlash")]
+    [HarmonyPatch(typeof(TimeController), "ParryFlash")]
     public static class ParryFunnyTimePatch
     {
         public static bool Prefix(ref GameObject ___parryLight)
@@ -89,7 +89,7 @@ public class HYD_PlayerPatches
                 if (childSrc != null)
                 {
                     src = childSrc;
-                }  
+                }
             }
 
             if (src != null)
@@ -155,12 +155,12 @@ public class HYD_PlayerPatches
             if (ClusterExplosives.ClusterExplosivesEnabled)
             {
                 int rand = UnityEngine.Random.Range(0, 3);
-                if(TryCluster())
+                if (TryCluster())
                 {
                     ++CurrentClusterPool;
 
                     Vector3 randomOffset = UnityEngine.Random.insideUnitSphere;
-                    randomOffset *= __instance.maxSize*1.45f;
+                    randomOffset *= __instance.maxSize * 1.45f;
 
                     Vector3 dupePosition = __instance.transform.position + randomOffset;
 
@@ -174,7 +174,7 @@ public class HYD_PlayerPatches
         private static bool TryCluster()
         {
             float rand = UnityEngine.Random.value;
-            if(rand > Mathf.InverseLerp(0,MaxCluster,CurrentClusterPool))
+            if (rand > Mathf.InverseLerp(0, MaxCluster, CurrentClusterPool))
             {
                 return true;
             }
@@ -211,7 +211,7 @@ public class HYD_PlayerPatches
         {
             if (__instance.gunVariation == 1)
             {
-                if(CoinCollectorManager.Instance.SpendCoins(1))
+                if (CoinCollectorManager.Instance.SpendCoins(1))
                 {
                     return true;
                 }
@@ -230,6 +230,69 @@ public class HYD_PlayerPatches
         {
             ___scrollCooldown = 5.0f;
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(Punch), "ParryProjectile")]
+    public static class ParryProjectilePatch
+    {
+        public static void Postfix(ref Projectile proj)
+        {
+            
+            float randNum = UnityEngine.Random.Range(0.0f,200.0f);
+            if (randNum < 100.0f)
+            {
+                int dupes = 0;
+
+                //yeah yeah yeah cope
+                if (randNum > 50)
+                {
+                    dupes = UnityEngine.Random.Range(1, 4);
+                }
+                else if (randNum > 35)
+                {
+                    dupes = UnityEngine.Random.Range(4, 8);
+                }
+                else if (randNum > 15)
+                {
+                    dupes = UnityEngine.Random.Range(8, 15);
+                }
+                else if (randNum > 5)
+                {
+                    dupes = UnityEngine.Random.Range(15, 50);
+                }
+                else if (randNum > 2.5f)
+                {
+                    dupes = UnityEngine.Random.Range(50, 100);
+                }
+                else if (randNum > 0.05f)
+                {
+                    dupes = UnityEngine.Random.Range(100, 200);
+                }
+                else if (randNum > 0)
+                {
+                    dupes = UnityEngine.Random.Range(200, 400);
+                }
+
+                float radius = 0.30f;
+                for (int i = 0; i < dupes; i++)
+                {
+                    float angle = i * Mathf.PI * 2f / dupes;
+
+                    float xOffset = Mathf.Cos(angle) * (radius + (0.04f * dupes));
+                    float yOffset = Mathf.Sin(angle) * (radius + (0.04f * dupes));
+
+                    Vector3 localOffset = proj.transform.rotation * new Vector3(xOffset, yOffset, 0.0f);
+                    Vector3 newPos = proj.transform.position + localOffset;
+
+                    Vector3 newForward = localOffset.normalized + (proj.transform.forward * (20-(dupes*0.20f)));
+
+                    GameObject go = GameObject.Instantiate(proj.gameObject, newPos, proj.transform.rotation);
+                    go.transform.forward = newForward;
+                }
+            }
+
+            
         }
     }
 

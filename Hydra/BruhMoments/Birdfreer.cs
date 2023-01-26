@@ -174,20 +174,23 @@ public class BirdFreer : MonoBehaviour, IBruhMoment
 public class FreedBird : MonoBehaviour
 {
 
-    public float maxSpeed = 150.0f, minSpeed = 2.50f;
+    public float maxSpeed = 150.0f, minSpeed = 50.0f;
     private float speed = 0.0f;
 
     private Transform player;
-    private Rigidbody rb;
+    //private Rigidbody rb;
     private AudioSource clipPlayer;
 
     private bool Birth()
     {
         player = CameraController.Instance.transform;
         clipPlayer = GetComponent<AudioSource>();
-        rb = GetComponent<Rigidbody>();
+        if(TryGetComponent<Rigidbody>(out Rigidbody rb)) //meh
+        {
+            Destroy(rb);
+        }
 
-        if (clipPlayer == null || player == null || rb == null)
+        if (clipPlayer == null || player == null)
         {
             return false;
         }
@@ -206,6 +209,7 @@ public class FreedBird : MonoBehaviour
         }
     }
 
+    /* old stinky rigidbody nonsense.
     private void FixedUpdate()
     {
 
@@ -226,6 +230,32 @@ public class FreedBird : MonoBehaviour
 
 
         rb.velocity = newVelocity;
+    }
+    */
+    private float drag = 0.75f;
+
+    private Vector3 velocity;
+
+
+    //Shiny new fake physics orbit :3
+    private void FixedUpdate()
+    {
+
+        if (!clipPlayer.isPlaying || player == null)
+        {
+            Kill();
+        }
+
+        Vector3 newVelo = velocity - (velocity * Time.fixedDeltaTime * drag);
+
+        Vector3 targetDirection = player.position - transform.position;
+
+        newVelo += (targetDirection.normalized * speed * Time.fixedDeltaTime);
+
+        velocity = newVelo;
+
+        transform.position += velocity * Time.fixedDeltaTime;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(velocity, Vector3.up), 7.0f * Time.fixedDeltaTime);
     }
 
     public void Kill()
