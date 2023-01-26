@@ -47,7 +47,7 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                Jumpscare.Scare();
+                RandomSounds.PlayRandomSound();
                 return false;
             }
             else {
@@ -117,7 +117,7 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                Jumpscare.Scare();
+                ChuckNorrisFacts.Instance.Execute();
                 return false;
             }
             else
@@ -148,6 +148,7 @@ namespace UltraTelephone.Patches
             if (MoveRng == 0)
             {
                 SimpleLogger.Log("fuck you");
+                RandomSounds.PlayRandomSound();
                 HudMessageReceiver.Instance.SendHudMessage("Your legs broke.", "", "", 0, true);
                 return false;
             }

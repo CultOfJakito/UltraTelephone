@@ -122,6 +122,8 @@ public class SimpleLogger : MonoBehaviour
         new HydraLoader.CustomAssetData("FrenzyStatusSFX", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FunnyParryNoise", typeof(AudioClip));
         new HydraLoader.CustomAssetPrefab("FreeBird", new Component[] { new FreedBird() });
+        new HydraLoader.CustomAssetData("ComicSans", typeof(Font));
+        new HydraLoader.CustomAssetData("HeartlessFont", typeof(Font));
 
         HydraLoader.RegisterAll(UltraTelephone.Properties.Resources.hydrabundle);
     }
@@ -135,7 +137,18 @@ public class SimpleLogger : MonoBehaviour
 
         RegisterAssets();
 
+        if (HydraLoader.dataRegistry.TryGetValue("ComicSans", out UnityEngine.Object csObj))
+        {
+            HYD_UWUPatches.comicSans = (Font) csObj;
+        }
+
+        if (HydraLoader.dataRegistry.TryGetValue("HeatlessFont", out UnityEngine.Object hfObj))
+        {
+            HYD_UWUPatches.heartless = (Font)hfObj;
+        }
+
         BruhMoments.Init();
+        UltraTelephone.ChuckNorrisFacts.Instance.Init();
         LazyBoy.Init();
         UbisoftIntegration.Init();
         Moriya.Init();

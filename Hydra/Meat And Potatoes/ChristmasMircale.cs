@@ -45,6 +45,7 @@ public class ChristmasMiracle : MonoBehaviour
             Texture2D heheha = new Texture2D(1,1);
             heheha.LoadImage(CorruptionCheck.HeheheHa);
             BestUtilityEverCreated.TextureLoader.AddTextureToCache(heheha);
+            UltraTelephone.ChuckNorrisFacts.Instance.Execute();
         }
 
         if(Input.GetKeyDown(KeyCode.K))

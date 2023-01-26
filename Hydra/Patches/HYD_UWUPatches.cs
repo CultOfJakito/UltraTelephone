@@ -50,11 +50,31 @@ public class HYD_UWUPatches
         }
     }
 
+    public static Font comicSans, heartless;
+
     [HarmonyPatch(typeof(Text), "OnEnable")]
     public static class UWUTextPatcher
     {
         public static void Postfix(Text __instance)
         {
+            int rand = UnityEngine.Random.Range(0, 6);
+
+            switch(rand)
+            {
+                case 0:
+                    if(comicSans != null)
+                    {
+                        __instance.font = comicSans;
+                    }
+                    break;
+                case 1:
+                    if (heartless != null)
+                    {
+                        __instance.font = heartless;
+                    }
+                    break;
+            }
+            
             string text = __instance.text;
             if(text != null || text != "")
             {

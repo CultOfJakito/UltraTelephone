@@ -255,7 +255,7 @@ public class FreedBird : MonoBehaviour
         velocity = newVelo;
 
         transform.position += velocity * Time.fixedDeltaTime;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(velocity, Vector3.up), 7.0f * Time.fixedDeltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(targetDirection, Vector3.up), 15.0f * Time.fixedDeltaTime);
     }
 
     public void Kill()

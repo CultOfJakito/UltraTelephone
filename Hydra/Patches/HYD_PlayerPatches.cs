@@ -215,6 +215,7 @@ public class HYD_PlayerPatches
                 {
                     return true;
                 }
+                RandomSounds.PlayRandomSound();
                 return false;
             }
             return true;
