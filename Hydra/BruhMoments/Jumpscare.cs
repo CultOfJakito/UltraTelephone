@@ -84,6 +84,18 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
         return false;
     }
 
+    private void SetNewTexture(Texture2D tex)
+    {
+        if (tex == null)
+        {
+            SetNewTexture();
+        }
+        else
+        {
+            currentTexture = tex;
+        }
+    }
+
     private Sprite TextureToSprite(Texture2D tex)
     {
         return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
@@ -132,6 +144,31 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             }else
             {
                 running = false;
+            }
+        }
+    }
+
+    //this is garbage. too bad!
+    public static void ScareWithTexture(Texture2D texture, bool force = false)
+    {
+        if(texture != null)
+        {
+            if (Instance != null)
+            {
+                Instance.SetNewTexture(texture);
+                if (!Instance.running)
+                {
+                    Instance.running = true;
+                    if (Instance.image != null)
+                    {
+                        Instance.image.sprite = Instance.TextureToSprite(Instance.currentTexture);
+                        Instance.StartCoroutine(Instance.FlashImage());
+                    }
+                    else
+                    {
+                        Instance.running = false;
+                    }
+                }
             }
         }
     }

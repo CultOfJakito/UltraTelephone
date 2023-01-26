@@ -44,6 +44,7 @@ public class BruhMomentController : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
         }
+        SimpleLogger.Log($"Ending bruh moment: {currentBruhMoment.GetName()}");
         currentBruhMoment.End();
     }
 
@@ -79,6 +80,8 @@ public static class BruhMoments
             bruhContainer.AddComponent<Jumpscare>();
             bruhContainer.AddComponent<Weirdener>();
             bruhContainer.AddComponent<MultiplayerMode>();
+            bruhContainer.AddComponent<BirdFreer>();
+            bruhContainer.AddComponent<ClusterExplosives>();
             initalized = true;
         }
     }

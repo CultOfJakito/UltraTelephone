@@ -11,6 +11,7 @@ public class HYD_EnemiesPatch
     {
         public static bool Prefix(MinosPrime __instance, Machine ___mach, float ___originalHp)
         {
+            RandomSounds.PlayRandomSound();
             float healthRatio = (___mach.health / ___originalHp);
 
             float rand = UnityEngine.Random.Range(0.0f,100.0f);
@@ -32,4 +33,6 @@ public class HYD_EnemiesPatch
             ___originalHp *= 2.0f;
         }
     }
+
+    
 }

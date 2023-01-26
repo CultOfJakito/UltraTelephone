@@ -14,7 +14,7 @@ public class DestroyAfterTime : MonoBehaviour
         KillAfterTime();
     }
 
-    private void KillAfterTime()
+    public void KillAfterTime()
     {
         if(!dying)
         {
@@ -26,11 +26,10 @@ public class DestroyAfterTime : MonoBehaviour
     private IEnumerator KillTimer()
     {
         yield return new WaitForSeconds(1);
-        float timer = timeLeft;
-        while(timer > 0.0f)
+        while(timeLeft > 0.0f)
         {
             yield return new WaitForEndOfFrame();
-            timer -= Time.deltaTime;
+            timeLeft -= Time.deltaTime;
         }
     }
 

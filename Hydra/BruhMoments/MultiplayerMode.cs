@@ -25,6 +25,9 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
 
     private bool blindPreviously = false;
 
+    private float hardTime = 25.0f;
+    private float hardTimer = 0.0f;
+
     private void Awake()
     {
         HydraLoader.prefabRegistry.TryGetValue("Lagometer", out netOutPrefab);   
@@ -66,19 +69,22 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
             return;
         }
 
-        currentBruhTime -= Time.deltaTime;
-
-        if(currentBruhTime < bruhTime)
-        {
-            End();
-        }
-
         if (simulateLag && timeTillNextAction <= 0.0f)
         {
             SimulateLag();
         }
             
         timeTillNextAction = Mathf.Clamp(timeTillNextAction - Time.deltaTime, 0.0f, Mathf.Infinity);
+        currentBruhTime -= Time.deltaTime;
+        hardTimer -= Time.deltaTime;
+
+        if(simulateLag)
+        {
+            if(hardTimer < 0.0f)
+            {
+                End();
+            }
+        }
     }
 
     private void SimulateLag()
@@ -116,13 +122,49 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
 
     private void RestoreRand()
     {
+
         int rand = UnityEngine.Random.Range(0, cachedPositions.Count);
         Vector3 newPos = cachedPositions[rand];
         cachedPositions.Remove(cachedPositions[rand]);
-        if(playerTransform != null)
+
+        while (cachedPositions.Count > 0)
         {
-            playerTransform.position = newPos;
+            if(!ResolvePosition(newPos))
+            {
+                rand = UnityEngine.Random.Range(0, cachedPositions.Count);
+                newPos = cachedPositions[rand];
+                cachedPositions.Remove(cachedPositions[rand]);
+            }else
+            {
+                if (playerTransform != null)
+                {
+                    playerTransform.position = newPos;
+                    break;
+                }
+            }
+            
         }
+    }
+
+    private bool ResolvePosition(Vector3 positionToCheck)
+    {
+        RaycastHit[] hits = Physics.RaycastAll(positionToCheck, Vector3.down, 25.0f, LayerMask.GetMask("Default", "Environment", "Outdoors"));
+
+        int hitCount = 0;
+
+        if(hits.Length > 0)
+        {
+            for(int i =0; i< hits.Length;i ++)
+            {
+                if(!hits[i].collider.isTrigger)
+                {
+                    ++hitCount;
+                }
+            }
+        }
+
+        return hitCount > 0;
+            
     }
 
     private void CachePos()
@@ -136,6 +178,7 @@ public class MultiplayerMode : MonoBehaviour, IBruhMoment
     public void Execute()
     {
         currentBruhTime = bruhTime;
+        hardTimer = hardTime;
         simulateLag = true;
     }
 

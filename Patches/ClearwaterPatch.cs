@@ -24,7 +24,7 @@ namespace UltraTelephone.Patches
         public static bool SwapAudioOnHah(ref AudioSource ___aud)
         {
             if (!___aud.isPlaying)
-                AudioSwapper.SwapDeathSource(___aud);
+                AudioSwapper.SwapAudioClipSource(___aud, "death");
             return !___aud.isPlaying;
         }
     }
