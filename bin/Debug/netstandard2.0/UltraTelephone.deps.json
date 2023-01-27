@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": ""
+    "signature": "3f9b2dbf2dbb64cc84020cb3a93ce13ff1b792cf"
   },
   "compilationOptions": {},
   "targets": {
@@ -13,6 +13,7 @@
           "BepInEx.Core": "5.4.21",
           "BepInEx.PluginInfoProps": "1.1.0",
           "NETStandard.Library": "2.0.3",
+          "Newtonsoft.Json": "13.0.2",
           "UnityEngine.Modules": "2019.4.16",
           "UnityEngine.UI": "1.0.0.0"
         },
@@ -23,10 +24,7 @@
       "BepInEx.Analyzers/1.0.8": {},
       "BepInEx.BaseLib/5.4.20": {
         "runtime": {
-          "lib/netstandard2.0/BepInEx.dll": {
-            "assemblyVersion": "5.4.20.0",
-            "fileVersion": "5.4.20.0"
-          }
+          "lib/netstandard2.0/BepInEx.dll": {}
         }
       },
       "BepInEx.Core/5.4.21": {
@@ -42,32 +40,17 @@
           "System.Reflection.Emit": "4.7.0"
         },
         "runtime": {
-          "lib/netstandard2.0/0Harmony.dll": {
-            "assemblyVersion": "2.7.0.0",
-            "fileVersion": "2.7.0.0"
-          }
+          "lib/netstandard2.0/0Harmony.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
       "Mono.Cecil/0.11.4": {
         "runtime": {
-          "lib/netstandard2.0/Mono.Cecil.Mdb.dll": {
-            "assemblyVersion": "0.11.4.0",
-            "fileVersion": "0.11.4.0"
-          },
-          "lib/netstandard2.0/Mono.Cecil.Pdb.dll": {
-            "assemblyVersion": "0.11.4.0",
-            "fileVersion": "0.11.4.0"
-          },
-          "lib/netstandard2.0/Mono.Cecil.Rocks.dll": {
-            "assemblyVersion": "0.11.4.0",
-            "fileVersion": "0.11.4.0"
-          },
-          "lib/netstandard2.0/Mono.Cecil.dll": {
-            "assemblyVersion": "0.11.4.0",
-            "fileVersion": "0.11.4.0"
-          }
+          "lib/netstandard2.0/Mono.Cecil.Mdb.dll": {},
+          "lib/netstandard2.0/Mono.Cecil.Pdb.dll": {},
+          "lib/netstandard2.0/Mono.Cecil.Rocks.dll": {},
+          "lib/netstandard2.0/Mono.Cecil.dll": {}
         }
       },
       "MonoMod.RuntimeDetour/21.12.13.1": {
@@ -82,10 +65,7 @@
           "System.Reflection.TypeExtensions": "4.7.0"
         },
         "runtime": {
-          "lib/netstandard2.0/MonoMod.RuntimeDetour.dll": {
-            "assemblyVersion": "21.12.13.1",
-            "fileVersion": "21.12.13.1"
-          }
+          "lib/netstandard2.0/MonoMod.RuntimeDetour.dll": {}
         }
       },
       "MonoMod.Utils/21.12.13.1": {
@@ -99,15 +79,17 @@
           "System.Reflection.TypeExtensions": "4.7.0"
         },
         "runtime": {
-          "lib/netstandard2.0/MonoMod.Utils.dll": {
-            "assemblyVersion": "21.12.13.1",
-            "fileVersion": "21.12.13.1"
-          }
+          "lib/netstandard2.0/MonoMod.Utils.dll": {}
         }
       },
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Newtonsoft.Json/13.0.2": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "System.Collections/4.3.0": {
@@ -127,10 +109,7 @@
           "System.Threading": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/System.Collections.NonGeneric.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.3/System.Collections.NonGeneric.dll": {}
         }
       },
       "System.Collections.Specialized/4.3.0": {
@@ -144,10 +123,7 @@
           "System.Threading": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/System.Collections.Specialized.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.3/System.Collections.Specialized.dll": {}
         }
       },
       "System.ComponentModel/4.3.0": {
@@ -155,10 +131,7 @@
           "System.Runtime": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/System.ComponentModel.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.3/System.ComponentModel.dll": {}
         }
       },
       "System.ComponentModel.Primitives/4.3.0": {
@@ -168,10 +141,7 @@
           "System.Runtime": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/System.ComponentModel.Primitives.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.0/System.ComponentModel.Primitives.dll": {}
         }
       },
       "System.ComponentModel.TypeConverter/4.3.0": {
@@ -193,10 +163,7 @@
           "System.Threading": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.5/System.ComponentModel.TypeConverter.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.5/System.ComponentModel.TypeConverter.dll": {}
         }
       },
       "System.Diagnostics.Debug/4.3.0": {
@@ -237,10 +204,7 @@
           "System.Runtime": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {
-            "assemblyVersion": "4.0.2.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.3/System.IO.FileSystem.Primitives.dll": {}
         }
       },
       "System.Linq/4.3.0": {
@@ -252,10 +216,7 @@
           "System.Runtime.Extensions": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.6/System.Linq.dll": {
-            "assemblyVersion": "4.1.1.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
       "System.Reflection/4.3.0": {
@@ -272,18 +233,12 @@
           "System.Reflection.Emit.ILGeneration": "4.7.0"
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reflection.Emit.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.700.19.56404"
-          }
+          "lib/netstandard2.0/System.Reflection.Emit.dll": {}
         }
       },
       "System.Reflection.Emit.ILGeneration/4.7.0": {
         "runtime": {
-          "lib/netstandard2.0/System.Reflection.Emit.ILGeneration.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.700.19.56404"
-          }
+          "lib/netstandard2.0/System.Reflection.Emit.ILGeneration.dll": {}
         }
       },
       "System.Reflection.Emit.Lightweight/4.7.0": {
@@ -291,10 +246,7 @@
           "System.Reflection.Emit.ILGeneration": "4.7.0"
         },
         "runtime": {
-          "lib/netstandard2.0/System.Reflection.Emit.Lightweight.dll": {
-            "assemblyVersion": "4.0.0.0",
-            "fileVersion": "4.700.19.56404"
-          }
+          "lib/netstandard2.0/System.Reflection.Emit.Lightweight.dll": {}
         }
       },
       "System.Reflection.Extensions/4.3.0": {
@@ -314,10 +266,7 @@
       },
       "System.Reflection.TypeExtensions/4.7.0": {
         "runtime": {
-          "lib/netstandard2.0/System.Reflection.TypeExtensions.dll": {
-            "assemblyVersion": "4.1.5.0",
-            "fileVersion": "4.700.19.56404"
-          }
+          "lib/netstandard2.0/System.Reflection.TypeExtensions.dll": {}
         }
       },
       "System.Resources.ResourceManager/4.3.0": {
@@ -372,10 +321,7 @@
           "System.Threading.Tasks": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/System.Threading.dll": {
-            "assemblyVersion": "4.0.12.0",
-            "fileVersion": "4.6.24705.1"
-          }
+          "lib/netstandard1.3/System.Threading.dll": {}
         }
       },
       "System.Threading.Tasks/4.3.0": {
@@ -388,10 +334,7 @@
       "UnityEngine.Modules/2019.4.16": {},
       "UnityEngine.UI/1.0.0.0": {
         "runtime": {
-          "UnityEngine.UI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "UnityEngine.UI.dll": {}
         }
       }
     }
@@ -478,6 +421,13 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-R2pZ3B0UjeyHShm9vG+Tu0EBb2lC8b0dFzV9gVn50ofHXh9Smjk6kTn7A/FdAsC8B5cKib1OnGYOXxRBz5XQDg==",
+      "path": "newtonsoft.json/13.0.2",
+      "hashPath": "newtonsoft.json.13.0.2.nupkg.sha512"
     },
     "System.Collections/4.3.0": {
       "type": "package",

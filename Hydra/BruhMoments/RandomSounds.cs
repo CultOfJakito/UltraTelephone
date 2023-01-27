@@ -18,7 +18,7 @@ public static class RandomSounds
         }
     }
 
-    public static void PlayRandomSoundFromSubdirectory(string subdirName, string soundName)
+    public static void PlaySoundFromSubdirectory(string subdirName, string soundName)
     {
         if (UltraTelephone.AudioSwapper.TryGetAudioClipFromSubdirectory(subdirName, soundName, out AudioClip clip))
         {
@@ -28,17 +28,18 @@ public static class RandomSounds
 
     public static void PlaySound(AudioClip clip)
     {
+        if(clip == null)
+        {
+            Debug.LogError("Invalid clip passed to RandomSounds!");
+            return;
+        }
+
         Vector3 pos = Vector3.zero;
 
         if (BestUtilityEverCreated.InLevel())
         {
-            pos = NewMovement.Instance.transform.position;
-        }
-        else
-        {
             pos = CameraController.Instance.transform.position;
-        }
-
-        AudioSource.PlayClipAtPoint(clip, pos);
+            AudioSource.PlayClipAtPoint(clip, pos);
+        }      
     }
 }

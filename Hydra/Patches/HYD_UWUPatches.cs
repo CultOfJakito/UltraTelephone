@@ -82,4 +82,26 @@ public class HYD_UWUPatches
             }
         }
     }
+
+    [HarmonyPatch(typeof(Image), "OnEnable")]
+    public static class LogoPatcher
+    {
+        public static void Postfix(Image __instance)
+        {
+            if(__instance.sprite != null)
+            {
+                if (__instance.sprite.name == "logowideborderlesssmaller")
+                {
+                    if (HydraLoader.dataRegistry.TryGetValue("UltraTelephoneHeader", out UnityEngine.Object obj))
+                    {
+                        Sprite newLogo = (Sprite)obj;
+                        if (newLogo != null)
+                        {
+                            __instance.sprite = newLogo;
+                        }
+                    }
+                }
+            }
+        }    
+    }
 }

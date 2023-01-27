@@ -37,9 +37,9 @@ namespace UltraTelephone.Agent
         public static void PlaceFoodStand(BestUtilityEverCreated.UltrakillLevelType level)
         {
             string sceneName = SceneManager.GetActiveScene().name;
-            SimpleLogger.Log("PLACING FOOD STAND");
             if (level != BestUtilityEverCreated.UltrakillLevelType.Level) return;
             if (sceneName.Contains("-S") || sceneName.Contains("P-")) return;
+            SimpleLogger.Log("PLACING FOOD STAND");
             SimpleLogger.Log("FOOD STAND OKAY");
 
             Transform foodStand = GameObject.Instantiate(_foodStand).transform;
@@ -112,10 +112,11 @@ namespace UltraTelephone.Agent
             PostPurchaseSub = AgentRegistry.PostPurchaseDialogue[sceneName];
             Icon.sprite = AgentRegistry.Icons[sceneName];
 
+            /*
             source = gameObject.AddComponent<AudioSource>();
             source.volume = 3;
             source.clip = AgentRegistry.eat_clip;
-
+            */
             Poster = Instantiate(FoodStandInitializer._bundle.LoadAsset<GameObject>("poster.prefab"), new Vector3(-14.84f, 2.86f, 258.1f), Quaternion.Euler(0, 90, 0), null);
             Poster.transform.localScale *= 3;
             FoodStandInitializer.RenderObject(Poster, LayerMask.NameToLayer("Outdoors"));
@@ -139,16 +140,7 @@ namespace UltraTelephone.Agent
             Trigger.SetActive(false);
             Icon.gameObject.SetActive(false);
             SubtitleController.Instance.DisplaySubtitle(PostPurchaseSub);
-            if(source.clip != null)
-            {
-                source.Play();
-            }else
-            {
-                if(AudioSwapper.TryGetAudioClipFromSubdirectory("eat", out AudioClip audioClip))
-                {
-                    source.clip = audioClip;
-                }
-            }
+            RandomSounds.PlayRandomSoundFromSubdirectory("eat");
             AgentRegistry.CompleteLevel(SceneManager.GetActiveScene().name);
             CheckComplete();
         }

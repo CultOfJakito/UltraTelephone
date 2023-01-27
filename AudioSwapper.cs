@@ -84,15 +84,15 @@ namespace UltraTelephone
                     Debug.Log(www.error);
                 }
                 else
-                {
-                    if(!clipDB.ContainsKey(subDirectoryName))
-                    {
-                        clipDB.Add(subDirectoryName, new List<AudioClip>());
-                    }
-
+                {                  
                     AudioClip newAudioClip = DownloadHandlerAudioClip.GetContent(www);
                     if (newAudioClip != null)
                     {
+                        if (!clipDB.ContainsKey(subDirectoryName))
+                        {
+                            clipDB.Add(subDirectoryName, new List<AudioClip>());
+                        }
+
                         if (!clipDB[subDirectoryName].Contains(newAudioClip))
                         {
                             clipDB[subDirectoryName].Add(newAudioClip);
@@ -135,7 +135,7 @@ namespace UltraTelephone
             AudioClip newClip = null;
 
             Random rng = new Random();
-            int selectedClip = rng.Next(0, clipDB[directoryName].Count - 1);
+            int selectedClip = rng.Next(0, clipDB[directoryName].Count);
             newClip = clipDB[directoryName][selectedClip];
 
             return newClip;
@@ -199,10 +199,10 @@ namespace UltraTelephone
 
             if (clipsPresent)
             {
-                return GetRandomAudioClipFromSubdirectory(directoryName);
+                clip = GetRandomAudioClipFromSubdirectory(directoryName);
             }
 
-            return false;
+            return (clip != null);
         }
 
         public static bool TryGetAudioClipByName(string name, out AudioClip clip)

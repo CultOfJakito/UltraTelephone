@@ -10,7 +10,13 @@ public class PlayerClowner : MonoBehaviour
        switch(PickAction())
         {
             case PlayerClowner.Clown.OpenFunny:
-                UltraTelephone.Temperz.Funnys.OpenFunny();
+                if(UnityEngine.Random.value > 0.5f)
+                {
+                    UltraTelephone.Temperz.Funnys.OpenFunny();
+                }else
+                {
+                    ClownOnPlayer();
+                }
                 break;
             case PlayerClowner.Clown.JumpScare:
                 Jumpscare.Scare();
@@ -18,7 +24,12 @@ public class PlayerClowner : MonoBehaviour
             case PlayerClowner.Clown.FreeBird:
                 BirdFreer.FreeBird();
                 break;
-
+            case PlayerClowner.Clown.RandomAudio:
+                RandomSounds.PlayRandomSoundFromSubdirectory("random");
+                break;
+            case PlayerClowner.Clown.ChuckNorris:
+                UltraTelephone.ChuckNorrisFacts.Instance.Execute();
+                break;
         }
     }
 
@@ -40,5 +51,5 @@ public class PlayerClowner : MonoBehaviour
         BestUtilityEverCreated.OnPlayerDied -= ClownOnPlayer;
     }
 
-    public enum Clown { OpenFunny, JumpScare, RandomAudio, FreeBird}
+    public enum Clown { OpenFunny, JumpScare, RandomAudio, FreeBird, ChuckNorris}
 }

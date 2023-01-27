@@ -19,27 +19,16 @@ namespace UltraTelephone.Patches
 
             while (true)
             {
-                if (NewMovement.Instance != null)
+                if(BestUtilityEverCreated.InLevel())
                 {
-                    yield return new WaitForSeconds(2);
-                    try
-                    {
-                        ShotRng = UnityEngine.Random.Range(0, 16);
-                        MoveRng = UnityEngine.Random.Range(0, 11);
-                        NewMovement.Instance.walkSpeed = UnityEngine.Random.Range(720, 780);
-                        //SimpleLogger.Log($"Generated RNG | Shot: {ShotRng}, Move: {MoveRng}, Speed: {NewMovement.Instance.walkSpeed}");
-                    }
-                    catch (Exception ex)
-                    {
-                        //Debug.LogError("guh? " + ex.ToString());
-                    }
-                } else
-                {
-                    yield return null;
+                    ShotRng = UnityEngine.Random.Range(0, 16);
+                    MoveRng = UnityEngine.Random.Range(0, 11);
+                    NewMovement.Instance.walkSpeed = UnityEngine.Random.Range(720, 780);
                 }
+                yield return new WaitForSeconds(2);
             }
         }
-        //hippity hoppety your patches are my property (; 
+        //hippity hoppety your patches are my property (; swaus
         [HarmonyPatch(typeof(Revolver), "Shoot")]
         [HarmonyPrefix]
         public static bool PatchShootRev()
@@ -47,7 +36,10 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                RandomSounds.PlayRandomSound();
+                if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.80f)
+                {
+                    RandomSounds.PlayRandomSound();
+                }
                 return false;
             }
             else {
@@ -86,8 +78,11 @@ namespace UltraTelephone.Patches
             }
             else
             {
-                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng)/3;
-                CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                if(UnityEngine.Random.value > 0.8f)
+                {
+                    CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng) / 3;
+                    CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
+                }
                 return true;
             }
         }
@@ -117,7 +112,11 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                ChuckNorrisFacts.Instance.Execute();
+                if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.90f)
+                {
+                    RandomSounds.PlayRandomSound();
+                    ChuckNorrisFacts.Instance.Execute();
+                }
                 return false;
             }
             else
@@ -148,8 +147,11 @@ namespace UltraTelephone.Patches
             if (MoveRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                RandomSounds.PlayRandomSound();
-                HudMessageReceiver.Instance.SendHudMessage("Your legs broke.", "", "", 0, true);
+                if(UnityEngine.Random.Range(0.0f,1.0f) > 0.80f)
+                {
+                    HudMessageReceiver.Instance.SendHudMessage("Your legs broke.", "", "", 0, true);
+                    RandomSounds.PlayRandomSound();
+                }
                 return false;
             }
             return true;
