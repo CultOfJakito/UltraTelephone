@@ -96,32 +96,6 @@ public class HYD_PlayerPatches
             {
                 UltraTelephone.AudioSwapper.SwapAudioClipSource(src, "parry");
             }
-
-            /*
-             * old
-            AudioClip newClip = null;
-            if (HydraLoader.dataRegistry.TryGetValue("FunnyParryNoise", out UnityEngine.Object fpnObj))
-            {
-                newClip = (AudioClip)fpnObj;
-                if (newClip != null)
-                {
-                    if (!___parryLight.TryGetComponent<AudioSource>(out AudioSource src))
-                    {
-                        AudioSource childSrc = ___parryLight.GetComponentInChildren<AudioSource>(true);
-                        if (childSrc != null)
-                        {
-                            src = childSrc;
-                        }
-
-                    }
-
-                    if (src != null)
-                    {
-                        src.clip = newClip;
-                    }
-                }            
-            }
-            */
             return true;
         }
     }
@@ -154,13 +128,13 @@ public class HYD_PlayerPatches
 
             if (ClusterExplosives.ClusterExplosivesEnabled)
             {
-                int rand = UnityEngine.Random.Range(0, 3);
+                //int rand = UnityEngine.Random.Range(0, 3);
                 if (TryCluster())
                 {
                     ++CurrentClusterPool;
 
                     Vector3 randomOffset = UnityEngine.Random.insideUnitSphere;
-                    randomOffset *= __instance.maxSize * 1.45f;
+                    randomOffset *= __instance.maxSize * 1.15f;
 
                     Vector3 dupePosition = __instance.transform.position + randomOffset;
 

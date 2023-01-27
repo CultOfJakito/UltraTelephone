@@ -10,6 +10,7 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
     private Image image;
     private RectTransform canvas;
     private AudioSource audioSrc;
+    private AudioClip ogClip;
 
     private Texture2D currentTexture;
 
@@ -23,6 +24,7 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             newJumpscareUI.transform.parent = transform;
             canvas = newJumpscareUI.GetComponent<RectTransform>();
             audioSrc = canvas.GetComponent<AudioSource>();
+            ogClip = audioSrc.clip;
             if (canvas.GetChild(0).TryGetComponent<Image>(out image))
             {
                 BruhMoments.RegisterBruhMoment(this);
@@ -51,6 +53,32 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             timer -= Time.deltaTime;
         }
         image.color = Color.white;
+
+        if(currentTexture.name == "sergsrhds" || currentTexture.name == "sergsrhds.PNG")
+        {
+            if(UltraTelephone.AudioSwapper.TryGetAudioClipByName("BadToThaBone", out AudioClip clip))
+            {
+                audioSrc.clip = clip;
+            }else
+            {
+                audioSrc.clip = ogClip;
+            }
+        }
+        else
+        {
+            if (UnityEngine.Random.value > 0.75f)
+            {
+                AudioClip jumpscareClip = UltraTelephone.AudioSwapper.GetRandomAudioClipFromSubdirectory("jumpscare");
+                if (jumpscareClip != null)
+                {
+                    audioSrc.clip = jumpscareClip;
+                }
+            }
+            else
+            {
+                audioSrc.clip = ogClip;
+            }
+        }
 
         audioSrc.Play();
 

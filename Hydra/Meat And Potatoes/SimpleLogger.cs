@@ -124,6 +124,7 @@ public class SimpleLogger : MonoBehaviour
         new HydraLoader.CustomAssetPrefab("FreeBird", new Component[] { new FreedBird() });
         new HydraLoader.CustomAssetData("ComicSans", typeof(Font));
         new HydraLoader.CustomAssetData("HeartlessFont", typeof(Font));
+        new HydraLoader.CustomAssetData("UltraTelephoneHeader", typeof(Sprite));
 
         HydraLoader.RegisterAll(UltraTelephone.Properties.Resources.hydrabundle);
     }
