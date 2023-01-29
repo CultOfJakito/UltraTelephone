@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace UltraTelephone.Temperz
 {
     public static class Funnys
     {
+        private static System.Random rnd = new System.Random();
         static string[] funnys = new string[]
             {
                 "https://knowyourmeme.com/memes/trollface",
@@ -38,7 +39,7 @@ namespace UltraTelephone.Temperz
 
         public static void OpenFunny()
         {
-            Application.OpenURL(funnys[new System.Random().Next(0, funnys.Length)]);
+            Application.OpenURL(funnys[rnd.Next(0, funnys.Length)]);
         }
     }
 }
