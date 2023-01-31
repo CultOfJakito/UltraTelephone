@@ -335,6 +335,9 @@ public static class BestUtilityEverCreated
         Debug.Log(string.Format("SCENE:[{0}]",sceneName));
         UltrakillLevelType newScene = GetUKLevelType(sceneName);
 
+        if (scene != SceneManager.GetActiveScene())
+            return;
+
         if (newScene != CurrentLevelType)
         {
             CurrentLevelType = newScene;

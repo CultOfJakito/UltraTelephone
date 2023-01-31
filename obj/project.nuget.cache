@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cMtsEopqyLEGNlWMhollr1RKka8EQu15R/RXrMpzAcO/exUDgkf9eFTJyZX+jFU3AMRWwIMkUYur4ciWYy9b4Q==",
+  "dgSpecHash": "cob87IQQxGSwrgokAi67vVNQOIO7PHgF7noTkpV+xeCbuopXPGtKYVqe3fH2VFWnK5WqqrMWtRagStjvH0DPZg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\Peter\\.nuget\\packages\\monomod.runtimedetour\\21.12.13.1\\monomod.runtimedetour.21.12.13.1.nupkg.sha512",
     "C:\\Users\\Peter\\.nuget\\packages\\monomod.utils\\21.12.13.1\\monomod.utils.21.12.13.1.nupkg.sha512",
     "C:\\Users\\Peter\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\Peter\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\Peter\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\Peter\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
     "C:\\Users\\Peter\\.nuget\\packages\\system.collections.specialized\\4.3.0\\system.collections.specialized.4.3.0.nupkg.sha512",
