@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cMtsEopqyLEGNlWMhollr1RKka8EQu15R/RXrMpzAcO/exUDgkf9eFTJyZX+jFU3AMRWwIMkUYur4ciWYy9b4Q==",
+  "dgSpecHash": "DTMWrhG2qPIOMWrM0rM2qADrOcEdBFOBjuER328whdgpbTZdmS82iPUciSGwsgYPIwZ2JqTvO9BXIV/5dLilBQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
+  "projectFilePath": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Peter\\.nuget\\packages\\bepinex.analyzers\\1.0.8\\bepinex.analyzers.1.0.8.nupkg.sha512",
     "C:\\Users\\Peter\\.nuget\\packages\\bepinex.baselib\\5.4.20\\bepinex.baselib.5.4.20.nupkg.sha512",
