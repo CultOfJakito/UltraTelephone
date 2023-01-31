@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj": {}
+    "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj": {
+    "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj",
+        "projectUniqueName": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
         "projectName": "UltraTelephone",
-        "projectPath": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj",
+        "projectPath": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
         "packagesPath": "C:\\Users\\Peter\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\obj\\",
         "projectStyle": "PackageReference",
@@ -17,7 +17,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\NuGet.Config",
+          "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\NuGet.Config",
           "C:\\Users\\Peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -64,6 +64,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             },
             "UnityEngine.Modules": {
               "include": "Compile",

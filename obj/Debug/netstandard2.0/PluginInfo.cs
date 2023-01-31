@@ -4,6 +4,6 @@ namespace UltraTelephone
     {
         public const string PLUGIN_GUID = "UltraTelephone";
         public const string PLUGIN_NAME = "UltraTelephone";
-        public const string PLUGIN_VERSION = "1.1.0";
+        public const string PLUGIN_VERSION = "1.0.0";
     }
 }
