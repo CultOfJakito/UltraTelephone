@@ -1,0 +1,91 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>UltraTelephone</AssemblyName>
+    <Description>My first plugin</Description>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\hydrabundle.resource" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\hydrabundle.resource" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="UnityEngine.Modules" Version="2019.4.16" IncludeAssets="compile" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>lib\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>lib\Unity.InputSystem.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>lib\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+   
+  
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  
+  
+
+  <!-- Create config+plugins folder for BepInEx -->
+  <Target Name="MakeMyDir" AfterTargets="BeforeBuild">
+    <Message Text="Creating folders..." Importance="High" />
+    <MakeDir Directories="$(TargetDir)BepInEx/" Condition="!Exists('$(TargetDir)BepInEx')" />
+    <MakeDir Directories="$(TargetDir)BepInEx/plugins" Condition="!Exists('$(TargetDir)BepInEx/plugins')" />
+	<MakeDir Directories="$(TargetDir)BepInEx/plugins/UltraTelephone" Condition="!Exists('$(TargetDir)BepInEx/plugins/UltraTelephone')" />
+	<MakeDir Directories="$(TargetDir)BepInEx/plugins/UltraTelephone/UltraTelephone_Data" Condition="!Exists('$(TargetDir)BepInEx/plugins/UltraTelephone/UltraTelephone_Data')" />
+    <Message Text="Folders created." Importance="High" />
+  </Target>
+  <!-- Copy the compiled .dll to plugins folder. -->
+  <Target Name="MoveDLLToFolder" AfterTargets="AfterBuild">
+    <Message Text="Moving DLL to BepInEx/plugins..." Importance="High" />
+    <Move SourceFiles="$(TargetDir)UltraTelephone.dll" DestinationFolder="$(TargetDir)BepInEx/plugins/UltraTelephone">
+    </Move>
+    <Message Text="DLL moved." Importance="High" />
+  </Target>
+  <!-- Attempt to copy data files Skip if fail. -->
+  <Target Name="AfterBuild">
+		<ItemGroup>
+       <UltraTelephone_Data Include="$(TargetDir)\..\..\..\UltraTelephone_Data\**\*.*" />
+	   </ItemGroup>
+    <Copy SourceFiles="@(UltraTelephone_Data)" DestinationFolder="$(TargetDir)\BepInEx\plugins\UltraTelephone\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+  
+</Project>

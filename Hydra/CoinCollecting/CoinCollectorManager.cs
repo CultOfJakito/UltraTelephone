@@ -181,6 +181,8 @@ public class CoinCollectorManager : MonoSingleton<CoinCollectorManager>
         return true;
     }
 
+
+
     private void OnEnable()
     {
         BestUtilityEverCreated.OnLevelChanged += OnLevelChanged;

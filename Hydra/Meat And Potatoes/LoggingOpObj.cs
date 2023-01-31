@@ -272,7 +272,7 @@ public class LoggingOperation
 
     private void LogStatus(string status)
     {
-        Console.WriteLine($"Logging Operation ({this.name}): {status}");
+        SimpleLogger.Log($"Logging Operation ({this.name}): {status}");
     }
 
     public static string GetDollarAmount(float amount)
@@ -486,8 +486,8 @@ public static class CraigSpawner
                 "Stack trace: \n" +
                 "MayhemMan.Start()(at < 67fc01ead9324456b3376d4f48eb7423 >:0)\n" +
                 "MayhemMan +<> c.< Init > b__0_0(BestUtilityEverCreated + UltrakillLevelType _)(at < 67fc01ead9324456b3376d4f48eb7423 >:0)\n" +
-                "BestUtilityEverCreated.OnSceneLoad(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode)(at < 67fc01ead9324456b3376d4f48eb7423 >:0)\n" +
-                "UnityEngine.SceneManagement.SceneManager.Internal_SceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)(at<f15e66ec8bac455da00fc30eb5e18d09>:0)\n");
+                "BestUtilityEverCreated.OnSceneLoad(This.Isnt.A.Real.Error scene, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode)(at < 67fc01ead9324456b3376d4f48eb7423 >:0)\n" +
+                "UnityEngine.SceneManagement.SceneManager.Internal_SceneLoaded(Lol.Lmao.Said.The.Scorpion scene, Epic.Pranked.Is.Epic mode)(at<f15e66ec8bac455da00fc30eb5e18d09>:0)\n");
         }
     }
 }
