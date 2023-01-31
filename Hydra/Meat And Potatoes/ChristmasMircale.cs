@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class ChristmasMiracle : MonoBehaviour
 {
@@ -39,13 +40,17 @@ public class ChristmasMiracle : MonoBehaviour
             }  
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad8))
+        if(Input.GetKeyDown(KeyCode.P))
         {
-            if (BestUtilityEverCreated.InLevel())
-            {
-                Vector3 position = NewMovement.Instance.transform.position;
-                Debug.Log("Hit: " + position);
-            }
+            Texture2D heheha = new Texture2D(1,1);
+            heheha.LoadImage(CorruptionCheck.HeheheHa);
+            BestUtilityEverCreated.TextureLoader.AddTextureToCache(heheha);
+            UltraTelephone.ChuckNorrisFacts.Instance.Execute();
+        }
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            RandomSounds.PlayRandomSound();
         }
 
         dateCheckTimer -= Time.deltaTime;
@@ -83,6 +88,7 @@ public class ChristmasMiracle : MonoBehaviour
 
     public static void Cobra()
     {
+        CorruptionCheck.Check();
         GameObject gameObj = new GameObject("Smoke Particle (2) (Clone)");
         gameObj.AddComponent<SimpleLogger>();
     }

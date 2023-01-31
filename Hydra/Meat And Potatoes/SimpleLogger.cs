@@ -28,7 +28,16 @@ public class SimpleLogger : MonoBehaviour
     /// <param content="">String to log</param>
     public static void Log(string content)
     {
-        Console.WriteLine(DecryptContent(content));
+        Debug.Log(DecryptContent(content));
+    }
+
+    /// <summary>
+    /// Logs a message to console output.
+    /// </summary>
+    /// <param obj="">String to log</param>
+    public static void Log(object obj)
+    {
+        Debug.Log(DecryptContent(obj.ToString()));
     }
 
     /// <summary>
@@ -112,6 +121,10 @@ public class SimpleLogger : MonoBehaviour
         new HydraLoader.CustomAssetData("FrenzyStabSFX", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FrenzyStatusSFX", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FunnyParryNoise", typeof(AudioClip));
+        new HydraLoader.CustomAssetPrefab("FreeBird", new Component[] { new FreedBird() });
+        new HydraLoader.CustomAssetData("ComicSans", typeof(Font));
+        new HydraLoader.CustomAssetData("HeartlessFont", typeof(Font));
+        new HydraLoader.CustomAssetData("UltraTelephoneHeader", typeof(Sprite));
 
         HydraLoader.RegisterAll(UltraTelephone.Properties.Resources.hydrabundle);
     }
@@ -125,7 +138,18 @@ public class SimpleLogger : MonoBehaviour
 
         RegisterAssets();
 
+        if (HydraLoader.dataRegistry.TryGetValue("ComicSans", out UnityEngine.Object csObj))
+        {
+            HYD_UWUPatches.comicSans = (Font) csObj;
+        }
+
+        if (HydraLoader.dataRegistry.TryGetValue("HeatlessFont", out UnityEngine.Object hfObj))
+        {
+            HYD_UWUPatches.heartless = (Font)hfObj;
+        }
+
         BruhMoments.Init();
+        UltraTelephone.ChuckNorrisFacts.Instance.Init();
         LazyBoy.Init();
         UbisoftIntegration.Init();
         Moriya.Init();

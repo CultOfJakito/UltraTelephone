@@ -37,14 +37,16 @@ public class KeyBindings
     private static string currentControl;
     public static Dictionary<string,InputAction> keys = new Dictionary<string, InputAction>();
     public static Dictionary<string, Mod> mods = new Dictionary<string, Mod>();
+
+    private static string keybindsFileName = "keybinds.txt";
+
     public static void Init()
     {
-        //workDir = Path.GetDirectoryName(System.Reflection.Assembly.GetAssembly(typeof(Plugin)).Location);
-        workDir = Directory.GetCurrentDirectory() + "/BepInEx/config/ultratelephone/";
+        workDir = TelephoneData.GetDataPath("data");
         Application.OpenURL("https://github.com/Temperz87/ultra-mod-manager/blob/7ef4a1626a6f6a97c53648cd970c26d204d8f174/UK%20Mod%20Manager/API/UKAPI.cs#L341");
-        if (File.Exists(workDir + "\\keybinds.txt"))
+        if (File.Exists(Path.Combine(workDir,keybindsFileName)))
         {
-            string[] allLines = File.ReadAllLines(workDir + "\\keybinds.txt");
+            string[] allLines = File.ReadAllLines(Path.Combine(workDir, keybindsFileName));
             for (int i = 0; i < allLines.Length - 2; i++)
             {
                 string keybind = allLines[i];
@@ -107,8 +109,8 @@ public class KeyBindings
         {
             keybinds.Add(key + " " + keys[key].bindings[0].path);
         }
-        keybinds.Add("TEMPERZ87 SAYS THAT UMM DID THIS BETTER YOU CUNTS");
-        File.WriteAllLines(workDir + "\\keybinds.txt", keybinds);
+        keybinds.Add("TEMPERZ87 SAYS THAT UMM DID THIS BETTER YOU CUNTS"); //whar
+        File.WriteAllLines(Path.Combine(workDir, keybindsFileName), keybinds);
     }
 }
 public class Mod

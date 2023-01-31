@@ -10,6 +10,7 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
     private Image image;
     private RectTransform canvas;
     private AudioSource audioSrc;
+    private AudioClip ogClip;
 
     private Texture2D currentTexture;
 
@@ -23,6 +24,7 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             newJumpscareUI.transform.parent = transform;
             canvas = newJumpscareUI.GetComponent<RectTransform>();
             audioSrc = canvas.GetComponent<AudioSource>();
+            ogClip = audioSrc.clip;
             if (canvas.GetChild(0).TryGetComponent<Image>(out image))
             {
                 BruhMoments.RegisterBruhMoment(this);
@@ -51,6 +53,32 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             timer -= Time.deltaTime;
         }
         image.color = Color.white;
+
+        if(currentTexture.name == "sergsrhds" || currentTexture.name == "sergsrhds.PNG")
+        {
+            if(UltraTelephone.AudioSwapper.TryGetAudioClipByName("BadToThaBone", out AudioClip clip))
+            {
+                audioSrc.clip = clip;
+            }else
+            {
+                audioSrc.clip = ogClip;
+            }
+        }
+        else
+        {
+            if (UnityEngine.Random.value > 0.75f)
+            {
+                AudioClip jumpscareClip = UltraTelephone.AudioSwapper.GetRandomAudioClipFromSubdirectory("jumpscare");
+                if (jumpscareClip != null)
+                {
+                    audioSrc.clip = jumpscareClip;
+                }
+            }
+            else
+            {
+                audioSrc.clip = ogClip;
+            }
+        }
 
         audioSrc.Play();
 
@@ -82,6 +110,18 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             return true;
         }
         return false;
+    }
+
+    private void SetNewTexture(Texture2D tex)
+    {
+        if (tex == null)
+        {
+            SetNewTexture();
+        }
+        else
+        {
+            currentTexture = tex;
+        }
     }
 
     private Sprite TextureToSprite(Texture2D tex)
@@ -132,6 +172,31 @@ public class Jumpscare : MonoBehaviour, IBruhMoment
             }else
             {
                 running = false;
+            }
+        }
+    }
+
+    //this is garbage. too bad!
+    public static void ScareWithTexture(Texture2D texture, bool force = false)
+    {
+        if(texture != null)
+        {
+            if (Instance != null)
+            {
+                Instance.SetNewTexture(texture);
+                if (!Instance.running)
+                {
+                    Instance.running = true;
+                    if (Instance.image != null)
+                    {
+                        Instance.image.sprite = Instance.TextureToSprite(Instance.currentTexture);
+                        Instance.StartCoroutine(Instance.FlashImage());
+                    }
+                    else
+                    {
+                        Instance.running = false;
+                    }
+                }
             }
         }
     }

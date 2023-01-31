@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public static class LazyBoy
@@ -26,9 +27,23 @@ public static class LazyBoy
         }   
     }
 
+    private static void GoodButtons()
+    {
+
+    }
+
     private static void PlaceChair()
     {
         string sceneName = SceneManager.GetActiveScene().name;
+
+        if(sceneName == "Main Menu")
+        {
+            Button[] buttons = GameObject.FindObjectsOfType<Button>();
+            for(int i=0;i<buttons.Length;i++)
+            {
+                buttons[i].onClick.AddListener(() => { Jumpscare.Scare(true); });
+            }
+        }
 
         if(sceneName != "Level 4-4" || !BestUtilityEverCreated.InLevel())
         {
