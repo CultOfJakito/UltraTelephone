@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace UltraTelephone
+namespace UltraTelephone.Hydra
 {
     public class ChuckNorrisFacts : IBruhMoment
     {
@@ -86,7 +86,7 @@ namespace UltraTelephone
 
         public void Execute()
         {
-            if (facts.Length > 0)
+            if (facts.Length > 0 && HydrasConfig.BruhMoments_ChuckNorris)
             {
                 string fact = facts[UnityEngine.Random.Range(0, facts.Length)];
                 SimpleLogger.Log(fact);
@@ -107,6 +107,10 @@ namespace UltraTelephone
 
         public bool IsRunning()
         {
+            if(HydrasConfig.BruhMoments_ChuckNorris)
+            {
+                return true;
+            }
             return false;
         }
 

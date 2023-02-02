@@ -429,7 +429,7 @@ public static class CarWorld
     public static void World()
     {
         SimpleLogger.Log("world");
-        ChristmasMiracle.Chrimstat(true);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(true);
     }
 
     public static void Carworld()
@@ -439,7 +439,7 @@ public static class CarWorld
 
     public static void Poster()
     {
-        ChristmasMiracle.Chrimstat(false);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(false);
         World();
     }
 }
@@ -454,7 +454,7 @@ public static class CarWorld2
     public static void World()
     {
         SimpleLogger.Log("world 2");
-        ChristmasMiracle.Chrimstat(true);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(true);
     }
 
     public static void Carworld()
@@ -464,7 +464,7 @@ public static class CarWorld2
 
     public static void Poster()
     {
-        ChristmasMiracle.Chrimstat(false);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(false);
         World();
     }
 }
@@ -502,7 +502,7 @@ public static class CarWorld3
     public static void World()
     {
         SimpleLogger.Log("world 3");
-        ChristmasMiracle.Chrimstat(true);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(true);
     }
 
     public static void Carworld()
@@ -512,7 +512,7 @@ public static class CarWorld3
 
     public static void Poster()
     {
-        ChristmasMiracle.Chrimstat(false);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(false);
         World();
     }
 }
@@ -527,7 +527,7 @@ public static class CarWorld4
     public static void World()
     {
         SimpleLogger.Log("world 3");
-        ChristmasMiracle.Chrimstat(true);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(true);
     }
 
     public static void Carworld()
@@ -537,7 +537,7 @@ public static class CarWorld4
 
     public static void Poster()
     {
-        ChristmasMiracle.Chrimstat(false);
+        UltraTelephone.Hydra.ChristmasMiracle.Chrimstat(false);
         World();
     }
 }
