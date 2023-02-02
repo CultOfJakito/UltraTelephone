@@ -38,12 +38,12 @@ namespace UltraTelephone.Patches
                 SimpleLogger.Log("fuck you");
                 if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.80f)
                 {
-                    RandomSounds.PlayRandomSound();
+                    Hydra.RandomSounds.PlayRandomSound();
                 }
                 return false;
             }
             else {
-                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng);
+                CameraController.Instance.rotationX += (Recoil * Hydra.FrenzyController.Instance.currentFrenzy * ShotRng);
                 CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
                 return true;
             }
@@ -56,12 +56,12 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                Jumpscare.Scare();
+                Hydra.Jumpscare.Scare();
                 return false;
             }
             else
             {
-                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng);
+                CameraController.Instance.rotationX += (Recoil * Hydra.FrenzyController.Instance.currentFrenzy * ShotRng);
                 CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
                 return true;
             }
@@ -73,14 +73,14 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                Jumpscare.Scare();
+                Hydra.Jumpscare.Scare();
                 return false;
             }
             else
             {
                 if(UnityEngine.Random.value > 0.8f)
                 {
-                    CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng) / 3;
+                    CameraController.Instance.rotationX += (Recoil * Hydra.FrenzyController.Instance.currentFrenzy * ShotRng);
                     CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
                 }
                 return true;
@@ -94,12 +94,12 @@ namespace UltraTelephone.Patches
             if (ShotRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                Jumpscare.Scare();
+                Hydra.Jumpscare.Scare();
                 return false;
             }
             else
             {
-                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng)*10;
+                CameraController.Instance.rotationX += (Recoil * Hydra.FrenzyController.Instance.currentFrenzy * ShotRng)*10;
                 CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
                 return true;
             }
@@ -114,14 +114,14 @@ namespace UltraTelephone.Patches
                 SimpleLogger.Log("fuck you");
                 if (UnityEngine.Random.Range(0.0f, 1.0f) > 0.90f)
                 {
-                    RandomSounds.PlayRandomSound();
-                    ChuckNorrisFacts.Instance.Execute();
+                    Hydra.RandomSounds.PlayRandomSound();
+                    Hydra.ChuckNorrisFacts.Instance.Execute();
                 }
                 return false;
             }
             else
             {
-                CameraController.Instance.rotationX += (Recoil * FrenzyController.Instance.currentFrenzy * ShotRng);
+                CameraController.Instance.rotationX += (Recoil * Hydra.FrenzyController.Instance.currentFrenzy * ShotRng);
                 CameraController.Instance.rotationY += (Recoil * ShotRng * UnityEngine.Random.Range(-5, 5));
                 return true;
             }
@@ -147,10 +147,12 @@ namespace UltraTelephone.Patches
             if (MoveRng == 0)
             {
                 SimpleLogger.Log("fuck you");
-                if(UnityEngine.Random.Range(0.0f,1.0f) > 0.80f)
+                CameraController.Instance.rotationX += 90.0f;
+                if (UnityEngine.Random.Range(0.0f,1.0f) > 0.80f)
                 {
+                    CameraController.Instance.rotationX += 90.0f;
                     HudMessageReceiver.Instance.SendHudMessage("Your legs broke.", "", "", 0, true);
-                    RandomSounds.PlayRandomSound();
+                    Hydra.RandomSounds.PlayRandomSound();
                 }
                 return false;
             }

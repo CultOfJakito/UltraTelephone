@@ -146,7 +146,7 @@ public class WeaponAutomatorComponent : MonoBehaviour
             catch (System.Exception e)
             {
                 SimpleLogger.Log("We did not switch weapons so we will do someting funny. \nGunControl.SwitchWeapon() is cursed....");
-                Jumpscare.Scare();
+                UltraTelephone.Hydra.Jumpscare.Scare();
             }
         }
     }

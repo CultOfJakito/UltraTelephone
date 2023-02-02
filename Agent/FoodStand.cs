@@ -127,7 +127,7 @@ namespace UltraTelephone.Agent
 
         public void ButtonPressed()
         {
-            if (CoinCollectorManager.Instance.SpendCoins(Cost))
+            if (Hydra.CoinCollectorManager.Instance.SpendCoins(Cost))
             {
                 Purchase();
                 return;
@@ -140,7 +140,7 @@ namespace UltraTelephone.Agent
             Trigger.SetActive(false);
             Icon.gameObject.SetActive(false);
             SubtitleController.Instance.DisplaySubtitle(PostPurchaseSub);
-            RandomSounds.PlayRandomSoundFromSubdirectory("eat");
+            Hydra.RandomSounds.PlayRandomSoundFromSubdirectory("eat");
             AgentRegistry.CompleteLevel(SceneManager.GetActiveScene().name);
             CheckComplete();
         }
