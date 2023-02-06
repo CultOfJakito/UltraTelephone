@@ -98,36 +98,46 @@ public class WeaponAutomatorComponent : MonoBehaviour
             if (gc != null && BestUtilityEverCreated.InLevel())
             {
                 List<int> availableWeapons = new List<int>();
+                SimpleLogger.Log("Index 1");
                 for(int i =0; i<gc.slots.Count ;i++)
                 {
+                SimpleLogger.Log("Index 2");
                     if(gc.slots[i].Count > 0 && i < 6)
                     {
                         availableWeapons.Add(i);
                     }
-                }   
-
-                // Reserved for "when" a 6th weapon drops, else why is there a slot 6 variable in the code?
-                // because of the spawner arm
-                // Oh ok that makes sense. Im just gonna leave it here anyways :)
-
-                /*foreach(GameObject g in gc.slot6)
-                {
-
-                }*/     
-
-                waitTime = (!isRandom) ? interval : UnityEngine.Random.Range(minInterval, maxInterval);
-
-                int weapon = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Count)];
-                int variation = 1;
-
-                if (useVariations)
-                {
-                    variation = UnityEngine.Random.Range(0, 3);
                 }
-
-                for (int i = 0; i < variation; i++)
+                waitTime = interval;
+                if (availableWeapons.Count > 0)
                 {
-                    DoSwitch(weapon);
+                    // Reserved for "when" a 6th weapon drops, else why is there a slot 6 variable in the code?
+                    // because of the spawner arm
+                    // Oh ok that makes sense. Im just gonna leave it here anyways :)
+
+                    /*foreach(GameObject g in gc.slot6)
+                    {
+
+                    }*/
+
+                    SimpleLogger.Log("Index 3");
+                    waitTime = (!isRandom) ? interval : UnityEngine.Random.Range(minInterval, maxInterval);
+
+                    SimpleLogger.Log("Index 4");
+                    SimpleLogger.Log(availableWeapons.Count);
+                    int weapon = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Count - 1)];
+                    int variation = 1;
+
+                    if (useVariations)
+                    {
+                        SimpleLogger.Log("Index 5");
+                        variation = UnityEngine.Random.Range(0, 2);
+                    }
+
+                    SimpleLogger.Log("Index 6");
+                    for (int i = 0; i < variation; i++)
+                    {
+                        DoSwitch(weapon);
+                    }
                 }
             }
 

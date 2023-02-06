@@ -229,22 +229,16 @@ namespace UltraTelephone.Agent
 
         public static void CompleteLevel(string name)
         {
-            if (incompleteLevels.Contains(name))
+            if (TelephoneData.Data.standsIncomplete.Contains(name))
             {
-                incompleteLevels.Remove(name);
-                File.WriteAllText(SavePath, string.Join(";", incompleteLevels));
+                TelephoneData.Data.standsIncomplete.Remove(name);
+                TelephoneData.SaveData();
             }
         }
 
         public static IEnumerator GetAudio()
         {
             SimpleLogger.Log("INITIALIZING EAT AUDIO");
-
-            if (File.Exists(SavePath))
-            {
-                string temp = File.ReadAllText(SavePath);
-                incompleteLevels = temp.Split(';').ToList();
-            }
 
             if(AudioSwapper.TryGetAudioClipFromSubdirectory("eat", out AudioClip replacedEatClip))
             {
