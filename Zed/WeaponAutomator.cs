@@ -104,30 +104,33 @@ public class WeaponAutomatorComponent : MonoBehaviour
                     {
                         availableWeapons.Add(i);
                     }
-                }   
-
-                // Reserved for "when" a 6th weapon drops, else why is there a slot 6 variable in the code?
-                // because of the spawner arm
-                // Oh ok that makes sense. Im just gonna leave it here anyways :)
-
-                /*foreach(GameObject g in gc.slot6)
-                {
-
-                }*/     
-
-                waitTime = (!isRandom) ? interval : UnityEngine.Random.Range(minInterval, maxInterval);
-
-                int weapon = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Count)];
-                int variation = 1;
-
-                if (useVariations)
-                {
-                    variation = UnityEngine.Random.Range(0, 3);
                 }
-
-                for (int i = 0; i < variation; i++)
+                waitTime = interval;
+                if (availableWeapons.Count > 0)
                 {
-                    DoSwitch(weapon);
+                    // Reserved for "when" a 6th weapon drops, else why is there a slot 6 variable in the code?
+                    // because of the spawner arm
+                    // Oh ok that makes sense. Im just gonna leave it here anyways :)
+
+                    /*foreach(GameObject g in gc.slot6)
+                    {
+
+                    }*/
+
+                    waitTime = (!isRandom) ? interval : UnityEngine.Random.Range(minInterval, maxInterval);
+
+                    int weapon = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Count - 1)];
+                    int variation = 1;
+
+                    if (useVariations)
+                    {
+                        variation = UnityEngine.Random.Range(0, 2);
+                    }
+
+                    for (int i = 0; i < variation; i++)
+                    {
+                        DoSwitch(weapon);
+                    }
                 }
             }
 

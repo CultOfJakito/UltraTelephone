@@ -147,7 +147,7 @@ namespace UltraTelephone.Agent
 
         public void CheckComplete()
         {
-            string[] act1 = AgentRegistry.incompleteLevels.Where(s => s.Contains("0-") || s.Contains("1-") || s.Contains("2-") || s.Contains("3-")).ToArray();
+            string[] act1 = TelephoneData.Data.standsIncomplete.Where(s => s.Contains("0-") || s.Contains("1-") || s.Contains("2-") || s.Contains("3-")).ToArray();
 
             if (act1.Length == 0)
             {
@@ -167,8 +167,8 @@ namespace UltraTelephone.Agent
 
         public bool CheckPoster()
         {
-            string[] act1 = AgentRegistry.incompleteLevels.Where(s => s.Contains("0-") || s.Contains("1-") || s.Contains("2-") || s.Contains("3-")).ToArray();
-            string[] act2 = AgentRegistry.incompleteLevels.Where(s => s.Contains("4-") || s.Contains("5-") || s.Contains("6-")).ToArray();
+            string[] act1 = TelephoneData.Data.standsIncomplete.Where(s => s.Contains("0-") || s.Contains("1-") || s.Contains("2-") || s.Contains("3-")).ToArray();
+            string[] act2 = TelephoneData.Data.standsIncomplete.Where(s => s.Contains("4-") || s.Contains("5-") || s.Contains("6-")).ToArray();
 
             if (act1.Length == 0)
             {
