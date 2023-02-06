@@ -4,212 +4,218 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FrenzyController : MonoBehaviour
+namespace UltraTelephone.Hydra
 {
-    public static FrenzyController Instance { get; private set; }
-
-    private GameObject madmassPrefab, massExplosion;
-    private GameObject frenzyUIPrefab;
-    private AudioClip frenzyStabSFX, frenzyStatusSFX;
-
-    public MadMass MadnessMonster { get; private set; }
-    public FrenzyMeter FrenzyUI { get; private set; }
-
-    public float currentFrenzy = 0.0f;
-    private float maxFrenzy = 180.0f;
-
-    private float displayedFrenzy = 0.0f;
-
-    private float frenzyDamageTime = 1.8f;
-    private float frenzyDamageTimer = 0.0f;
-
-    private bool madMassKilled = false;
-
-    private int currentDiff = 0;
-
-    private void Init()
+    public class FrenzyController : MonoBehaviour
     {
-        if (FrenzyController.Instance == null)
+        public static FrenzyController Instance { get; private set; }
+
+        private GameObject madmassPrefab, massExplosion;
+        private GameObject frenzyUIPrefab;
+        private AudioClip frenzyStabSFX, frenzyStatusSFX;
+
+        public MadMass MadnessMonster { get; private set; }
+        public FrenzyMeter FrenzyUI { get; private set; }
+
+        public float currentFrenzy = 0.0f;
+        private float maxFrenzy = 180.0f;
+
+        private float displayedFrenzy = 0.0f;
+
+        private float frenzyDamageTime = 1.8f;
+        private float frenzyDamageTimer = 0.0f;
+
+        private bool madMassKilled = false;
+
+        private int currentDiff = 0;
+
+        private void Init()
         {
-            FrenzyController.Instance = this;
-
-            BestUtilityEverCreated.OnPlayerActivated += OnLevelChanged;
-            BestUtilityEverCreated.OnLevelComplete += KillMadMass;
-
-            HydraLoader.prefabRegistry.TryGetValue("MadMass", out madmassPrefab);
-            HydraLoader.prefabRegistry.TryGetValue("MadnessExplosion", out massExplosion);
-            HydraLoader.prefabRegistry.TryGetValue("FrenzyUI", out frenzyUIPrefab);
-            if(HydraLoader.dataRegistry.TryGetValue("FrenzyStabSFX", out UnityEngine.Object fssfx))
+            if (FrenzyController.Instance == null)
             {
-                frenzyStabSFX = (AudioClip) fssfx;
-            }
-            if (HydraLoader.dataRegistry.TryGetValue("FrenzyStatusSFX", out UnityEngine.Object fsfx))
-            {
-                frenzyStatusSFX = (AudioClip) fsfx;
-            }
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
+                FrenzyController.Instance = this;
 
-    private void Awake()
-    {
-        Init();
-    }
+                BestUtilityEverCreated.OnPlayerActivated += OnLevelChanged;
+                BestUtilityEverCreated.OnLevelComplete += KillMadMass;
 
-    private void Update()
-    {
-        if(BestUtilityEverCreated.InLevel())
-        {
-            if(MadnessMonster != null)
-            {
-                if(MadnessMonster.Alive)
+                HydraLoader.prefabRegistry.TryGetValue("MadMass", out madmassPrefab);
+                HydraLoader.prefabRegistry.TryGetValue("MadnessExplosion", out massExplosion);
+                HydraLoader.prefabRegistry.TryGetValue("FrenzyUI", out frenzyUIPrefab);
+                if (HydraLoader.dataRegistry.TryGetValue("FrenzyStabSFX", out UnityEngine.Object fssfx))
                 {
-                    frenzyDamageTimer -= Time.deltaTime;
-
-                    if (currentFrenzy >= maxFrenzy)
-                    {
-                        FrenziedEffect();
-                    }
-
-                    if (frenzyDamageTimer < 0.0f)
-                    {
-                        FrenzyHit();
-                    }
-                }  
+                    frenzyStabSFX = (AudioClip)fssfx;
+                }
+                if (HydraLoader.dataRegistry.TryGetValue("FrenzyStatusSFX", out UnityEngine.Object fsfx))
+                {
+                    frenzyStatusSFX = (AudioClip)fsfx;
+                }
+            }
+            else
+            {
+                Destroy(this);
             }
         }
-    }
 
-    private void FrenziedEffect()
-    {
-        currentFrenzy = (maxFrenzy * 0.50f);
-        int damage = (int)(100.0f - (100.0f * ((6.0f - (currentDiff + 1.0f))/6.0f)));
-        NewMovement.Instance.GetHurt(damage, false, 5.0f, false, false);
-        FrenzyUI.ShowStatusInflicted();
-        if(frenzyStatusSFX != null)
+        private void Awake()
         {
-            AudioSource.PlayClipAtPoint(frenzyStatusSFX, NewMovement.Instance.transform.position,1.0f);
+            Init();
         }
-    }
 
-    private void FrenzyHit()
-    {
-        frenzyDamageTimer = frenzyDamageTime;
-        currentFrenzy += frenzyDamageTime;
-        NewMovement.Instance.GetHurt(2 * (currentDiff + 1), false, 0.0f, false, false);
-        displayedFrenzy = currentFrenzy;
-        if(frenzyStabSFX != null)
+        private void Update()
         {
-            AudioSource.PlayClipAtPoint(frenzyStabSFX, NewMovement.Instance.transform.position,1.0f);
-        }
-    }
-
-    private void OnLevelChanged()
-    {
-        madMassKilled = false;
-
-        if (BestUtilityEverCreated.InLevel())
-        {
-            if(MadnessMonster != null)
+            if (BestUtilityEverCreated.InLevel())
             {
-                if(MadnessMonster.Alive)
+                if (MadnessMonster != null)
                 {
-                    return;
+                    if (MadnessMonster.Alive)
+                    {
+                        frenzyDamageTimer -= Time.deltaTime;
+
+                        if (currentFrenzy >= maxFrenzy)
+                        {
+                            FrenziedEffect();
+                        }
+
+                        if (frenzyDamageTimer < 0.0f)
+                        {
+                            FrenzyHit();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void FrenziedEffect()
+        {
+            currentFrenzy = (maxFrenzy * 0.50f);
+            int damage = (int)(100.0f - (100.0f * ((6.0f - (currentDiff + 1.0f*HydrasConfig.Madness_FullDamage)) / 6.0f)));
+            NewMovement.Instance.GetHurt(damage, false, 5.0f, false, false);
+            FrenzyUI.ShowStatusInflicted();
+            if (frenzyStatusSFX != null)
+            {
+                AudioSource.PlayClipAtPoint(frenzyStatusSFX, NewMovement.Instance.transform.position, 1.0f);
+            }
+        }
+
+        private void FrenzyHit()
+        {
+            frenzyDamageTimer = frenzyDamageTime;
+            currentFrenzy += Hydra.HydrasConfig.Madness_TickDelay;
+            NewMovement.Instance.GetHurt(((int)(UltraTelephone.Hydra.HydrasConfig.Madness_TickDamage * (currentDiff + 1))), false, 0.0f, false, false);
+            displayedFrenzy = currentFrenzy;
+            if (frenzyStabSFX != null)
+            {
+                AudioSource.PlayClipAtPoint(frenzyStabSFX, NewMovement.Instance.transform.position, 1.0f);
+            }
+        }
+
+        private void OnLevelChanged()
+        {
+            madMassKilled = false;
+
+            if (BestUtilityEverCreated.InLevel())
+            {
+                if (MadnessMonster != null)
+                {
+                    if (MadnessMonster.Alive)
+                    {
+                        return;
+                    }
+                }
+
+                if(HydrasConfig.Madness_Enabled)
+                {
+                    SpawnMadMass();
+                }
+            }
+        }
+
+        private void SpawnMadMass()
+        {
+            if (madMassKilled || madmassPrefab == null)
+            {
+                return;
+            }
+
+            currentFrenzy = 0.0f;
+            displayedFrenzy = 0.0f;
+            currentDiff = MonoSingleton<PrefsManager>.Instance.GetInt("difficulty");
+
+            string sceneName = SceneManager.GetActiveScene().name;
+
+            if (TryGetMadMassSpawnPoint(sceneName, out MadMassSpawnPoint spawnPoint))
+            {
+                maxFrenzy = (spawnPoint.maxFrenzy / (((float)currentDiff + 1.0f) * 0.5f));
+                maxFrenzy *= HydrasConfig.Madness_MaxMadnessMultiplier;
+                SimpleLogger.Log("Max frenzy: " + maxFrenzy);
+                GameObject newGO = GameObject.Instantiate<GameObject>(madmassPrefab, spawnPoint.position, Quaternion.identity);
+                MadnessMonster = newGO.GetComponent<MadMass>();
+                SimpleLogger.Log("WE spawned a mass! at " + spawnPoint.position);
+                HudMessageReceiver.Instance.SendHudMessage("You feel a maddening presence.");
+
+                if (frenzyUIPrefab != null)
+                {
+                    FrenzyUI = GameObject.Instantiate<GameObject>(frenzyUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<FrenzyMeter>();
                 }
             }
 
-            SpawnMadMass();
-        }
-    }
-
-    private void SpawnMadMass()
-    {
-        if(madMassKilled || madmassPrefab == null)
-        {
-            return;
         }
 
-        currentFrenzy = 0.0f;
-        displayedFrenzy = 0.0f;
-        currentDiff = MonoSingleton<PrefsManager>.Instance.GetInt("difficulty");
 
-        string sceneName = SceneManager.GetActiveScene().name;
 
-        if(TryGetMadMassSpawnPoint(sceneName, out MadMassSpawnPoint spawnPoint))
+        private bool TryGetMadMassSpawnPoint(string levelName, out MadMassSpawnPoint spawnPoint)
         {
-            maxFrenzy = (spawnPoint.maxFrenzy/(((float)currentDiff+1.0f)*0.5f));
-            SimpleLogger.Log("Max frenzy: " + maxFrenzy);
-            GameObject newGO = GameObject.Instantiate<GameObject>(madmassPrefab, spawnPoint.position, Quaternion.identity);
-            MadnessMonster = newGO.GetComponent<MadMass>();
-            SimpleLogger.Log("WE spawned a mass! at " + spawnPoint.position);
-            HudMessageReceiver.Instance.SendHudMessage("You feel a maddening presence.");
+            spawnPoint = null;
 
-            if(frenzyUIPrefab != null)
+            for (int i = 0; i < spawnPoints.Length; i++)
             {
-                FrenzyUI = GameObject.Instantiate<GameObject>(frenzyUIPrefab, Vector3.zero, Quaternion.identity).GetComponent<FrenzyMeter>();
+                if (spawnPoints[i].levelName == levelName)
+                {
+                    spawnPoint = spawnPoints[i];
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        public void MassKilled(Vector3 position)
+        {
+            madMassKilled = true;
+            FrenzyUI.Flush();
+            currentFrenzy = 0.0f;
+            displayedFrenzy = 0.0f;
+            HudMessageReceiver.Instance.SendHudMessage("The maddening presence dissipates.");
+            Destroy(MadnessMonster.gameObject);
+            NewMovement.Instance.hp = 100;
+            GameObject.Instantiate<GameObject>(massExplosion, position, Quaternion.identity);
+            NewMovement.Instance.LaunchFromPoint(position, 10.0f);
+        }
+
+        public void KillMadMass()
+        {
+            if (MadnessMonster != null)
+            {
+                if (MadnessMonster.Alive)
+                {
+                    MadnessMonster.Die();
+                }
             }
         }
 
-    }
-
-    
-
-    private bool TryGetMadMassSpawnPoint(string levelName, out MadMassSpawnPoint spawnPoint)
-    {
-        spawnPoint = null;
-
-        for(int i=0; i<spawnPoints.Length; i++)
+        public float GetFrenzyAmount()
         {
-            if(spawnPoints[i].levelName == levelName)
-            {
-                spawnPoint = spawnPoints[i];
-                return true;
-            }
+            return currentFrenzy / maxFrenzy;
         }
 
-        return false;
-    }
-
-
-    public void MassKilled(Vector3 position)
-    {
-        madMassKilled = true;
-        FrenzyUI.Flush();
-        currentFrenzy = 0.0f;
-        displayedFrenzy = 0.0f;
-        HudMessageReceiver.Instance.SendHudMessage("The maddening presence dissipates.");
-        Destroy(MadnessMonster.gameObject);
-        NewMovement.Instance.hp = 100;
-        GameObject.Instantiate<GameObject>(massExplosion, position, Quaternion.identity);
-        NewMovement.Instance.LaunchFromPoint(position, 10.0f);
-    }
-
-    public void KillMadMass()
-    {
-        if(MadnessMonster != null)
+        public float GetDisplayedFrenzy()
         {
-            if(MadnessMonster.Alive)
-            {
-                MadnessMonster.Die();
-            }
+            return displayedFrenzy / maxFrenzy;
         }
-    }
 
-    public float GetFrenzyAmount()
-    {
-        return currentFrenzy / maxFrenzy;
-    }
-
-    public float GetDisplayedFrenzy()
-    {
-        return displayedFrenzy / maxFrenzy;
-    }
-
-    private MadMassSpawnPoint[] spawnPoints = new MadMassSpawnPoint[]
-    {
+        private MadMassSpawnPoint[] spawnPoints = new MadMassSpawnPoint[]
+        {
         new MadMassSpawnPoint(39.8f, 30.0f, 585.7f, "Level 0-1", 120.0f),
         new MadMassSpawnPoint(-59.6f, 0.8f, 254.2f, "Level 0-2"),
         new MadMassSpawnPoint(-19.6f, 85.0f,314.8f, "Level 0-3"),
@@ -237,20 +243,22 @@ public class FrenzyController : MonoBehaviour
         new MadMassSpawnPoint(113.6f, 0.8f, 350.0f, "Level 6-2"),
         new MadMassSpawnPoint(-104.6f, -7.2f, 341.0f, "uk_construct", 20.0f)
 
-    };
+        };
 
-    public class MadMassSpawnPoint
-    {
-        public Vector3 position;
-        public string levelName;
-        public float maxFrenzy;
-
-        public MadMassSpawnPoint() { }
-        public MadMassSpawnPoint(float x, float y, float z, string levelName, float maxFrenzy = 180.0f)
+        public class MadMassSpawnPoint
         {
-            this.position = new Vector3(x, y, z);
-            this.levelName = levelName;
-            this.maxFrenzy = maxFrenzy;
+            public Vector3 position;
+            public string levelName;
+            public float maxFrenzy;
+
+            public MadMassSpawnPoint() { }
+            public MadMassSpawnPoint(float x, float y, float z, string levelName, float maxFrenzy = 180.0f)
+            {
+                this.position = new Vector3(x, y, z);
+                this.levelName = levelName;
+                this.maxFrenzy = maxFrenzy;
+            }
         }
     }
 }
+

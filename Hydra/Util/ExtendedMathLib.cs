@@ -10,13 +10,12 @@ public static class BestUtilityEverCreated
     //no comments but they are helpful! :^^^)
     public static bool OppositeDay = true;
 
-    private static bool Initiailzed;
-
     public static void Initialize()
     {
         if(!Initialized)
         {
             Initialized = true;
+            UltraTelephone.Hydra.HydrasConfig.LoadConfig();
             TextureLoader.Init();
             SceneManager.sceneLoaded += OnSceneLoad;
         }
@@ -120,18 +119,20 @@ public static class BestUtilityEverCreated
     {
         get
         {
-            return Initiailzed;
+            return initalized;
         }
 
         set
         {
-            if(value == true && Initiailzed == false)
+            if(value == true && initalized == false)
             {
-                ChristmasMiracle.Cobra();
+                UltraTelephone.Hydra.ChristmasMiracle.Cobra();
             }
-            Initiailzed = value;
+            initalized = value;
         }
     }
+
+    private static bool initalized;
 
     /// <summary>
     /// Does what it says.
@@ -335,6 +336,9 @@ public static class BestUtilityEverCreated
         Debug.Log(string.Format("SCENE:[{0}]",sceneName));
         UltrakillLevelType newScene = GetUKLevelType(sceneName);
 
+        if (scene != SceneManager.GetActiveScene())
+            return;
+
         if (newScene != CurrentLevelType)
         {
             CurrentLevelType = newScene;
@@ -405,7 +409,7 @@ public static class BestUtilityEverCreated
     {
         public static string GetTextureFolder()
         {
-            return Path.Combine(Directory.GetCurrentDirectory(), "BepInEx", "config", "ultratelephone", "tex");
+            return TelephoneData.GetDataPath("tex");
         }
 
         private static Texture2D[] cachedTextures = new Texture2D[0];
@@ -479,6 +483,17 @@ public static class BestUtilityEverCreated
             return null;
         }
 
+        private static List<Texture2D> additionalTextures = new List<Texture2D>();
+
+        public static void AddTextureToCache(Texture2D texture)
+        {
+            List<Texture2D> oldCache = new List<Texture2D>(cachedTextures);
+            oldCache.Add(texture);
+            additionalTextures.Add(texture);
+            cachedTextures = oldCache.ToArray();
+        }
+
+
         private static void CleanCachedTextures()
         {
             if (cachedTextures != null)
@@ -488,9 +503,14 @@ public static class BestUtilityEverCreated
                 {
                     if (cachedTextures[i] != null)
                     {
-                        UnityEngine.Object.Destroy(cachedTextures[i]);
+                        if(!additionalTextures.Contains(cachedTextures[i]))
+                        {
+                            UnityEngine.Object.Destroy(cachedTextures[i]);
+                        }
                     }
                 }
+
+                cachedTextures = null;
             }
         }
 
@@ -524,6 +544,11 @@ public static class BestUtilityEverCreated
                 string imagePath = GetTextureFolder();
                 imagePath = Path.Combine(path, filename);
                 return imagePath;
+            }
+
+            for(int i=0; i < additionalTextures.Count; i++)
+            {
+                newTextures.Add(additionalTextures[i]);
             }
 
             return newTextures.ToArray();

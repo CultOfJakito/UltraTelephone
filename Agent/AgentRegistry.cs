@@ -11,7 +11,9 @@ namespace UltraTelephone.Agent
 {
     public static class AgentRegistry
     {
-        private static string SavePath = Directory.GetCurrentDirectory() + "/BepInEx/config/ultratelephone/foodstand.txt";
+        //private static string SavePath = Directory.GetCurrentDirectory() + "/BepInEx/config/ultratelephone/foodstand.txt";
+        private static string SavePath = TelephoneData.GetDataPath("data", "foodstand.txt");
+
 
         public static Dictionary<string, int> Costs = new Dictionary<string, int>()
         {
@@ -236,7 +238,7 @@ namespace UltraTelephone.Agent
 
         public static IEnumerator GetAudio()
         {
-            Debug.Log("INITIALIZING EAT AUDIO");
+            SimpleLogger.Log("INITIALIZING EAT AUDIO");
 
             if (File.Exists(SavePath))
             {
@@ -244,24 +246,11 @@ namespace UltraTelephone.Agent
                 incompleteLevels = temp.Split(';').ToList();
             }
 
-            string clipPath = AudioSwapper.clipFolder + "/clips/eat.wav";
-
-            using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(clipPath, AudioType.WAV))
+            if(AudioSwapper.TryGetAudioClipFromSubdirectory("eat", out AudioClip replacedEatClip))
             {
-                yield return www.SendWebRequest();
-
-                if (www.isNetworkError)
-                {
-                    Debug.Log("couldn't load clip " + clipPath);
-                    Debug.Log(www.error);
-                }
-                else
-                {
-                    Debug.Log("Loaded load clip at " + clipPath);
-                    eat_clip = DownloadHandlerAudioClip.GetContent(www);
-                }
+                eat_clip = replacedEatClip;
             }
-            yield break;
+            yield return null;
         }
     }
 

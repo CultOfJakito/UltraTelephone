@@ -50,16 +50,58 @@ public class HYD_UWUPatches
         }
     }
 
+    public static Font comicSans, heartless;
+
     [HarmonyPatch(typeof(Text), "OnEnable")]
     public static class UWUTextPatcher
     {
         public static void Postfix(Text __instance)
         {
+            int rand = UnityEngine.Random.Range(0, 6);
+
+            switch(rand)
+            {
+                case 0:
+                    if(comicSans != null)
+                    {
+                        __instance.font = comicSans;
+                    }
+                    break;
+                case 1:
+                    if (heartless != null)
+                    {
+                        __instance.font = heartless;
+                    }
+                    break;
+            }
+            
             string text = __instance.text;
             if(text != null || text != "")
             {
                 __instance.text = SimpleLogger.DecryptContent(text);
             }
         }
+    }
+
+    [HarmonyPatch(typeof(Image), "OnEnable")]
+    public static class LogoPatcher
+    {
+        public static void Postfix(Image __instance)
+        {
+            if(__instance.sprite != null)
+            {
+                if (__instance.sprite.name == "logowideborderlesssmaller")
+                {
+                    if (HydraLoader.dataRegistry.TryGetValue("UltraTelephoneHeader", out UnityEngine.Object obj))
+                    {
+                        Sprite newLogo = (Sprite)obj;
+                        if (newLogo != null)
+                        {
+                            __instance.sprite = newLogo;
+                        }
+                    }
+                }
+            }
+        }    
     }
 }

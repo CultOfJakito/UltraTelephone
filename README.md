@@ -2,6 +2,28 @@
 
 UltraTelephone is a collaborative project created in the Ultrakill discord server (more specifically the modding channel) by me and the other people listed down below.
 
+# WARNING
+PLEASE BACK UP YOUR SAVE FILE.
+THIS MOD IS AN ATTACK ON THE SENSES.
+
+# Installation
+  1. Install BepInEx 5.4.21 into Ultrakill, find it here https://github.com/BepInEx/BepInEx/releases/tag/v5.4.21
+  2. Launch Ultrakill
+  3. Wait 30s and close Ultrakill
+  4. Unzip UltraTelephone.zip
+  5. Place UltraTelephone folder into BepInEx/plugins/
+  6. Do NOT delete the coconut.
+  7. Start Ultrakill
+  8. Experience something
+
+
+# Customization
+  - You can customize sounds by changing the sound files in UltraTelephone/UltraTelephone_Data/audio
+  - You can customize other things by changing the pictures in UltraTelephone/UltraTelephone_Data/tex
+  - Do not remove the coconut.
+  - (Serious) Do not modify or remove anything from UltraTelephone/UltraTelephone_Data/data it will probably crash your game.
+  - I think you can also change some settings in the config file in BepInEx/config
+
 # How does it work?
 
 Each participant has one day max to add something to the project before passing it to the next participant and when no one is left, we consider this project complete.
@@ -23,10 +45,9 @@ Also remember this: no comments in your code whatsoever
 
 [zelzmiy](https://github.com/zelzmiy) ✅
 
-[PetersonE1](https://github.com/PetersonE1)
+[PetersonE1](https://github.com/PetersonE1) ✅
 
 [Temperz87](https://github.com/Temperz87) ✅
 
-[Hydraxous](https://github.com/Hydraxous) ✅
+[Hydraxous](https://github.com/Hydraxous) ✅✅
 
-[]()

@@ -19,7 +19,7 @@ namespace UltraTelephone.Agent
 
         public static void Init()
         {
-            Debug.Log("INITIALIZING FOOD STAND");
+            SimpleLogger.Log("INITIALIZING FOOD STAND");
             if (_initialized) return;
             _bundle = AssetBundle.LoadFromMemory(Properties.Resources.gabrielStand);
             _foodStand = _bundle.LoadAsset<GameObject>("foodstand.prefab");
@@ -31,22 +31,22 @@ namespace UltraTelephone.Agent
 
             BestUtilityEverCreated.OnLevelChanged += PlaceFoodStand;
             _initialized = true;
-            Debug.Log("INITIALIZED FOOD STAND");
+            SimpleLogger.Log("INITIALIZED FOOD STAND");
         }
 
         public static void PlaceFoodStand(BestUtilityEverCreated.UltrakillLevelType level)
         {
             string sceneName = SceneManager.GetActiveScene().name;
-            Debug.Log("PLACING FOOD STAND");
             if (level != BestUtilityEverCreated.UltrakillLevelType.Level) return;
             if (sceneName.Contains("-S") || sceneName.Contains("P-")) return;
-            Debug.Log("FOOD STAND OKAY");
+            SimpleLogger.Log("PLACING FOOD STAND");
+            SimpleLogger.Log("FOOD STAND OKAY");
 
             Transform foodStand = GameObject.Instantiate(_foodStand).transform;
             foodStand.parent = null;
             foodStand.position = AgentRegistry.Positions[sceneName];
             foodStand.rotation = Quaternion.Euler(AgentRegistry.Rotations[sceneName]);
-            Debug.Log(foodStand);
+            SimpleLogger.Log(foodStand);
         }
 
         public static void RenderObject(GameObject obj, LayerMask layer)
@@ -112,10 +112,11 @@ namespace UltraTelephone.Agent
             PostPurchaseSub = AgentRegistry.PostPurchaseDialogue[sceneName];
             Icon.sprite = AgentRegistry.Icons[sceneName];
 
+            /*
             source = gameObject.AddComponent<AudioSource>();
             source.volume = 3;
             source.clip = AgentRegistry.eat_clip;
-
+            */
             Poster = Instantiate(FoodStandInitializer._bundle.LoadAsset<GameObject>("poster.prefab"), new Vector3(-14.84f, 2.86f, 258.1f), Quaternion.Euler(0, 90, 0), null);
             Poster.transform.localScale *= 3;
             FoodStandInitializer.RenderObject(Poster, LayerMask.NameToLayer("Outdoors"));
@@ -126,7 +127,7 @@ namespace UltraTelephone.Agent
 
         public void ButtonPressed()
         {
-            if (CoinCollectorManager.Instance.SpendCoins(Cost))
+            if (Hydra.CoinCollectorManager.Instance.SpendCoins(Cost))
             {
                 Purchase();
                 return;
@@ -139,7 +140,7 @@ namespace UltraTelephone.Agent
             Trigger.SetActive(false);
             Icon.gameObject.SetActive(false);
             SubtitleController.Instance.DisplaySubtitle(PostPurchaseSub);
-            source.Play();
+            Hydra.RandomSounds.PlayRandomSoundFromSubdirectory("eat");
             AgentRegistry.CompleteLevel(SceneManager.GetActiveScene().name);
             CheckComplete();
         }
