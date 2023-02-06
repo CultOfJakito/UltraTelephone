@@ -26,7 +26,7 @@ public static class TelephoneData
         return localPath;
     }
 
-    private static string[] dataToCheck = new string[] { "tex", "data", "audio" };
+    private static string[] dataToCheck = new string[] { "tex", "audio" };
 
     public static bool CheckDataPresent()
     {
