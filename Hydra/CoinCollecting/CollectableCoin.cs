@@ -2,37 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableCoin : MonoBehaviour
+namespace UltraTelephone.Hydra
 {
-    private CoinCollectorManager manager;
-
-    public bool IsCollected { get; private set; } = false;
-
-    public void SetManager(CoinCollectorManager manager)
+    public class CollectableCoin : MonoBehaviour
     {
-        if(this.manager == null)
-        {
-            this.manager = manager;
-        }
-    }
+        private CoinCollectorManager manager;
 
-    private void Collected()
-    {
-        IsCollected = true;
+        public bool IsCollected { get; private set; } = false;
 
-        if(manager != null)
+        public void SetManager(CoinCollectorManager manager)
         {
-            manager.CoinCollected(this);
+            if (this.manager == null)
+            {
+                this.manager = manager;
+            }
         }
 
-        gameObject.SetActive(false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == NewMovement.Instance.gameObject)
+        private void Collected()
         {
-            Collected();
+            IsCollected = true;
+
+            if (manager != null)
+            {
+                manager.CoinCollected(this);
+            }
+
+            gameObject.SetActive(false);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject == NewMovement.Instance.gameObject)
+            {
+                Collected();
+            }
         }
     }
 }
+

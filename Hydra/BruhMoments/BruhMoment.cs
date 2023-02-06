@@ -3,132 +3,136 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-public class BruhMomentController : MonoBehaviour
+
+namespace UltraTelephone.Hydra
 {
-    private float timeTillNextEvent = 0.0f;
-    private float maxTimeTillNextEvent = 180.0f;
-
-    private IBruhMoment currentBruhMoment;
-
-    private void Awake()
+    public class BruhMomentController : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-    }
+        private float timeTillNextEvent = 0.0f;
+        private float maxTimeTillNextEvent = 180.0f;
 
-    private void Update()
-    {
-        if(timeTillNextEvent <= 0.0f && BestUtilityEverCreated.InLevel())
+        private IBruhMoment currentBruhMoment;
+
+        private void Awake()
         {
-            timeTillNextEvent = UnityEngine.Random.Range(0.0f, maxTimeTillNextEvent);
-            BruhMoment();
+            DontDestroyOnLoad(gameObject);
         }
 
-        timeTillNextEvent -= Time.deltaTime;
-    }
-
-    public void BruhMoment()
-    {
-        currentBruhMoment = BruhMoments.ObtainBruhMoment();
-        if(currentBruhMoment == null || currentBruhMoment.IsRunning())
+        private void Update()
         {
-            return;
+            if (timeTillNextEvent <= 0.0f && BestUtilityEverCreated.InLevel())
+            {
+                timeTillNextEvent = UnityEngine.Random.Range(0.0f, maxTimeTillNextEvent);
+                BruhMoment();
+            }
+
+            timeTillNextEvent -= Time.deltaTime;
         }
-        StartCoroutine(ExecuteBruhMoment(currentBruhMoment));
-    }
 
-    private IEnumerator ExecuteBruhMoment(IBruhMoment bruhMoment)
-    {
-        currentBruhMoment.Execute();
-        SimpleLogger.Log($"Beginning execution of bruh moment: {currentBruhMoment.GetName()}");
-        while(!currentBruhMoment.IsComplete() && currentBruhMoment.IsRunning())
+        public void BruhMoment()
         {
-            yield return new WaitForEndOfFrame();
+            currentBruhMoment = BruhMoments.ObtainBruhMoment();
+            if (currentBruhMoment == null || currentBruhMoment.IsRunning())
+            {
+                return;
+            }
+            StartCoroutine(ExecuteBruhMoment(currentBruhMoment));
         }
-        SimpleLogger.Log($"Ending bruh moment: {currentBruhMoment.GetName()}");
-        currentBruhMoment.End();
-    }
 
-    private void OnLevelChanged(BestUtilityEverCreated.UltrakillLevelType ltype)
-    {
-        BruhMoments.EndAllBruhMoments();
-        timeTillNextEvent = 10.0f;
-    }
-
-    private void OnEnable()
-    {
-        BestUtilityEverCreated.OnLevelChanged += OnLevelChanged;
-    }
-
-    private void OnDisable()
-    {
-        BestUtilityEverCreated.OnLevelChanged -= OnLevelChanged;
-    }
-}
-
-public static class BruhMoments
-{
-    private static bool initalized = false;
-
-    private static List<IBruhMoment> bruhMoments = new List<IBruhMoment>();
-
-    public static void Init()
-    {
-        if(!initalized)
+        private IEnumerator ExecuteBruhMoment(IBruhMoment bruhMoment)
         {
-            GameObject bruhContainer = new GameObject("Bruhmoments");
-            bruhContainer.AddComponent<BruhMomentController>();
-            bruhContainer.AddComponent<Jumpscare>();
-            bruhContainer.AddComponent<Weirdener>();
-            bruhContainer.AddComponent<MultiplayerMode>();
-            bruhContainer.AddComponent<BirdFreer>();
-            bruhContainer.AddComponent<ClusterExplosives>();
-            initalized = true;
+            currentBruhMoment.Execute();
+            SimpleLogger.Log($"Beginning execution of bruh moment: {currentBruhMoment.GetName()}");
+            while (!currentBruhMoment.IsComplete() && currentBruhMoment.IsRunning())
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            SimpleLogger.Log($"Ending bruh moment: {currentBruhMoment.GetName()}");
+            currentBruhMoment.End();
+        }
+
+        private void OnLevelChanged(BestUtilityEverCreated.UltrakillLevelType ltype)
+        {
+            BruhMoments.EndAllBruhMoments();
+            timeTillNextEvent = 10.0f;
+        }
+
+        private void OnEnable()
+        {
+            BestUtilityEverCreated.OnLevelChanged += OnLevelChanged;
+        }
+
+        private void OnDisable()
+        {
+            BestUtilityEverCreated.OnLevelChanged -= OnLevelChanged;
         }
     }
 
-    public static bool RegisterBruhMoment(IBruhMoment bruhMoment)
+    public static class BruhMoments
     {
-        if(bruhMoments.Contains(bruhMoment))
-        {
-            return false;
-        }
-        bruhMoments.Add(bruhMoment);
-        return true;
-    }
+        private static bool initalized = false;
 
-    public static bool RemoveBruhMoment(IBruhMoment bruhMoment)
-    {
-        if (bruhMoments.Contains(bruhMoment))
+        private static List<IBruhMoment> bruhMoments = new List<IBruhMoment>();
+
+        public static void Init()
         {
-            bruhMoments.Remove(bruhMoment);
+            if (!initalized)
+            {
+                GameObject bruhContainer = new GameObject("Bruhmoments");
+                bruhContainer.AddComponent<BruhMomentController>();
+                bruhContainer.AddComponent<Jumpscare>();
+                if (HydrasConfig.BruhMoments_Weirdening) bruhContainer.AddComponent<Weirdener>();
+                if (HydrasConfig.BruhMoments_Multiplayer) bruhContainer.AddComponent<MultiplayerMode>();
+                bruhContainer.AddComponent<BirdFreer>();
+                bruhContainer.AddComponent<ClusterExplosives>();
+                initalized = true;
+            }
+        }
+
+        public static bool RegisterBruhMoment(IBruhMoment bruhMoment)
+        {
+            if (bruhMoments.Contains(bruhMoment))
+            {
+                return false;
+            }
+            bruhMoments.Add(bruhMoment);
             return true;
         }
-        return false;
-    }
 
-    public static IBruhMoment ObtainBruhMoment()
-    {
-        int rand = UnityEngine.Random.Range(0, bruhMoments.Count);
-        return bruhMoments[rand];
-    }
-
-    public static void EndAllBruhMoments()
-    {
-        for(int i=0; i< bruhMoments.Count; i++)
+        public static bool RemoveBruhMoment(IBruhMoment bruhMoment)
         {
-            if(bruhMoments[i] != null)
+            if (bruhMoments.Contains(bruhMoment))
             {
-                bruhMoments[i].End();
+                bruhMoments.Remove(bruhMoment);
+                return true;
+            }
+            return false;
+        }
+
+        public static IBruhMoment ObtainBruhMoment()
+        {
+            int rand = UnityEngine.Random.Range(0, bruhMoments.Count);
+            return bruhMoments[rand];
+        }
+
+        public static void EndAllBruhMoments()
+        {
+            for (int i = 0; i < bruhMoments.Count; i++)
+            {
+                if (bruhMoments[i] != null)
+                {
+                    bruhMoments[i].End();
+                }
             }
         }
     }
-}
 
-public interface IBruhMoment
-{
-    void Execute();
-    bool IsComplete();
-    bool IsRunning();
-    void End();
-    string GetName();
+    public interface IBruhMoment
+    {
+        void Execute();
+        bool IsComplete();
+        bool IsRunning();
+        void End();
+        string GetName();
+    }
 }

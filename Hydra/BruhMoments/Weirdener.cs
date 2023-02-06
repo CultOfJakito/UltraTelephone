@@ -6,171 +6,181 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEditor;
 
-public class Weirdener : MonoBehaviour, IBruhMoment
+namespace UltraTelephone.Hydra
+
 {
-    private Renderer[] renderers;
-
-    private float bruhMomentTimer = 60.0f;
-    private float bruhTimeLeft = 0.0f;
-    public float weirdenTime = 0.30f;
-    private float weirdenTimer = 0.0f;
-
-    private float meshRefreshTime = 15.0f;
-    private float meshRefreshTimer = 0.0f;
-
-    private bool running = false;
-
-    private Texture lastTexture;
-
-    private void Update()
+    public class Weirdener : MonoBehaviour, IBruhMoment
     {
-        if(running && BestUtilityEverCreated.InLevel())
+        private Renderer[] renderers;
+
+        private float bruhMomentTimer = 60.0f;
+        private float bruhTimeLeft = 0.0f;
+        public float weirdenTime = 0.30f;
+        private float weirdenTimer = 0.0f;
+
+        private float meshRefreshTime = 15.0f;
+        private float meshRefreshTimer = 0.0f;
+
+        private bool running = false;
+
+        private Texture lastTexture;
+
+        private void Update()
         {
-            if(bruhTimeLeft <= 0.0f)
+            if (running && BestUtilityEverCreated.InLevel())
             {
-                running = false;
-            }
-
-            if (meshRefreshTimer < 0.0f && BestUtilityEverCreated.InLevel())
-            {
-                RefreshMeshes();
-            }
-
-            if (renderers != null)
-            {
-                if (weirdenTimer < 0.0f && BestUtilityEverCreated.InLevel())
+                if (bruhTimeLeft <= 0.0f)
                 {
-                    weirdenTimer = weirdenTime;
-                    Weirden(GetRandomRenderer());
+                    running = false;
+                }
+
+                if (meshRefreshTimer < 0.0f && BestUtilityEverCreated.InLevel())
+                {
+                    RefreshMeshes();
+                }
+
+                if (renderers != null)
+                {
+                    if (weirdenTimer < 0.0f && BestUtilityEverCreated.InLevel())
+                    {
+                        weirdenTimer = weirdenTime;
+                        Weirden(GetRandomRenderer());
+                    }
+                }
+
+                weirdenTimer -= Time.deltaTime;
+                meshRefreshTimer -= Time.deltaTime;
+                bruhTimeLeft -= Time.deltaTime;
+            }
+        }
+
+        private void Weirden(Renderer render)
+        {
+            if (render != null)
+            {
+                Vector3 currentScale = render.transform.localScale;
+                Vector3 currentPos = render.transform.localPosition;
+                Vector3 scalar = new Vector3
+                {
+                    x = UnityEngine.Random.Range(0.8f, 1.2f),
+                    y = UnityEngine.Random.Range(1.01f, 1.2f),
+                    z = UnityEngine.Random.Range(0.8f, 1.2f)
+                };
+
+                Vector3 posScalar = UnityEngine.Random.insideUnitSphere * 0.25f;
+
+                currentPos += posScalar;
+                currentScale = Vector3.Scale(currentScale, scalar);
+                render.transform.localScale = currentScale;
+
+                Texture cache = render.material.mainTexture;
+
+                if (lastTexture != null && render.gameObject.name != "Quad")
+                {
+
+                    int matCount = render.GetMaterialCount();
+                    for (int i = 0; i < matCount; i++)
+                    {
+                        render.materials[i].mainTexture = lastTexture;
+                    }
+                }
+
+                float rand = UnityEngine.Random.Range(0.0f, 100.0f);
+
+                lastTexture = (rand > 50.0f) ? cache : BestUtilityEverCreated.TextureLoader.PullRandomTexture();
+            }
+        }
+
+        private void WeirdenAll()
+        {
+
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                if (renderers[i] != null)
+                {
+                    Weirden(renderers[i]);
                 }
             }
 
-            weirdenTimer -= Time.deltaTime;
-            meshRefreshTimer -= Time.deltaTime;
-            bruhTimeLeft -= Time.deltaTime;
-        }   
-    }
+        }
 
-    private void Weirden(Renderer render)
-    {
-        if(render != null)
+        private Renderer GetRandomRenderer()
         {
-            Vector3 currentScale = render.transform.localScale;
-            Vector3 currentPos = render.transform.localPosition;
-            Vector3 scalar = new Vector3
+            Renderer rend = null;
+            int attempts = 0;
+            while (rend == null && attempts < 50)
             {
-                x = UnityEngine.Random.Range(0.8f, 1.2f),
-                y = UnityEngine.Random.Range(1.01f, 1.2f),
-                z = UnityEngine.Random.Range(0.8f, 1.2f)
-            };
-
-            Vector3 posScalar = UnityEngine.Random.insideUnitSphere * 0.25f;
-
-            currentPos += posScalar;
-            currentScale = Vector3.Scale(currentScale, scalar);
-            render.transform.localScale = currentScale;
-
-            Texture cache = render.material.mainTexture;
-
-            if (lastTexture != null && render.gameObject.name != "Quad")
-            {
-                
-                int matCount = render.GetMaterialCount();
-                for(int i = 0; i < matCount; i++)
+                int rand = UnityEngine.Random.Range(0, renderers.Length);
+                if (renderers[rand] != null)
                 {
-                    render.materials[i].mainTexture = lastTexture;
-                }  
+                    rend = renderers[rand];
+                }
+                ++attempts;
             }
-
-            float rand = UnityEngine.Random.Range(0.0f, 100.0f);
-
-            lastTexture = (rand > 50.0f) ? cache : BestUtilityEverCreated.TextureLoader.PullRandomTexture();
+            return rend;
         }
-    }
 
-    private void WeirdenAll()
-    {
-
-        for(int i = 0; i< renderers.Length; i++)
+        private void RefreshMeshes()
         {
-            if (renderers[i] != null)
+            if (!BestUtilityEverCreated.InLevel())
             {
-                Weirden(renderers[i]);
+                return;
             }
+            meshRefreshTimer = meshRefreshTime;
+            renderers = FindObjectsOfType<MeshRenderer>();
         }
-        
-    }
 
-    private Renderer GetRandomRenderer()
-    {
-        Renderer rend = null;
-        int attempts = 0;
-        while(rend == null && attempts < 50)
+        private void OnLevelLoaded(BestUtilityEverCreated.UltrakillLevelType Ltype)
         {
-            int rand = UnityEngine.Random.Range(0, renderers.Length);
-            if(renderers[rand] != null)
+            RefreshMeshes();
+        }
+
+        private void OnEnable()
+        {
+            if(!HydrasConfig.BruhMoments_Weirdening)
             {
-                rend = renderers[rand];
+                return;
             }
-            ++attempts;
+            BestUtilityEverCreated.OnLevelChanged += OnLevelLoaded;
+            BruhMoments.RegisterBruhMoment(this);
         }
-        return rend;
-    }
 
-    private void RefreshMeshes()
-    {
-        if (!BestUtilityEverCreated.InLevel())
+        private void OnDisable()
         {
-            return;
+            BestUtilityEverCreated.OnLevelChanged -= OnLevelLoaded;
+            BruhMoments.RemoveBruhMoment(this);
+
         }
-        meshRefreshTimer = meshRefreshTime;
-        renderers = FindObjectsOfType<MeshRenderer>();
+
+        public void Execute()
+        {
+            bruhTimeLeft = bruhMomentTimer;
+            RefreshMeshes();
+            running = true;
+        }
+
+        public bool IsComplete()
+        {
+            return bruhTimeLeft <= 0.0f;
+        }
+
+        public bool IsRunning()
+        {
+            return running;
+        }
+
+        public void End()
+        {
+            running = false;
+            bruhTimeLeft = 0.0f;
+        }
+
+        public string GetName()
+        {
+            return "Weirdening";
+        }
     }
 
-    private void OnLevelLoaded(BestUtilityEverCreated.UltrakillLevelType Ltype)
-    {
-        RefreshMeshes();
-    }
 
-    private void OnEnable()
-    {
-        BestUtilityEverCreated.OnLevelChanged += OnLevelLoaded;
-        BruhMoments.RegisterBruhMoment(this);
-    }
-
-    private void OnDisable()
-    {
-        BestUtilityEverCreated.OnLevelChanged -= OnLevelLoaded;
-        BruhMoments.RemoveBruhMoment(this);
-
-    }
-
-    public void Execute()
-    {
-        bruhTimeLeft = bruhMomentTimer;
-        RefreshMeshes();
-        running = true;
-    }
-
-    public bool IsComplete()
-    {
-        return bruhTimeLeft <= 0.0f;
-    }
-
-    public bool IsRunning()
-    {
-        return running;
-    }
-
-    public void End()
-    {
-        running = false;
-        bruhTimeLeft = 0.0f;
-    }
-
-    public string GetName()
-    {
-        return "Weirdening";
-    }
 }
 

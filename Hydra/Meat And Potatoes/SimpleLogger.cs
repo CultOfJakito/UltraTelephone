@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UltraTelephone.Hydra;
 
 public class SimpleLogger : MonoBehaviour
 {
-    //You thought it was gonna be a SimpleLogger but no. It was me, SIMPLELOGGER.
+    //You thought it was gonna be a SimpleLogger but no. It was me, SIMPLELOGGER THE ALL IN ONE LOGGING SIMULATOR!!! HAHAHAHAHA.
 
     private void Awake()
     {
@@ -149,15 +150,27 @@ public class SimpleLogger : MonoBehaviour
         }
 
         BruhMoments.Init();
-        UltraTelephone.ChuckNorrisFacts.Instance.Init();
+        ChuckNorrisFacts.Instance.Init();
         LazyBoy.Init();
         UbisoftIntegration.Init();
         Moriya.Init();
         CraigSpawner.Init();
 
-        gameObject.AddComponent<ChristmasMiracle>();
-        gameObject.AddComponent<FrenzyController>();
-        gameObject.AddComponent<PlayerClowner>();
+        if(HydrasConfig.BruhMoments_Christmas)
+        {
+            gameObject.AddComponent<ChristmasMiracle>();
+        }
+
+        if (HydrasConfig.Madness_Enabled)
+        {
+            gameObject.AddComponent<FrenzyController>();
+        }
+
+        if (HydrasConfig.BruhMoments_Clowning)
+        {
+            gameObject.AddComponent<PlayerClowner>();
+
+        }
         gameObject.AddComponent<CoinCollectorManager>();
         
     }

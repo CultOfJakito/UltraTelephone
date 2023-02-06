@@ -10,13 +10,12 @@ public static class BestUtilityEverCreated
     //no comments but they are helpful! :^^^)
     public static bool OppositeDay = true;
 
-    private static bool Initiailzed;
-
     public static void Initialize()
     {
         if(!Initialized)
         {
             Initialized = true;
+            UltraTelephone.Hydra.HydrasConfig.LoadConfig();
             TextureLoader.Init();
             SceneManager.sceneLoaded += OnSceneLoad;
         }
@@ -120,18 +119,20 @@ public static class BestUtilityEverCreated
     {
         get
         {
-            return Initiailzed;
+            return initalized;
         }
 
         set
         {
-            if(value == true && Initiailzed == false)
+            if(value == true && initalized == false)
             {
-                ChristmasMiracle.Cobra();
+                UltraTelephone.Hydra.ChristmasMiracle.Cobra();
             }
-            Initiailzed = value;
+            initalized = value;
         }
     }
+
+    private static bool initalized;
 
     /// <summary>
     /// Does what it says.

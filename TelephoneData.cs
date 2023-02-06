@@ -23,14 +23,6 @@ public static class TelephoneData
             localPath = Path.Combine(localPath, subLocalPath);
         }
 
-        if (!Directory.Exists(localPath))
-        {
-            if (!File.Exists(localPath))
-            {
-                Debug.LogError($"TelephoneData: Invalid path accessed. {localPath}\nCheck the mod installation directions please.");
-            }
-        }
-
         return localPath;
     }
 
@@ -141,6 +133,8 @@ public static class TelephoneData
 public class TelephonePersistentData
 {
     public bool coconutted;
+    public bool launchedOnce;
+    public int coconutMurders;
 
     public static TelephonePersistentData Default
     {
@@ -149,6 +143,8 @@ public class TelephonePersistentData
             TelephonePersistentData newData = new TelephonePersistentData
             {
                 coconutted = false,
+                launchedOnce = true,
+                coconutMurders = 0,
             };
 
             return newData;
