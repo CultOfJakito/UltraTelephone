@@ -2873,17 +2873,17 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj",
+      "projectUniqueName": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
       "projectName": "UltraTelephone",
-      "projectPath": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\UltraTelephone.csproj",
+      "projectPath": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\UltraTelephone.csproj",
       "packagesPath": "C:\\Users\\Peter\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\obj\\",
+      "outputPath": "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Peter\\Source\\Repos\\UltraTelephone\\NuGet.Config",
+        "C:\\Users\\Peter\\source\\repos\\UltraTelephone\\NuGet.Config",
         "C:\\Users\\Peter\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -2893,6 +2893,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Users\\Peter\\.nuget\\packages": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://nuget.bepinex.dev/v3/index.json": {}
       },
@@ -2952,7 +2954,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

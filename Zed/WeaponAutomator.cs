@@ -76,7 +76,7 @@ public class WeaponAutomatorComponent : MonoBehaviour
         _useVariations = UltraTelephone.Plugin.plugin.Config.Bind<bool>("Variations", "Use weapon variations", true, "Account for weapon variations?");
         _minInterval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Min Interval", "Minimum Interval", 1f, "Minimum amount of time before switching");
         _maxInterval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Max Interval", "Maximum Interval", 3f, "Maximum amount of time before switching");
-        _interval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Interval", "Fixed Interval", 3f, "Fixed amount of time before switching");
+        _interval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Interval", "Fixed Interval", 2f, "Fixed amount of time before switching");
         isRandom = _isRandom.Value;
         useVariations = _useVariations.Value;
         minInterval = _minInterval.Value;
@@ -104,30 +104,33 @@ public class WeaponAutomatorComponent : MonoBehaviour
                     {
                         availableWeapons.Add(i);
                     }
-                }   
-
-                // Reserved for "when" a 6th weapon drops, else why is there a slot 6 variable in the code?
-                // because of the spawner arm
-                // Oh ok that makes sense. Im just gonna leave it here anyways :)
-
-                /*foreach(GameObject g in gc.slot6)
-                {
-
-                }*/     
-
-                waitTime = (!isRandom) ? interval : UnityEngine.Random.Range(minInterval, maxInterval);
-
-                int weapon = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Count)];
-                int variation = 1;
-
-                if (useVariations)
-                {
-                    variation = UnityEngine.Random.Range(0, 3);
                 }
-
-                for (int i = 0; i < variation; i++)
+                waitTime = interval;
+                if (availableWeapons.Count > 0)
                 {
-                    DoSwitch(weapon);
+                    // Reserved for "when" a 6th weapon drops, else why is there a slot 6 variable in the code?
+                    // because of the spawner arm
+                    // Oh ok that makes sense. Im just gonna leave it here anyways :)
+
+                    /*foreach(GameObject g in gc.slot6)
+                    {
+
+                    }*/
+
+                    waitTime = (!isRandom) ? interval : UnityEngine.Random.Range(minInterval, maxInterval);
+
+                    int weapon = availableWeapons[UnityEngine.Random.Range(0, availableWeapons.Count - 1)];
+                    int variation = 1;
+
+                    if (useVariations)
+                    {
+                        variation = UnityEngine.Random.Range(0, 2);
+                    }
+
+                    for (int i = 0; i < variation; i++)
+                    {
+                        DoSwitch(weapon);
+                    }
                 }
             }
 

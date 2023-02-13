@@ -6,6 +6,10 @@ UltraTelephone is a collaborative project created in the Ultrakill discord serve
 PLEASE BACK UP YOUR SAVE FILE.
 THIS MOD IS AN ATTACK ON THE SENSES.
 
+***Make sure subtitles are enabled for the Gabriel food stand.***
+
+Bonus content unlocks after buying from each food stand in an Act. Progress is marked by turning the level name red.
+
 # Installation
   1. Install BepInEx 5.4.21 into Ultrakill, find it here https://github.com/BepInEx/BepInEx/releases/tag/v5.4.21
   2. Launch Ultrakill
@@ -23,6 +27,10 @@ THIS MOD IS AN ATTACK ON THE SENSES.
   - Do not remove the coconut.
   - (Serious) Do not modify or remove anything from UltraTelephone/UltraTelephone_Data/data it will probably crash your game.
   - I think you can also change some settings in the config file in BepInEx/config
+  
+  # Configuration
+BepInEx/config contains a file with multiple options to enable/disable features or tweak their functionality, including madness (frenzy).
+Use the config editor in Thunderstore mod manager to edit ukdiscord_ultratelephone.cfg with ease.
 
 # How does it work?
 
