@@ -102,7 +102,7 @@ namespace UltraTelephone
             }
         }
 
-        public static AudioClip GetRandomAudioClip()
+        private static AudioClip GetRandomAudioClip()
         {
             AudioClip fallbackClip = null;
 
@@ -130,9 +130,15 @@ namespace UltraTelephone
             return fallbackClip;
         }
 
-        public static AudioClip GetRandomAudioClipFromSubdirectory(string directoryName)
+        private static AudioClip GetRandomAudioClipFromSubdirectory(string directoryName)
         {
             AudioClip newClip = null;
+
+            if(!clipDB.ContainsKey(directoryName))
+            {
+                Debug.LogError($"UltraTelephone: No audio clips present in UltraTelephone_Data/audio/{directoryName}");
+                return newClip;
+            }
 
             Random rng = new Random();
             int selectedClip = rng.Next(0, clipDB[directoryName].Count);
@@ -220,6 +226,20 @@ namespace UltraTelephone
                 }
             }
             return false;
+        }
+
+        public static bool TryGetRandomAudioClip(out AudioClip clip)
+        {
+            clip = null;
+            try
+            {
+                clip = GetRandomAudioClip();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"UltraTelephone: Could not get random audio clip\n{e.Message}\n{e.StackTrace}");
+            }
+            return (clip != null);
         }
 
         public static void SwapAudioClipSource(AudioSource source, string listKey)

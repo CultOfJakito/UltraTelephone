@@ -29,7 +29,7 @@ namespace UltraTelephone.Hydra
 
         public ChuckNorrisFacts()
         {
-            Plugin.plugin.StartCoroutine(TryGetFacts());
+            Plugin.UltraTelephone.StartCoroutine(TryGetFacts());
             BruhMoments.RegisterBruhMoment(this);
         }
 

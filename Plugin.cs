@@ -13,26 +13,17 @@ using UltraTelephone.Agent;
 
 namespace UltraTelephone
 {
-    [BepInPlugin("ukdiscord_ultratelephone", PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin("ukdiscord_ultratelephone", PluginInfo.PLUGIN_NAME, "1.1.4")]
     public class Plugin : BaseUnityPlugin
     {
         
-        public static Plugin plugin;
+        public static Plugin UltraTelephone { get; private set; }
 
         // I'm not sorry :D
         private void Awake()
         {
-            plugin = this;
-
-            if (TelephoneData.CheckDataPresent())
-            {
-                SimpleLogger.Log("Hello? Hello? Hello? UltraTelephone is starting.");
-            }else
-            {
-                Debug.LogError("UltraTelephone could not find necessary data. Did you forget to copy the UltraTelephone_Data directory?");
-                this.enabled = false;
-                return;
-            }
+            UltraTelephone = this;
+            SimpleLogger.Log("Hello? Hello? Hello? UltraTelephone is starting.");
 
             /*Fun static functions from Hydra
              * Jumpscare.Scare();
@@ -40,7 +31,6 @@ namespace UltraTelephone
              * RandomSounds.PlayRandomSound();
              * 
              */
-
 
             BestUtilityEverCreated.Initialize(); //this class its perfectly useful see it for uses!
             Harmony harmony = new Harmony("ukdiscord_ultratelephone");
@@ -53,9 +43,9 @@ namespace UltraTelephone
             WeaponAutomator.Init();
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
             
-
             // IF SOMEONE DECIDES TO USE THE KEYBIDNS THEY CAN FIX THE CLASS :(
             // OH ALSO YOU'LL NEED TO FIX UIPatch.cs it is being returned idk what is for
+            // its probablty not gonn happen
             
             //KeyBindings.Init();
             //KeyBindings.RegisterMod(thisMod);

@@ -141,12 +141,12 @@ public class SimpleLogger : MonoBehaviour
 
         if (HydraLoader.dataRegistry.TryGetValue("ComicSans", out UnityEngine.Object csObj))
         {
-            HYD_UWUPatches.comicSans = (Font) csObj;
+            UWUPatch.comicSans = (Font) csObj;
         }
 
         if (HydraLoader.dataRegistry.TryGetValue("HeatlessFont", out UnityEngine.Object hfObj))
         {
-            HYD_UWUPatches.heartless = (Font)hfObj;
+            UWUPatch.heartless = (Font)hfObj;
         }
 
         BruhMoments.Init();
