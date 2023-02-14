@@ -71,8 +71,7 @@ namespace UltraTelephone.Hydra
             {
                 if (UnityEngine.Random.value > 0.75f)
                 {
-                    AudioClip jumpscareClip = UltraTelephone.AudioSwapper.GetRandomAudioClipFromSubdirectory("jumpscare");
-                    if (jumpscareClip != null)
+                    if(AudioSwapper.TryGetAudioClipFromSubdirectory("jumpscare", out AudioClip jumpscareClip))
                     {
                         audioSrc.clip = jumpscareClip;
                     }

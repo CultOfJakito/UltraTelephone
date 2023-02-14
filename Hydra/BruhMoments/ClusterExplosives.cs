@@ -20,9 +20,9 @@ namespace UltraTelephone.Hydra
         {
             BestUtilityEverCreated.OnLevelChanged += (levelType) =>
             {
-                HYD_PlayerPatches.BombMultiplier = 0.0f;
+                PlayerPatch.BombMultiplier = 0.0f;
                 bombRangeMultipler = 0.0f;
-                HYD_PlayerPatches.CurrentClusterPool = 0;
+                PlayerPatch.CurrentClusterPool = 0;
             };
         }
 
@@ -58,13 +58,13 @@ namespace UltraTelephone.Hydra
 
             ClusterExplosivesTimer = Mathf.Max(0.0f, ClusterExplosivesTimer - Time.deltaTime);
 
-            HYD_PlayerPatches.BombMultiplier = (bombRangeMultipler / 60.0f) + 1;
+            PlayerPatch.BombMultiplier = (bombRangeMultipler / 60.0f) + 1;
             bombRangeMultipler += Time.deltaTime;
 
             if (clusterClearTimer < 0.0f)
             {
                 clusterClearTimer = clusterClearTime;
-                HYD_PlayerPatches.CurrentClusterPool = Mathf.Clamp(HYD_PlayerPatches.CurrentClusterPool - 1, 0, HYD_PlayerPatches.MaxCluster);
+                PlayerPatch.CurrentClusterPool = Mathf.Clamp(PlayerPatch.CurrentClusterPool - 1, 0, PlayerPatch.MaxCluster);
             }
 
             clusterClearTimer -= Time.deltaTime;
