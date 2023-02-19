@@ -144,7 +144,7 @@ public class SimpleLogger : MonoBehaviour
             UWUPatch.comicSans = (Font) csObj;
         }
 
-        if (HydraLoader.dataRegistry.TryGetValue("HeatlessFont", out UnityEngine.Object hfObj))
+        if (HydraLoader.dataRegistry.TryGetValue("HeartlessFont", out UnityEngine.Object hfObj))
         {
             UWUPatch.heartless = (Font)hfObj;
         }
