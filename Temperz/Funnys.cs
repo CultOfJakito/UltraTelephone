@@ -34,7 +34,14 @@ namespace UltraTelephone.Temperz
                 "https://youtu.be/Ak0EGTB4APM",
                 "https://pbs.twimg.com/media/FJb8kqQUYAEUy2a?format=jpg&name=small",
                 "https://youtu.be/Ds14zhfHEvE",
-                "https://www.youtube.com/watch?v=_LjN3UclYzU"
+                "https://www.youtube.com/watch?v=_LjN3UclYzU",
+                "https://www.youtube.com/shorts/cPWH4CzxaFk",
+                "https://www.youtube.com/watch?v=wcpQ3aarHRU",
+                "https://www.youtube.com/watch?v=n-aL5da34SI",
+                "https://www.youtube.com/watch?v=TrE0LRjIYQY",
+                "https://www.youtube.com/watch?v=ESUaRUNYQ74",
+                "https://www.youtube.com/watch?v=x3fmTe_9cNA",
+                "https://www.youtube.com/watch?v=AEtbFm_CjE0"
             };
 
         public static void OpenFunny()

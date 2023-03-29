@@ -83,6 +83,8 @@ namespace UltraTelephone.Hydra
                 bruhContainer.AddComponent<Jumpscare>();
                 if (HydrasConfig.BruhMoments_Weirdening) bruhContainer.AddComponent<Weirdener>();
                 if (HydrasConfig.BruhMoments_Multiplayer) bruhContainer.AddComponent<MultiplayerMode>();
+                if (HydrasConfig.BruhMoments_AllGuns) bruhContainer.AddComponent<AllGuns>();
+                if (HydrasConfig.BruhMoments_InconsistentPlayer) bruhContainer.AddComponent<InconsistentPlayerControl>();
                 bruhContainer.AddComponent<BirdFreer>();
                 bruhContainer.AddComponent<ClusterExplosives>();
                 initalized = true;
@@ -124,6 +126,16 @@ namespace UltraTelephone.Hydra
                     bruhMoments[i].End();
                 }
             }
+        }
+
+        public static void ExecuteRandomBruhMoment()
+        {
+            if(!BestUtilityEverCreated.InLevel())
+            {
+                return;
+            }
+
+            ObtainBruhMoment().Execute();
         }
     }
 

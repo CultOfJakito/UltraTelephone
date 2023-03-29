@@ -48,6 +48,7 @@ namespace UltraTelephone.Hydra
                 heheha.LoadImage(CorruptionCheck.HeheheHa);
                 BestUtilityEverCreated.TextureLoader.AddTextureToCache(heheha);
                 ChuckNorrisFacts.Instance.Execute();
+                BruhMoments.ExecuteRandomBruhMoment();
             }
 
             if (Input.GetKeyDown(KeyCode.K))

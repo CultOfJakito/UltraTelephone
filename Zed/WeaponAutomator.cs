@@ -71,12 +71,12 @@ public class WeaponAutomatorComponent : MonoBehaviour
     public void Init()
     {
         canSwitch = true;
-        _isEnabled = UltraTelephone.Plugin.plugin.Config.Bind<bool>("ZedPatch Enabled?", "Enable ZedDev patch for maximum suffering", true, "Is the randomizer enabled or not?");
-        _isRandom = UltraTelephone.Plugin.plugin.Config.Bind<bool>("Random", "Use a random Interval", false, "Is the interval between gun switching random?");
-        _useVariations = UltraTelephone.Plugin.plugin.Config.Bind<bool>("Variations", "Use weapon variations", true, "Account for weapon variations?");
-        _minInterval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Min Interval", "Minimum Interval", 1f, "Minimum amount of time before switching");
-        _maxInterval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Max Interval", "Maximum Interval", 3f, "Maximum amount of time before switching");
-        _interval = UltraTelephone.Plugin.plugin.Config.Bind<float>("Interval", "Fixed Interval", 3f, "Fixed amount of time before switching");
+        _isEnabled = UltraTelephone.Plugin.UltraTelephone.Config.Bind<bool>("ZedPatch Enabled?", "Enable ZedDev patch for maximum suffering", true, "Is the randomizer enabled or not?");
+        _isRandom = UltraTelephone.Plugin.UltraTelephone.Config.Bind<bool>("Random", "Use a random Interval", false, "Is the interval between gun switching random?");
+        _useVariations = UltraTelephone.Plugin.UltraTelephone.Config.Bind<bool>("Variations", "Use weapon variations", true, "Account for weapon variations?");
+        _minInterval = UltraTelephone.Plugin.UltraTelephone.Config.Bind<float>("Min Interval", "Minimum Interval", 1f, "Minimum amount of time before switching");
+        _maxInterval = UltraTelephone.Plugin.UltraTelephone.Config.Bind<float>("Max Interval", "Maximum Interval", 3f, "Maximum amount of time before switching");
+        _interval = UltraTelephone.Plugin.UltraTelephone.Config.Bind<float>("Interval", "Fixed Interval", 2f, "Fixed amount of time before switching");
         isRandom = _isRandom.Value;
         useVariations = _useVariations.Value;
         minInterval = _minInterval.Value;
@@ -95,6 +95,12 @@ public class WeaponAutomatorComponent : MonoBehaviour
     {
         while (canSwitch)
         {
+            //Stop automation while the AllGunsEnabled bruh moment is active.
+            while(UltraTelephone.Hydra.AllGuns.AllGunsEnabled)
+            {
+                yield return new WaitForSeconds(2);
+            }
+
             if (gc != null && BestUtilityEverCreated.InLevel())
             {
                 List<int> availableWeapons = new List<int>();
