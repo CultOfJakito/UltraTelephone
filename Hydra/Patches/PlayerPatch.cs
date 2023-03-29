@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace UltraTelephone.Hydra
 {
-    public class HYD_PlayerPatches
+    public class PlayerPatch
     {
         [HarmonyPatch(typeof(Punch), "CheckForProjectile")]
         public static class ParryPatch
@@ -228,14 +228,18 @@ namespace UltraTelephone.Hydra
         {
             public static bool Prefix(Grenade __instance, ref Collider other)
             {
-                if(UnityEngine.Random.value > 0.60f)
+                if (HydrasConfig.Patches_BouncyExplosives)
                 {
-                    if(__instance.rb != null)
+                    if (UnityEngine.Random.value > 0.60f)
                     {
-                        Vector3 newDir = Vector3.Reflect(__instance.rb.velocity, -__instance.transform.forward);
-                        __instance.rb.velocity = newDir * UnityEngine.Random.Range(2.0f, 10.0f);
-                        __instance.transform.forward = newDir;
-                        return false;
+                        if (__instance.rb != null)
+                        {
+                            Vector3 newDir = Vector3.Reflect(__instance.rb.velocity, -__instance.transform.forward);
+                            __instance.rb.velocity = newDir * UnityEngine.Random.Range(2.0f, 10.0f);
+                            __instance.transform.forward = newDir;
+                            RandomSounds.PlayRandomSoundFromSubdirectory("hurt");
+                            return false;
+                        }
                     }
                 }
 
@@ -248,18 +252,21 @@ namespace UltraTelephone.Hydra
         {
             public static bool Prefix(Grenade __instance, ref Collision collision)
             {
-
-                if (UnityEngine.Random.value > 0.60f)
+                if(HydrasConfig.Patches_BouncyExplosives)
                 {
-                    if (__instance.rb != null)
+                    if (UnityEngine.Random.value > 0.60f)
                     {
-                        Vector3 newDir = Vector3.Reflect(__instance.rb.velocity, collision.GetContact(0).normal);
-                        __instance.rb.velocity = newDir * UnityEngine.Random.Range(2.0f,10.0f);
-                        __instance.transform.forward = newDir;
-                        return false;
+                        if (__instance.rb != null)
+                        {
+                            Vector3 newDir = Vector3.Reflect(__instance.rb.velocity, collision.GetContact(0).normal);
+                            __instance.rb.velocity = newDir * UnityEngine.Random.Range(2.0f, 10.0f);
+                            __instance.transform.forward = newDir;
+                            RandomSounds.PlayRandomSoundFromSubdirectory("hurt");
+                            return false;
+                        }
                     }
                 }
-
+ 
                 return true;
             }
         }
@@ -325,6 +332,16 @@ namespace UltraTelephone.Hydra
                 }
 
 
+            }
+        }
+
+        [HarmonyPatch(typeof(CameraController), "CameraShake")]
+        public static class CameraShakeIncreaser
+        {
+            public static bool Prefix(CameraController __instance, float shakeAmount)
+            {
+                shakeAmount *= UnityEngine.Random.Range(2.0f, 10.0f);
+                return true;
             }
         }
 

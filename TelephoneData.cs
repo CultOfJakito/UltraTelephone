@@ -23,31 +23,31 @@ public static class TelephoneData
             localPath = Path.Combine(localPath, subLocalPath);
         }
 
+        ValidatePath(localPath);
+
         return localPath;
     }
 
-    private static string[] dataToCheck = new string[] { "tex", "audio" };
-
-    public static bool CheckDataPresent()
+    private static void ValidatePath(string path)
     {
+        DirectoryInfo info = new DirectoryInfo(path);
 
-        if(!Directory.Exists(GetDataPath()))
+        if (!info.Exists)
         {
-            Debug.LogError($"UltraTelephone_Data is missing. Please check mod installation.");
-            return false;
-        }
-
-        for (int i = 0; i <dataToCheck.Length; i++)
-        {
-            if (!Directory.Exists(GetDataPath(dataToCheck[i])))
+            if (!info.Name.Contains("."))
             {
-                Debug.LogError($"UltraTelephone_Data: missing folder {dataToCheck[i]}");
-                return false;
+                info.Create();
+            }else
+            {
+                if(!info.Parent.Exists)
+                {
+                    info.Parent.Create();
+                }
             }
         }
-
-        return true;
     }
+
+    private static string[] dataToCheck = new string[] { "tex", "data", "audio" };
 
     private static TelephonePersistentData data;
     public static bool AutoSave = true;
