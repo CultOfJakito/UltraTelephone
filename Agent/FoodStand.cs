@@ -57,37 +57,8 @@ namespace UltraTelephone.Agent
                 c.material.shader = Shader.Find(c.material.shader.name);
             }
         }
-
-        public static GameObject PrefabFind(this AssetBundle bundle, string bundlename, string name)
-        {
-            if (bundle == null)
-            {
-                if (File.Exists($@"{Application.productName}_Data\StreamingAssets\{bundlename}"))
-                {
-                    var data = File.ReadAllBytes($@"{Application.productName}_Data\StreamingAssets\{bundlename}");
-                    bundle = LoadFromLoaded(bundle, bundlename) ?? AssetBundle.LoadFromMemory(data);
-                }
-                else
-                {
-                    Debug.LogWarning($"Could not find bundle {bundlename} or StreamingAssets file");
-                    return new GameObject();
-                }
-            }
-            return bundle.LoadAsset<GameObject>(name) ?? new GameObject();
-        }
-        public static AssetBundle LoadFromLoaded(this AssetBundle bundle, string name)
-        {
-            foreach (var bndl in AssetBundle.GetAllLoadedAssetBundles())
-            {
-                if (bndl.name == name)
-                {
-                    bundle = bndl;
-                }
-            }
-            return bundle ?? null;
-        }
     }
-
+        
     public class FoodStand : MonoBehaviour
     {
         public GameObject Trigger;
@@ -122,7 +93,7 @@ namespace UltraTelephone.Agent
             FoodStandInitializer.RenderObject(Poster, LayerMask.NameToLayer("Outdoors"));
             Poster.SetActive(false);
             CheckPoster();
-            Bible = FoodStandInitializer.PrefabFind(null, "common", "Book");
+            Bible = AssetHelper.LoadPrefab("Assets/Prefabs/Items/Book.prefab");
         }
 
         public void ButtonPressed()
