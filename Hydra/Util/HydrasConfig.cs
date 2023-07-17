@@ -34,8 +34,20 @@ namespace UltraTelephone.Hydra
         public static bool Patches_UWU { get; private set; } = true;
         public static bool Patches_BouncyExplosives { get; private set; } = true;
 
+        public static bool Patches_WackyPhysics { get; private set; } = true;
+        public static float Patches_WackyPhysicsMultiplier { get; private set; } = 20f;
+
         //Coins
         public static int CoinCollector_MaxCoins { get; private set; } = 420;
+
+        //Generic
+        public static bool Herobrine_Enabled { get; private set; } = true;
+        public static float Herobrine_Frequency { get; private set; } = 30f;
+
+        public static bool Plushie_Enabled { get; private set; } = true;
+        public static bool WallOfShame_Enabled { get; private set; } = true;
+
+        public static int MusicAlterationMode { get; private set; } = 1;
 
         public static void LoadConfig()
         {
@@ -62,6 +74,16 @@ namespace UltraTelephone.Hydra
             Patches_AudioFuckery = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "AudioFuckery", true, "Randomly swaps audio from different things").Value;
             Patches_UWU = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "UWUify", true, "Makes everything cute").Value;
             Patches_BouncyExplosives = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "BouncyExplosives", true, "Makes explosives bounce sometimes").Value;
+            Patches_WackyPhysics = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "WackyPhysics", true, "Makes physics extreme").Value;
+            Patches_WackyPhysicsMultiplier = Plugin.UltraTelephone.Config.Bind<float>("Hydra_Patches", "WackyPhysicsMultiplier", 20f, "Force multiplier").Value;
+
+            Herobrine_Enabled = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "Herobrine", true, "Enables herobrine").Value;
+            Herobrine_Frequency = Plugin.UltraTelephone.Config.Bind<float>("Hydra_Patches", "HerobrineFrequency", 40f, "Frequency of herobrine lower is more frequent").Value;
+
+            Plushie_Enabled = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "HydraPlushies", true, "Enables Hydra plushies").Value;
+            WallOfShame_Enabled = Plugin.UltraTelephone.Config.Bind<bool>("Hydra_Patches", "WallOfDecor", true, "Enables the wall of decorations").Value;
+
+            MusicAlterationMode = Plugin.UltraTelephone.Config.Bind<int>("Hydra_Patches", "Nightcore", 1, "(0 - Off)(1 - Nightcore)(2 - Vaporwave)").Value;
 
             CoinCollector_MaxCoins = Plugin.UltraTelephone.Config.Bind<int>("Hydra_CoinCollector", "MaxCoins", 420, "How many coin spawned").Value;
 

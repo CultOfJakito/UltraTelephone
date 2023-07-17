@@ -19,6 +19,8 @@ public static class HydraLoader
     public static bool dataRegistered = false;
     public static bool assetsRegistered = false;
 
+    public static Action OnBundleLoaded;
+
     public static bool RegisterAll(byte[] assetBundleObject)
     {
         try
@@ -27,14 +29,29 @@ public static class HydraLoader
             assetBundle = AssetBundle.LoadFromMemory(assetBundleObject);
             RegisterDataFiles();
             RegisterCustomAssets();
+            OnBundleLoaded?.Invoke();
             Debug.Log("HydraLoader: loading complete");
             return true;
         }
         catch (Exception e)
         {
             Debug.Log("HydraLoader: loading failed");
+            Debug.LogException(e);
             return false;
         }
+    }
+
+    //Cant be bothered to rewrite this loader to fix the clutter so this is the bandaid :)
+    public static T LoadAsset<T>(string assetName) where T : UnityEngine.Object
+    {
+
+        if(assetBundle == null)
+        {
+            Debug.LogError("Bundle is not yet loaded. Please subscribe to OnBundleLoaded, then load the asset");
+            return null;
+        }
+
+        return assetBundle.LoadAsset<T>(assetName);
     }
 
     public static void RegisterDataFiles()

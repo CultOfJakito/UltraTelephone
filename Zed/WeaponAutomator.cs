@@ -150,6 +150,7 @@ public class WeaponAutomatorComponent : MonoBehaviour
         {
             try
             {
+                Debug.Log("ZDWA: Trying to switch wepon");
                 gc.SwitchWeapon(num);
             }
             catch (System.Exception e)
