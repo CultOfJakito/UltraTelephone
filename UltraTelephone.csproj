@@ -32,17 +32,26 @@
   
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>lib\Assembly-CSharp.dll</HintPath>
+      <HintPath>$(ULTRAKILLPath)\ULTRAKILL_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Unity.InputSystem">
-      <HintPath>lib\Unity.InputSystem.dll</HintPath>
+      <HintPath>$(ULTRAKILLPath)\ULTRAKILL_Data\Managed\Unity.InputSystem.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>lib\UnityEngine.UI.dll</HintPath>
+      <HintPath>$(ULTRAKILLPath)\ULTRAKILL_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
+	<Reference Include="UnityEngine.dll">
+      <HintPath>$(ULTRAKILLPath)\ULTRAKILL_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+	<Reference Include="UnityEngine.CoreModule.dll">
+      <HintPath>$(ULTRAKILLPath)\ULTRAKILL_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+
   </ItemGroup>
+  
+  
   
    
   
@@ -86,7 +95,7 @@
 		<ItemGroup>
        <UltraTelephone_Data Include="$(TargetDir)\..\..\..\UltraTelephone_Data\**\*.*" />
 	   </ItemGroup>
-    <Copy SourceFiles="@(UltraTelephone_Data)" DestinationFolder="$(TargetDir)\BepInEx\plugins\UltraTelephone\UltraTelephone_Data\%(RecursiveDir)"/>
+    <Copy SourceFiles="@(UltraTelephone_Data)" DestinationFolder="$(TargetDir)\BepInEx\plugins\UltraTelephone\UltraTelephone_Data\%(RecursiveDir)" />
 	</Target>
   
 </Project>

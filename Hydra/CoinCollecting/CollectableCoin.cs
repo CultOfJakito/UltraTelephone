@@ -7,7 +7,7 @@ namespace UltraTelephone.Hydra
     public class CollectableCoin : MonoBehaviour
     {
         private CoinCollectorManager manager;
-
+        public int Value;
         public bool IsCollected { get; private set; } = false;
 
         public void SetManager(CoinCollectorManager manager)

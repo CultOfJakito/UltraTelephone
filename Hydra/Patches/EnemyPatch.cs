@@ -79,5 +79,24 @@ namespace UltraTelephone.Hydra
             }
         }
 
+        [HarmonyPatch(typeof(ZombieMelee))]
+        public static class BlueFilthPatch
+        {
+            private static Color blueColor = new Color(0,0.705f,1f);
+            [HarmonyPatch("Start")]
+            [HarmonyPostfix]
+            public static void Postfix(ZombieMelee __instance)
+            {
+                if(UnityEngine.Random.value > 0.95f)
+                {
+                    SkinnedMeshRenderer smr = __instance.GetComponentInChildren<SkinnedMeshRenderer>();
+                    smr.material.color = blueColor;
+                    __instance.biteMaterial.color = blueColor;
+                    __instance.originalMaterial.color = blueColor;
+                }
+            }
+        }
+
+
     }
 }

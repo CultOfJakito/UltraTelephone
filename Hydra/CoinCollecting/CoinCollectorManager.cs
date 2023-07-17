@@ -11,6 +11,11 @@ namespace UltraTelephone.Hydra
     public class CoinCollectorManager : MonoSingleton<CoinCollectorManager>
     {
         private GameObject coinPrefab;
+        private GameObject coinPrefabRed;
+        private GameObject coinPrefabBlue;
+        private GameObject coinPrefabYellow;
+        private GameObject coinPrefabBlack;
+        private GameObject coinPrefabDiamond;
         private GameObject coinCollectFX;
         private GameObject coinUIPrefab;
         private AudioClip coinFanfare;
@@ -32,13 +37,25 @@ namespace UltraTelephone.Hydra
         protected override void Awake()
         {
             base.Awake();
-            HydraLoader.prefabRegistry.TryGetValue("CollectableCoin", out coinPrefab);
             HydraLoader.prefabRegistry.TryGetValue("CollectableCoinUI", out coinUIPrefab);
             HydraLoader.prefabRegistry.TryGetValue("CollectableCoinFX", out coinCollectFX);
+
             if (HydraLoader.dataRegistry.TryGetValue("CoinFanfare", out UnityEngine.Object cFObj))
             {
                 coinFanfare = (AudioClip)cFObj;
-            }         
+            }
+
+            LoadCoins();
+        }
+
+        private void LoadCoins()
+        {
+            coinPrefab = HydraLoader.LoadAsset<GameObject>("CollectableCoin");
+            coinPrefabRed = HydraLoader.LoadAsset<GameObject>("CollectableCoinRed");
+            coinPrefabBlue = HydraLoader.LoadAsset<GameObject>("CollectableCoinBlue");
+            coinPrefabYellow = HydraLoader.LoadAsset<GameObject>("CollectableCoinYellow");
+            coinPrefabBlack = HydraLoader.LoadAsset<GameObject>("CollectableCoinBlack");
+            coinPrefabDiamond = HydraLoader.LoadAsset<GameObject>("CollectableCoinDiamond");
         }
 
         private void Reset(bool sceneLoad)
@@ -107,7 +124,9 @@ namespace UltraTelephone.Hydra
             {
                 if (TryGetCoinPlacementPosition(out Vector3 pos))
                 {
-                    GameObject newCoinObj = GameObject.Instantiate<GameObject>(coinPrefab, pos, Quaternion.identity);
+                    GameObject coinToSpawn =GetCoinPrefab();
+
+                    GameObject newCoinObj = GameObject.Instantiate<GameObject>(coinToSpawn, pos, Quaternion.identity);
                     CollectableCoin newCoin = newCoinObj.GetComponent<CollectableCoin>();
                     newCoin.SetManager(this);
                     newCoin.transform.parent = coinParent;
@@ -120,6 +139,38 @@ namespace UltraTelephone.Hydra
             }
 
             SimpleLogger.Log($"{coins.Count} coins placed.");
+        }
+
+        private GameObject GetCoinPrefab()
+        {
+            GameObject prefab = coinPrefab;
+
+            if (UnityEngine.Random.value < 0.9f)
+                return prefab;
+
+            prefab = coinPrefabBlue;
+
+            if (UnityEngine.Random.value < 0.5f)
+                return prefab;
+
+            prefab = coinPrefabRed;
+
+            if (UnityEngine.Random.value < 0.75f)
+                return prefab;
+
+            prefab = coinPrefabYellow;
+
+            if (UnityEngine.Random.value < 0.8f)
+                return prefab;
+
+            prefab = coinPrefabBlack;
+
+            if (UnityEngine.Random.value < 0.9f)
+                return prefab;
+
+            prefab = coinPrefabDiamond;
+
+            return prefab;
         }
 
         private bool TryGetCoinPlacementPosition(out Vector3 pos)
@@ -153,7 +204,7 @@ namespace UltraTelephone.Hydra
                 {
                     Vector3 fxPos = coin.transform.position;
                     GameObject.Instantiate(coinCollectFX, fxPos, Quaternion.identity);
-                    ++CollectedCoins;
+                    CollectedCoins += coin.Value;
 
                     if (CollectedCoins % 100 == 0)
                     {

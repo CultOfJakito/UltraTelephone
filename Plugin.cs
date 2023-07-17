@@ -13,7 +13,7 @@ using UltraTelephone.Agent;
 
 namespace UltraTelephone
 {
-    [BepInPlugin("ukdiscord_ultratelephone", PluginInfo.PLUGIN_NAME, "1.1.4")]
+    [BepInPlugin("ukdiscord_ultratelephone", PluginInfo.PLUGIN_NAME, "1.1.5")]
     public class Plugin : BaseUnityPlugin
     {
         

@@ -311,7 +311,7 @@ public static class BestUtilityEverCreated
     /// <summary>
     /// Enumerated version of the Ultrakill scene types
     /// </summary>
-    public enum UltrakillLevelType { Intro, MainMenu, Level, Endless, Sandbox, Custom, Intermission, Unknown }
+    public enum UltrakillLevelType { Intro, MainMenu, Level, Credits, Endless, Sandbox, Custom, Intermission, Unknown }
 
     /// <summary>
     /// Returns the current level type
@@ -332,7 +332,7 @@ public static class BestUtilityEverCreated
 
     private static void OnSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
     {
-        string sceneName = scene.name;
+        string sceneName = SceneHelper.CurrentScene;
         Debug.Log(string.Format("SCENE:[{0}]",sceneName));
         UltrakillLevelType newScene = GetUKLevelType(sceneName);
 
@@ -375,6 +375,8 @@ public static class BestUtilityEverCreated
                 return UltrakillLevelType.Intermission;
             case "Level":
                 return UltrakillLevelType.Level;
+            case "CreditsMuseum2":
+                return UltrakillLevelType.Credits;
             default:
                 return UltrakillLevelType.Unknown;
         }

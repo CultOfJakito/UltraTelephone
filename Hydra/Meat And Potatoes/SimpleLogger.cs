@@ -115,9 +115,9 @@ public class SimpleLogger : MonoBehaviour
         new HydraLoader.CustomAssetPrefab("JumpscareEngine", new Component[] {});
         new HydraLoader.CustomAssetPrefab("Lagometer", new Component[] {});
         new HydraLoader.CustomAssetPrefab("UbisoftIntegration", new Component[] { new UbisoftLink() });
-        new HydraLoader.CustomAssetPrefab("CollectableCoin", new Component[] { new CollectableCoin() });
         new HydraLoader.CustomAssetPrefab("CollectableCoinUI", new Component[] { new CollectableCoinUI() });
         new HydraLoader.CustomAssetPrefab("CollectableCoinFX", new Component[] { new CollectableCoinUI(), new DestroyAfterTime() { timeLeft = 4.0f } });
+
         new HydraLoader.CustomAssetData("CoinFanfare", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FrenzyStabSFX", typeof(AudioClip));
         new HydraLoader.CustomAssetData("FrenzyStatusSFX", typeof(AudioClip));
@@ -136,6 +136,7 @@ public class SimpleLogger : MonoBehaviour
         CarWorld.Poster();
         CarWorld.Carworld();
         CarWorld.World();
+        HerobrineManager.Init();
 
         RegisterAssets();
 
@@ -155,6 +156,7 @@ public class SimpleLogger : MonoBehaviour
         UbisoftIntegration.Init();
         Moriya.Init();
         CraigSpawner.Init();
+        CustomPlacedObjectManager.Init();
 
         if(HydrasConfig.BruhMoments_Christmas)
         {

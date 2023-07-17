@@ -4,6 +4,7 @@ using System.Text;
 using HarmonyLib;
 using UnityEngine.UI;
 using UnityEngine;
+using UltraTelephone.Hydra.Patches;
 
 namespace UltraTelephone.Hydra
 {
@@ -215,9 +216,24 @@ namespace UltraTelephone.Hydra
         {
             public static void Postfix(Grenade __instance)
             {
-                if (UnityEngine.Random.value > 0.95f)
+                if (UnityEngine.Random.value > 0.85f)
                 {
                     __instance.Explode();
+                    return;
+                }
+                
+                if(UnityEngine.Random.value > 0.85f && HydrasConfig.Plushie_Enabled)
+                {
+                    if(PlushiePlacer.Plushie != null)
+                    {
+                        RandomSounds.PlayRandomSound();
+                        GameObject plush = GameObject.Instantiate(PlushiePlacer.Plushie, __instance.transform.position, __instance.transform.rotation);
+                        if(plush.TryGetComponent<Rigidbody>(out Rigidbody rb))
+                        {
+                            rb.velocity = __instance.rb.velocity;
+                        }
+                        GameObject.Destroy(__instance.gameObject);
+                    }
                 }
 
             }
@@ -335,13 +351,20 @@ namespace UltraTelephone.Hydra
             }
         }
 
-        [HarmonyPatch(typeof(CameraController), "CameraShake")]
-        public static class CameraShakeIncreaser
+        [HarmonyPatch(typeof(CameraController))]
+        public static class CameraControllerPatches
         {
+            [HarmonyPatch(nameof(CameraController.CameraShake)), HarmonyPrefix]
             public static bool Prefix(CameraController __instance, float shakeAmount)
             {
                 shakeAmount *= UnityEngine.Random.Range(2.0f, 10.0f);
                 return true;
+            }
+
+            [HarmonyPatch("Start"), HarmonyPostfix]
+            public static void AddDBPointer(CameraController __instance)
+            {
+                __instance.gameObject.AddComponent<DebugPointerTHing>();
             }
         }
 
